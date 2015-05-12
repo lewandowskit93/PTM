@@ -35,4 +35,5 @@
 *.elf
 *.map
 *.bin
-Debug/*
+*.cogui
+PTM/Debug/*
