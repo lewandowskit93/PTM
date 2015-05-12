@@ -3,31 +3,32 @@
 
 class Foo
 {
-public:
-	void foo()
-	{
+  public:
+    void foo()
+    {
 
-	}
+    }
 };
 
 class Bar : public Foo
 {
   public:
-	void bar(){
+    void bar()
+    {
 
-	}
+    }
 };
 
 int main(void)
 {
-	SystemInit();
-	SystemCoreClockUpdate();
-    Foo foo;
-    Bar bar;
-    foo.foo();
-    bar.foo();
-    bar.bar();
-	while(1)
-    {
-    }
+  SystemInit();
+  SystemCoreClockUpdate();
+  Foo foo;
+  Bar bar;
+  foo.foo();
+  bar.foo();
+  bar.bar();
+  while (1)
+  {
+  }
 }
