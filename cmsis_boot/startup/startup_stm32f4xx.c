@@ -296,7 +296,12 @@ void Default_Reset_Handler(void)
 #endif	
 
   /* Call the application's entry point.*/
+#ifdef SUPPORT_CPLUSPLUS
+  extern int _start(void);
+  _start();
+#else
   main();
+#endif
 }
 
 
