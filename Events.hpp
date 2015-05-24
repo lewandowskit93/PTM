@@ -12,7 +12,8 @@
 enum EventType
 {
   EVENT_NONE=0,
-  EVENT_EXTI0_IRQn=1
+  EVENT_EXTI0_IRQn=1,
+  EVENT_BUTTON=2
 };
 
 /*
@@ -88,7 +89,6 @@ class EventListener
     std::map<EventType, EventMapping> _event_mappings;
     std::queue<std::shared_ptr<Event>> _events_queue;
 };
-
 
 
 #endif

@@ -32,7 +32,7 @@ class SecondApp : public Application
             ApplicationContext(application)
         {
           registerEventHandler(
-              EventMapping(EVENT_EXTI0_IRQn, true,
+              EventMapping(EVENT_BUTTON, true,
                   std::bind(&FirstContext::handleButton, this,
                       std::placeholders::_1)));
         }
@@ -41,13 +41,23 @@ class SecondApp : public Application
         {
           static int i = 0;
           auto leds = System::getInstance()->_device_manager.getDevices<LED>();
-          leds[2].lock()->toggle();
-          if (i == 3)
+          auto button_event = std::static_pointer_cast < ButtonEvent > (event);
+          if (button_event->isPressed())
           {
-            _application->switchContext(&((SecondApp*) _application)->_context2);
-            i=0;
+            leds[2].lock()->on();
           }
-          else ++i;
+          else
+          {
+            leds[2].lock()->off();
+            if (i == 2)
+            {
+              _application->switchContext(
+                  &((SecondApp*) _application)->_context2);
+              i = 0;
+            }
+            else
+              i++;
+          }
         }
 
         void onUpdate()
@@ -83,22 +93,31 @@ class SecondApp : public Application
         led.lock()->off();
       }
       registerEventHandler(
-          EventMapping(EVENT_EXTI0_IRQn, true,
+          EventMapping(EVENT_BUTTON, true,
               std::bind(&SecondApp::handleButton, this,
                   std::placeholders::_1)));
     }
 
     void handleButton(std::shared_ptr<Event> event)
     {
-      static int i=0;
+      static int i = 0;
       auto leds = System::getInstance()->_device_manager.getDevices<LED>();
-      leds[3].lock()->toggle();
-      if(i==3)
+      auto button_event = std::static_pointer_cast < ButtonEvent > (event);
+      if (button_event->isPressed())
       {
-        i=0;
-        finish();
+        leds[3].lock()->on();
       }
-      else ++i;
+      else
+      {
+        leds[3].lock()->off();
+        if (i == 1)
+        {
+          i = 0;
+          finish();
+        }
+        else
+          i++;
+      }
     }
 
     void onUpdate()
@@ -134,11 +153,12 @@ class InitApp : public Application
           auto leds = System::getInstance()->_device_manager.getDevices<LED>();
           leds[3].lock()->toggle();
           if (i == 3)
-           {
+          {
             System::getInstance()->startApplication<SecondApp>();
-            i=0;
-           }
-          else ++i;
+            i = 0;
+          }
+          else
+            ++i;
         }
 
         void onUpdate()
@@ -164,26 +184,6 @@ class InitApp : public Application
     }
 
     InitContext _context;
-};
-
-class ButtonInterrupt : public AEXTInterrupt
-{
-  public:
-    friend class InterruptManager;
-    void handleInterrupt()
-    {
-      Delay(100);
-      System::getInstance()->fireEvent(
-          std::shared_ptr < Event > (new Event(EventType::EVENT_EXTI0_IRQn)));
-    }
-  protected:
-    ButtonInterrupt() :
-        AEXTInterrupt(EXTI0_IRQn, EXTI_Line0, EXTI_PortSourceGPIOA,
-            EXTI_PinSource0)
-    {
-
-    }
-
 };
 
 int main(void)
