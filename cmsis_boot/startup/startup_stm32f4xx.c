@@ -21,7 +21,7 @@
     
 
 /*----------Stack Configuration-----------------------------------------------*/
-#define STACK_SIZE       0x00000200      /*!< The Stack size suggest using even number    */
+#define STACK_SIZE       0x00001000      /*!< The Stack size suggest using even number    */
 __attribute__ ((section(".co_stack")))
 unsigned long pulStack[STACK_SIZE];
 
@@ -35,7 +35,7 @@ unsigned long pulStack[STACK_SIZE];
  * <-- error: size of array '__HeapPool' is too large -->
  */
 
-#define __HEAP_SIZE 0x00000400
+#define __HEAP_SIZE 0x00002000
 __attribute__ ((section(".heap")))
 unsigned long __HeapPool[__HEAP_SIZE];
 

@@ -4,11 +4,17 @@
 #include "IDevice.hpp"
 #include "stm32f4xx_gpio.h"
 
+/*
+ * Simple Button Device Controller.
+ */
 class Button : public IDevice
 {
   public:
     friend class DeviceManager;
     virtual ~Button();
+    /*
+     * Returns true if button is pressed.
+     */
     bool isPressed();
 
   protected:

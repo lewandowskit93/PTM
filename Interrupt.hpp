@@ -7,6 +7,13 @@
 #include "stm32f4xx_exti.h"
 #include "stm32f4xx_syscfg.h"
 
+/*
+ * Interrupt handler abstract class.
+ * Handlers for interrupts should override its handleInterrupt function.
+ * Classes that derive from AInterrupt should have protected/private constructor
+ * and declare friendship with InterruptManager, so that handlers can only be created through
+ * manager.
+ */
 class AInterrupt
 {
   public:
@@ -26,6 +33,9 @@ class AInterrupt
   private:
 };
 
+/*
+ * Interrupt handler abstract class for external interrupts.
+ */
 class AEXTInterrupt : public AInterrupt
 {
   public:

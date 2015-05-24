@@ -6,19 +6,38 @@
 #include "stm32f4xx.h"
 #include "Interrupt.hpp"
 
+/*
+ * Manages Interrupt handlers.
+ */
 class InterruptManager
 {
   public:
     InterruptManager();
     virtual ~InterruptManager();
+    /*
+     * Creates and maps new interrupt handler.
+     */
     template<class InterruptT, class ... ArgsT>
     void addInterrupt(const ArgsT& ... args);
     //template <class InterruptT, class ... ArgsT>
     //void addInterrupt(ArgsT&& ... args);
+
+    /*
+     * Handles any interrupt.
+     * The function invokes handler for the channel when the handler is mapped,
+     * or invokes default handler when the one is not provided.
+     */
     void handleInterrupt(IRQn_Type channel);
   protected:
   private:
+    /*
+     * Default handler for unknown and unexpected interrupts.
+     * Default action is to go into infinite loop.
+     */
     void defaultHandler();
+    /*
+     * Maps channel to the handler.
+     */
     std::map<IRQn_Type, std::shared_ptr<AInterrupt> > _interrupt_mappings;
 };
 

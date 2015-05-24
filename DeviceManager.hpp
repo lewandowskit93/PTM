@@ -11,24 +11,47 @@ class DeviceManager
     DeviceManager();
     ~DeviceManager();
 
+    /*
+     * Creates and mounts a device of specified type with given arguments.
+     */
     template<class DeviceT, class ... ArgsT>
     std::weak_ptr<DeviceT> mountDevice(const ArgsT& ... args);
 
     //template <class DeviceT,class ... ArgsT>
     //std::weak_ptr<DeviceT> mountDevice(ArgsT&& ... args);
 
+    /*
+     * Returns first device of specified type or null if no such device is mounted.
+     */
     template<class DeviceT>
     std::weak_ptr<DeviceT> getDevice();
 
+    /*
+     * Returns all mounted devices of specified type.
+     */
     template<class DeviceT>
     std::vector<std::weak_ptr<DeviceT>> getDevices();
 
+    /*
+     * Returns safe vector copy of all devices.
+     */
     std::vector<std::weak_ptr<IDevice>> getAllDevices();
 
+    /*
+     * Unmounts device from manager. The device's destructor will be called as soon
+     * as all shared pointers to that device will be destroyed.
+     */
     void unmountDevice(std::weak_ptr<IDevice> device);
+
+    /*
+     * Unmount devices from manager.
+     */
     void unmountDevices(std::vector<std::weak_ptr<IDevice>> devices);
 
   protected:
+    /*
+     * Mounted devices.
+     */
     std::vector<std::shared_ptr<IDevice>> _devices;
   private:
 
