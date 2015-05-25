@@ -385,13 +385,13 @@ int main(void)
       RCC_AHB1Periph_GPIOD);
   System::getInstance()->_device_manager.mountDevice<AHB1PeriphClock>(
       RCC_AHB1Periph_GPIOA);
-  System::getInstance()->_device_manager.mountDevice<LED>(GPIOD, GPIO_Pin_12);
-  System::getInstance()->_device_manager.mountDevice<LED>(GPIOD, GPIO_Pin_13);
-  System::getInstance()->_device_manager.mountDevice<LED>(GPIOD, GPIO_Pin_14);
-  System::getInstance()->_device_manager.mountDevice<LED>(GPIOD, GPIO_Pin_15);
+  System::getInstance()->_device_manager.mountDevice<LED>(Pin(GPIOD, GPIO_Pin_12));
+  System::getInstance()->_device_manager.mountDevice<LED>(Pin(GPIOD, GPIO_Pin_13));
+  System::getInstance()->_device_manager.mountDevice<LED>(Pin(GPIOD, GPIO_Pin_14));
+  System::getInstance()->_device_manager.mountDevice<LED>(Pin(GPIOD, GPIO_Pin_15));
   std::weak_ptr<Button> but_w =
-      System::getInstance()->_device_manager.mountDevice<Button>(GPIOA,
-          GPIO_Pin_0);
+      System::getInstance()->_device_manager.mountDevice<Button>(Pin(GPIOA,
+          GPIO_Pin_0));
   System::getInstance()->_interrupt_manager.addInterrupt<ButtonInterrupt>();
   std::shared_ptr<Button> but_d = but_w.lock();
   std::vector < std::weak_ptr<LED> > leds =

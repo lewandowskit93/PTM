@@ -20,13 +20,12 @@ class Button : public IDevice
      * Returns true if button is pressed.
      */
     bool isPressed();
-    uint32_t getPin();
+    Pin getPin();
 
   protected:
-    Button(GPIO_TypeDef* GPIOx, uint32_t pin);
+    Button(Pin pin);
   private:
-    GPIO_TypeDef* _GPIOx;
-    uint32_t _pin;
+    Pin _pin;
 };
 
 /*

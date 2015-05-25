@@ -1,6 +1,8 @@
 #ifndef __IDEVICE_H__
 #define __IDEVICE_H__
 
+#include "stm32f4xx_gpio.h"
+
 /* Device marker.
  * Classes that Derive from IDevice should declare friendship with DeviceManager.
  * Constructor of such a Device shall be protected or private so that devices can be
@@ -12,6 +14,22 @@ class IDevice
   protected:
     IDevice();
   private:
+};
+
+/*
+ * Structure that describes single pin on specific port.
+ */
+struct Pin
+{
+    Pin(GPIO_TypeDef* port, uint32_t pin);
+    /*
+     * GPIOx port
+     */
+    GPIO_TypeDef* port;
+    /*
+     * GPIO_Pin
+     */
+    uint32_t pin;
 };
 
 #endif // __IDEVICE_H__

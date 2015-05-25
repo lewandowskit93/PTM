@@ -2,16 +2,16 @@
 #include "System.hpp"
 #include "Events.hpp"
 
-Button::Button(GPIO_TypeDef* GPIOx, uint32_t pin) :
-    IDevice(), _GPIOx(GPIOx), _pin(pin)
+Button::Button(Pin pin) :
+    IDevice(), _pin(pin)
 {
   GPIO_InitTypeDef GPIO_InitStructure;
-  GPIO_InitStructure.GPIO_Pin = _pin;
+  GPIO_InitStructure.GPIO_Pin = _pin.pin;
   GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN;
   GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
   GPIO_InitStructure.GPIO_Speed = GPIO_Speed_100MHz;
   GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL;
-  GPIO_Init(_GPIOx, &GPIO_InitStructure);
+  GPIO_Init(pin.port, &GPIO_InitStructure);
 }
 
 Button::~Button()
@@ -21,10 +21,10 @@ Button::~Button()
 
 bool Button::isPressed()
 {
-  return GPIO_ReadInputDataBit(_GPIOx, _pin) != 0;
+  return GPIO_ReadInputDataBit(_pin.port, _pin.pin) != 0;
 }
 
-uint32_t Button::getPin()
+Pin Button::getPin()
 {
   return _pin;
 }
@@ -47,7 +47,7 @@ void ButtonInterrupt::handleInterrupt()
   {
     auto button_s = button.lock();
     if(!button_s)continue;
-    if(button_s->getPin()==_line)
+    if(button_s->getPin().pin==_line)
     {
       System::getInstance()->_event_manager.fireEvent(
             std::shared_ptr < ButtonEvent > (new ButtonEvent(button_s->isPressed(),button)));

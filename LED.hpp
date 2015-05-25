@@ -34,10 +34,9 @@ class LED : public IDevice
     bool isOn();
 
   protected:
-    LED(GPIO_TypeDef* GPIOx, uint32_t pin);
+    LED(Pin pin);
   private:
-    GPIO_TypeDef* _GPIOx;
-    uint32_t _pin;
+    Pin _pin;
     bool _enabled;
 };
 
