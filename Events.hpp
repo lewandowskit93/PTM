@@ -52,16 +52,36 @@ struct EventMapping
 class EventListener
 {
   public:
+    /*
+     * Creates an event listener.
+     * Event listener is inactive by default.
+     */
     EventListener();
     ~EventListener();
+
+    /*
+     * Returns true if the listener is active (accepts events)
+     * or false when it is inactive (doesnt accept events).
+     */
+    bool isActive();
+
+    /*
+     * Activates the event listener.
+     */
+    void activate();
+    /*
+     * Deactivates the event listener
+     */
+    void deactivate();
+
     /*
      * Handles all events in the queue.
      */
     void handleEvents();
     /*
-     * If the event type is supported then it is queued or handled
-     * depending on the immediate_handle field in mapping.
-     * If the event type is supported returns true, false otherwise.
+     * If the listener is active and the event type is supported
+     * then it is queued or handled depending on the immediate_handle field in mapping.
+     * Returns true on success.
      */
     bool queueEvent(std::shared_ptr<Event> event);
     /*
@@ -88,7 +108,18 @@ class EventListener
     void defaultHandler(std::shared_ptr<Event> event);
     std::map<EventType, EventMapping> _event_mappings;
     std::queue<std::shared_ptr<Event>> _events_queue;
+    bool _active;
 };
 
+/*
+ * Enables event handling and queueing.
+ * Automatically registers itself in the system.
+ */
+class SystemEventListener : public EventListener
+{
+  public:
+    SystemEventListener();
+    ~SystemEventListener();
+};
 
 #endif

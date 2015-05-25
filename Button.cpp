@@ -40,7 +40,7 @@ ButtonInterrupt::ButtonInterrupt(EventType e_type, IRQn_Type channel, uint32_t l
 void ButtonInterrupt::handleInterrupt()
 {
   debounce();
-  System::getInstance()->fireEvent(
+  System::getInstance()->_event_manager.fireEvent(
       std::shared_ptr < Event > (new Event(_e_type)));
   auto buttons = System::getInstance()->_device_manager.getDevices<Button>();
   for(auto button : buttons)
@@ -49,7 +49,7 @@ void ButtonInterrupt::handleInterrupt()
     if(!button_s)continue;
     if(button_s->getPin()==_line)
     {
-      System::getInstance()->fireEvent(
+      System::getInstance()->_event_manager.fireEvent(
             std::shared_ptr < ButtonEvent > (new ButtonEvent(button_s->isPressed(),button)));
       break;
     }
@@ -58,8 +58,8 @@ void ButtonInterrupt::handleInterrupt()
 
 void ButtonInterrupt::debounce()
 {
-  int i=500;
-  while(i>500)
+  int i=50;
+  while(i>0)
   {
     --i;
   }

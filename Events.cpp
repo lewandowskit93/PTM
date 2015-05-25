@@ -1,4 +1,7 @@
 #include "Events.hpp"
+#include "System.hpp"
+#include "EventManager.hpp"
+
 Event::Event(EventType type) :
     _type(type)
 {
@@ -21,7 +24,7 @@ EventMapping::EventMapping(EventType type, bool immediate_handle,
 }
 
 
-EventListener::EventListener()
+EventListener::EventListener() : _active(false)
 {
 
 }
@@ -29,6 +32,22 @@ EventListener::~EventListener()
 {
 
 }
+
+bool EventListener::isActive()
+{
+  return _active;
+}
+
+void EventListener::activate()
+{
+  _active = true;
+}
+
+void EventListener::deactivate()
+{
+  _active = false;
+}
+
 void EventListener::handleEvents()
 {
   std::queue<std::shared_ptr<Event>> e_queue;
@@ -47,7 +66,7 @@ void EventListener::handleEvents()
 }
 bool EventListener::queueEvent(std::shared_ptr<Event> event)
 {
-  if(supportsEvent(event->getType()))
+  if(isActive() && supportsEvent(event->getType()))
   {
     EventMapping e_mapping = getEventMapping(event->getType());
     if(e_mapping.type==EventType::EVENT_NONE)return false;
@@ -88,4 +107,15 @@ EventMapping EventListener::getEventMapping(EventType type)
 void EventListener::defaultHandler(std::shared_ptr<Event> event)
 {
 
+}
+
+
+SystemEventListener::SystemEventListener()
+: EventListener()
+{
+  System::getInstance()->_event_manager.registerListener(this);
+}
+SystemEventListener::~SystemEventListener()
+{
+  System::getInstance()->_event_manager.unregisterListener(this);
 }

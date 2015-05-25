@@ -5,70 +5,132 @@
 
 class Application;
 
+enum ApplicationLifeState
+{
+  UNINITIALIZED, INITIALIZED, RUNNABLE, RUNNING, PAUSED, STOPPED, TERMINATED
+};
+
 /*
  * Application Context is an Application State.
- * Every Application has to have at least one context to run.
- * An application can have multiple contexts which can be used for e.g. to implement different menus.
- * Every context can implement different actions than any other for the same event.
- * Every system tick an update function will be invoked on currently running application.
+ * It can be used to implement behaviour variety within single application.
+ * An application doesnt have to have context.
+ * An application can have multiple contexts.
+ * At least one context can be active within application at any given moment.
+ * Every system tick an update function will be invoked on current application context.
  */
-class ApplicationContext : public EventListener
+class ApplicationContext
 {
   public:
-    ApplicationContext(Application *application);
+    ApplicationContext();
     virtual ~ApplicationContext();
+    /*
+     * Starts the context.
+     * Context have to be started before it is run.
+     */
+    void start();
+
     /*
      * Handles the events and updates the context.
      */
     void update();
+
+    /*
+     * Pauses the context.
+     * While the context is paused it is not updated and its events are not handled.
+     */
+    void pause();
+
+    /*
+     * Resumes the paused context.
+     */
+    void resume();
+
+    /*
+     * Stops the context.
+     */
+    void stop();
+
+    ApplicationLifeState getApplicationState();
   protected:
+    virtual void onStart()=0;
     /*
      * Should be overrided for updating the context (context logic).
      */
     virtual void onUpdate()=0;
-    Application *_application;
+    virtual void onPause()=0;
+    virtual void onResume()=0;
+    virtual void onStop()=0;
+    ApplicationLifeState _app_state;
+    SystemEventListener _event_listener;
 
 };
 
 /*
  * The smallest runnable class.
- * Application has to have context in order to run.
- * It can be used to implement global meanings for events for whole application.
- * If the current context doesnt support an event, it will be delivered to application (if the application supports it).
+ * It can be used to implement global meanings for whole application.
+ * Every system tick the application is updated.
  */
-class Application : public EventListener
+class Application
 {
   public:
     friend class System;
     Application();
     virtual ~Application();
+
+    /*
+     * Starts the application.
+     * Application have to be started before it is run.
+     */
+    void start();
+
     /*
      * Handles the events.
-     * Updates the application and its current context.
-     * If there is no context then the application finishes itself.
+     * Updates the application and its current context if any exists.
      */
     void update();
+
     /*
-     * Finishes the application.
-     * The top application on the system stack becomes the current one.
-    */
-    void finish();
-    /*
-     * Returns true if application finished its work.
+     * Pauses the application and its current context.
      */
-    bool hasFinished();
+    void pause();
+
+    /*
+     * Resumes the paused application and its current context.
+     * While the application is paused it is not updated and its events are not handled.
+     */
+    void resume();
+
+    /*
+     * Stops the application and its current context.
+     */
+    void stop();
+
+    /*
+     * Terminates the application.
+     */
+    void terminate();
+
     /*
      * Switches application context.
+     * The old context is paused, and the new one is
+     * resumed or started depending on its state.
      */
     void switchContext(ApplicationContext* _new_context);
+
+    ApplicationLifeState getApplicationState();
   protected:
+    virtual void onStart()=0;
     /*
      * Should be overrided to provide logic for whole application.
      */
     virtual void onUpdate()=0;
+    virtual void onPause()=0;
+    virtual void onResume()=0;
+    virtual void onStop()=0;
+    SystemEventListener _event_listener;
   private:
     ApplicationContext* _current_context;
-    bool _finished;
+    ApplicationLifeState _app_state;
 };
 
 #endif
