@@ -29,45 +29,46 @@ Pin Button::getPin()
   return _pin;
 }
 
-ButtonInterrupt::ButtonInterrupt(EventType e_type, IRQn_Type channel, uint32_t line, uint8_t exti_port_source,
+ButtonInterrupt::ButtonInterrupt(std::weak_ptr<Button> device,
+    IRQn_Type channel, uint32_t line, uint8_t exti_port_source,
     uint8_t exti_pin_source, uint8_t priority, uint8_t subpriority) :
-    AEXTInterrupt(channel,line,exti_port_source,exti_pin_source,priority,subpriority,EXTI_Trigger_Rising_Falling,EXTI_Mode_Interrupt),
-    _e_type(e_type)
+    AEXTInterrupt(device, channel, line, exti_port_source, exti_pin_source,
+        priority, subpriority, EXTI_Trigger_Rising_Falling, EXTI_Mode_Interrupt)
 {
 
 }
 
 void ButtonInterrupt::handleInterrupt()
 {
-  debounce();
-  System::getInstance()->_event_manager.fireEvent(
-      std::shared_ptr < Event > (new Event(_e_type)));
-  auto buttons = System::getInstance()->_device_manager.getDevices<Button>();
-  for(auto button : buttons)
+  if (EXTI_GetITStatus(EXTI_Line0) != RESET)
   {
-    auto button_s = button.lock();
-    if(!button_s)continue;
-    if(button_s->getPin().pin==_line)
+    debounce();
+    EXTI_ClearITPendingBit(EXTI_Line0);
+    auto device_s = _device.lock();
+    if(device_s)
     {
-      System::getInstance()->_event_manager.fireEvent(
-            std::shared_ptr < ButtonEvent > (new ButtonEvent(button_s->isPressed(),button)));
-      break;
+      auto button_s = std::dynamic_pointer_cast<Button>(device_s);
+      if (button_s)
+      {
+        System::getInstance()->_event_manager.fireEvent(
+            std::shared_ptr < ButtonEvent
+                > (new ButtonEvent(button_s->isPressed(),button_s)));
+      }
     }
   }
 }
 
 void ButtonInterrupt::debounce()
 {
-  int i=50;
-  while(i>0)
+  int i = 500;
+  while (i > 0)
   {
     --i;
   }
 }
 
-
-ButtonEvent::ButtonEvent(bool pressed, std::weak_ptr<Button> device)
-: Event(EventType::EVENT_BUTTON), _pressed(pressed), _device(device)
+ButtonEvent::ButtonEvent(bool pressed, std::weak_ptr<Button> device) :
+    Event(EventType::EVENT_BUTTON), _pressed(pressed), _device(device)
 {
 
 }

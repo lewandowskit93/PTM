@@ -1,12 +1,15 @@
 #ifndef __Interrupt_H__
 #define __Interrupt_H__
 
+#include <c++/4.9.3/memory>
 #include "misc.h"
 #include "stm32f4xx.h"
 #include "stm32f4xx_gpio.h"
 #include "stm32f4xx_exti.h"
 #include "stm32f4xx_syscfg.h"
 
+
+class IDevice;
 /*
  * Interrupt handler abstract class.
  * Handlers for interrupts should override its handleInterrupt function.
@@ -21,11 +24,19 @@ class AInterrupt
     virtual ~AInterrupt();
     IRQn_Type getChannel();
     bool isChannelEnabled();
+    /*
+     * Should be overrided to handle an interrupt and clear flags.
+     */
     virtual void handleInterrupt()=0;
+    /*
+     * Returns the device that is linked to an interrupt.
+     */
+    std::weak_ptr<IDevice> getDevice();
   protected:
-    AInterrupt(IRQn_Type channel, uint8_t priority = 0,
+    AInterrupt(std::weak_ptr<IDevice> device, IRQn_Type channel, uint8_t priority = 0,
         uint8_t subpriority = 0);
 
+    std::weak_ptr<IDevice> _device;
     IRQn_Type _channel;
     uint8_t _priority;
     uint8_t _subpriority;
@@ -43,7 +54,7 @@ class AEXTInterrupt : public AInterrupt
     virtual ~AEXTInterrupt();
     bool isLineEnabled();
   protected:
-    AEXTInterrupt(IRQn_Type channel, uint32_t line, uint8_t exti_port_source,
+    AEXTInterrupt(std::weak_ptr<IDevice> device, IRQn_Type channel, uint32_t line, uint8_t exti_port_source,
         uint8_t exti_pin_source, uint8_t priority = 0, uint8_t subpriority = 0,
         EXTITrigger_TypeDef trigger = EXTI_Trigger_Rising_Falling,
         EXTIMode_TypeDef mode = EXTI_Mode_Interrupt);

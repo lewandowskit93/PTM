@@ -1,7 +1,8 @@
 #include "Interrupt.hpp"
-AInterrupt::AInterrupt(IRQn_Type channel, uint8_t priority, uint8_t subpriority) :
-    _channel(channel), _priority(priority), _subpriority(subpriority), _channel_enabled(
-        true)
+AInterrupt::AInterrupt(std::weak_ptr<IDevice> device, IRQn_Type channel,
+    uint8_t priority, uint8_t subpriority) :
+    _device(device), _channel(channel), _priority(priority), _subpriority(
+        subpriority), _channel_enabled(true)
 {
   NVIC_InitTypeDef NVIC_init;
   NVIC_init.NVIC_IRQChannel = _channel;
@@ -30,10 +31,15 @@ bool AInterrupt::isChannelEnabled()
   return _channel_enabled;
 }
 
-AEXTInterrupt::AEXTInterrupt(IRQn_Type channel, uint32_t line,
+std::weak_ptr<IDevice> AInterrupt::getDevice()
+{
+  return _device;
+}
+
+AEXTInterrupt::AEXTInterrupt(std::weak_ptr<IDevice> device, IRQn_Type channel, uint32_t line,
     uint8_t exti_port_source, uint8_t exti_pin_source, uint8_t priority,
     uint8_t subpriority, EXTITrigger_TypeDef trigger, EXTIMode_TypeDef mode) :
-    AInterrupt(channel, priority, subpriority), _line(line), _exti_port_source(
+    AInterrupt(device, channel, priority, subpriority), _line(line), _exti_port_source(
         exti_port_source), _exti_pin_source(exti_pin_source), _trigger(trigger), _mode(
         mode), _line_enabled(true)
 {

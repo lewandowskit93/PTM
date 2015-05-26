@@ -51,8 +51,7 @@ class SecondApp : public Application
             leds[2].lock()->off();
             if (i == 1)
             {
-              _application->switchContext(
-                  &_application->_context2);
+              _application->switchContext(&_application->_context2);
               i = 0;
             }
             else
@@ -76,8 +75,8 @@ class SecondApp : public Application
         void onPause()
         {
           auto leds = System::getInstance()->_device_manager.getDevices<LED>();
-          _led_one_state=leds[1].lock()->isOn();
-          _led_two_state=leds[2].lock()->isOn();
+          _led_one_state = leds[1].lock()->isOn();
+          _led_two_state = leds[2].lock()->isOn();
         }
 
         void onResume()
@@ -259,7 +258,7 @@ class InitApp : public Application
             ApplicationContext()
         {
           _event_listener.registerEventHandler(
-              EventMapping(EVENT_EXTI0_IRQn, true,
+              EventMapping(EVENT_BUTTON, true,
                   std::bind(&InitContext::handleButton, this,
                       std::placeholders::_1)));
         }
@@ -268,14 +267,18 @@ class InitApp : public Application
         {
           static int i = 0;
           auto leds = System::getInstance()->_device_manager.getDevices<LED>();
+          auto button_event = std::static_pointer_cast < ButtonEvent > (event);
           leds[3].lock()->toggle();
-          if (i == 3)
+          if (!button_event->isPressed())
           {
-            System::getInstance()->runApplication<SecondApp>();
-            i = 0;
+            if (i == 1)
+            {
+              System::getInstance()->runApplication<SecondApp>();
+              i = 0;
+            }
+            else
+              ++i;
           }
-          else
-            ++i;
         }
 
         void onUpdate()
@@ -385,14 +388,18 @@ int main(void)
       RCC_AHB1Periph_GPIOD);
   System::getInstance()->_device_manager.mountDevice<AHB1PeriphClock>(
       RCC_AHB1Periph_GPIOA);
-  System::getInstance()->_device_manager.mountDevice<LED>(Pin(GPIOD, GPIO_Pin_12));
-  System::getInstance()->_device_manager.mountDevice<LED>(Pin(GPIOD, GPIO_Pin_13));
-  System::getInstance()->_device_manager.mountDevice<LED>(Pin(GPIOD, GPIO_Pin_14));
-  System::getInstance()->_device_manager.mountDevice<LED>(Pin(GPIOD, GPIO_Pin_15));
+  System::getInstance()->_device_manager.mountDevice<LED>(
+      Pin(GPIOD, GPIO_Pin_12));
+  System::getInstance()->_device_manager.mountDevice<LED>(
+      Pin(GPIOD, GPIO_Pin_13));
+  System::getInstance()->_device_manager.mountDevice<LED>(
+      Pin(GPIOD, GPIO_Pin_14));
+  System::getInstance()->_device_manager.mountDevice<LED>(
+      Pin(GPIOD, GPIO_Pin_15));
   std::weak_ptr<Button> but_w =
-      System::getInstance()->_device_manager.mountDevice<Button>(Pin(GPIOA,
-          GPIO_Pin_0));
-  System::getInstance()->_interrupt_manager.addInterrupt<ButtonInterrupt>();
+      System::getInstance()->_device_manager.mountDevice<Button>(
+          Pin(GPIOA, GPIO_Pin_0));
+  System::getInstance()->_interrupt_manager.addInterrupt<ButtonInterrupt>(but_w);
   std::shared_ptr<Button> but_d = but_w.lock();
   std::vector < std::weak_ptr<LED> > leds =
       System::getInstance()->_device_manager.getDevices<LED>();
