@@ -5,6 +5,11 @@
 #include <c++/4.9.3/memory>
 #include "IDevice.hpp"
 
+namespace ptm
+{
+namespace system
+{
+
 class DeviceManager
 {
   public:
@@ -35,24 +40,24 @@ class DeviceManager
     /*
      * Returns safe vector copy of all devices.
      */
-    std::vector<std::weak_ptr<IDevice>> getAllDevices();
+    std::vector<std::weak_ptr<devices::IDevice>> getAllDevices();
 
     /*
      * Unmounts device from manager. The device's destructor will be called as soon
      * as all shared pointers to that device will be destroyed.
      */
-    void unmountDevice(std::weak_ptr<IDevice> device);
+    void unmountDevice(std::weak_ptr<devices::IDevice> device);
 
     /*
      * Unmount devices from manager.
      */
-    void unmountDevices(std::vector<std::weak_ptr<IDevice>> devices);
+    void unmountDevices(std::vector<std::weak_ptr<devices::IDevice>> devices);
 
   protected:
     /*
      * Mounted devices.
      */
-    std::vector<std::shared_ptr<IDevice>> _devices;
+    std::vector<std::shared_ptr<devices::IDevice>> _devices;
   private:
 
 };
@@ -66,14 +71,6 @@ std::weak_ptr<DeviceT> DeviceManager::mountDevice(const ArgsT& ... args)
     _devices.push_back(device);
   return device;
 }
-
-/*template <class DeviceT,class ... ArgsT>
- std::weak_ptr<DeviceT> DeviceManager::mountDevice(ArgsT&& ... args)
- {
- std::shared_ptr<DeviceT> device = std::shared_ptr<DeviceT>(new DeviceT(args...));
- if(device) _devices.push_back(device);
- return device;
- }*/
 
 template<class DeviceT>
 std::weak_ptr<DeviceT> DeviceManager::getDevice()
@@ -105,5 +102,8 @@ std::vector<std::weak_ptr<DeviceT>> DeviceManager::getDevices()
   }
   return devices;
 }
+
+} // namespace system
+} // namespace ptm
 
 #endif

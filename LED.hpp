@@ -4,13 +4,23 @@
 #include "IDevice.hpp"
 #include "stm32f4xx_gpio.h"
 
+namespace ptm
+{
+namespace system
+{
+class DeviceManager;
+} // namespace system
+
+namespace devices
+{
+
 /*
  * Simple LED Device Controller.
  */
 class LED : public IDevice
 {
   public:
-    friend class DeviceManager;
+    friend class system::DeviceManager;
 
     virtual ~LED();
     /*
@@ -40,4 +50,6 @@ class LED : public IDevice
     bool _enabled;
 };
 
+} //namespace devices
+} //namespace ptm
 #endif

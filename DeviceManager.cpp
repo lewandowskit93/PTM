@@ -1,5 +1,10 @@
 #include "DeviceManager.hpp"
 
+namespace ptm
+{
+namespace system
+{
+
 DeviceManager::DeviceManager()
 {
 }
@@ -8,9 +13,9 @@ DeviceManager::~DeviceManager()
 
 }
 
-std::vector<std::weak_ptr<IDevice>> DeviceManager::getAllDevices()
+std::vector<std::weak_ptr<devices::IDevice>> DeviceManager::getAllDevices()
 {
-  std::vector < std::weak_ptr<IDevice> > devices_copy;
+  std::vector < std::weak_ptr<devices::IDevice> > devices_copy;
   for (auto device : _devices)
   {
     devices_copy.push_back(device);
@@ -18,7 +23,7 @@ std::vector<std::weak_ptr<IDevice>> DeviceManager::getAllDevices()
   return devices_copy;
 }
 
-void DeviceManager::unmountDevice(std::weak_ptr<IDevice> device)
+void DeviceManager::unmountDevice(std::weak_ptr<devices::IDevice> device)
 {
   if (auto s_device = device.lock())
   {
@@ -32,10 +37,14 @@ void DeviceManager::unmountDevice(std::weak_ptr<IDevice> device)
     }
   }
 }
-void DeviceManager::unmountDevices(std::vector<std::weak_ptr<IDevice>> devices)
+void DeviceManager::unmountDevices(
+    std::vector<std::weak_ptr<devices::IDevice>> devices)
 {
   for (auto device : devices)
   {
     unmountDevice(device);
   }
 }
+
+} // namespace system
+} // namespace ptm

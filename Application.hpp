@@ -3,6 +3,11 @@
 
 #include "Events.hpp"
 
+namespace ptm
+{
+namespace system
+{
+class System;
 class Application;
 
 enum ApplicationLifeState
@@ -132,5 +137,8 @@ class Application
     ApplicationContext* _current_context;
     ApplicationLifeState _app_state;
 };
+
+} //namespace system
+} //namespace ptm
 
 #endif

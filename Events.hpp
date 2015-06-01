@@ -6,14 +6,17 @@
 #include <c++/4.9.3/map>
 #include <c++/4.9.3/queue>
 
+namespace ptm
+{
+namespace events
+{
+
 /*
  * Events types in the system.
  */
 enum EventType
 {
-  EVENT_NONE=0,
-  EVENT_EXTI0_IRQn=1,
-  EVENT_BUTTON=2
+  EVENT_NONE = 0, EVENT_EXTI0_IRQn = 1, EVENT_BUTTON = 2
 };
 
 /*
@@ -29,21 +32,21 @@ class Event
     EventType _type;
 };
 
-
 /*
  * Maps the event type to handling function.
  */
 struct EventMapping
 {
   public:
-    EventMapping(EventType type,bool immediate_handle, std::function<void (std::shared_ptr<Event>)> handler );
+    EventMapping(EventType type, bool immediate_handle,
+        std::function<void(std::shared_ptr<Event>)> handler);
     EventType type;
     /*
      * Specifies if event should be handled imediately (true)
      * or queued (false).
      */
     bool immediate_handle;
-    std::function<void (std::shared_ptr<Event>)> handler;
+    std::function<void(std::shared_ptr<Event>)> handler;
 };
 
 /*
@@ -111,15 +114,22 @@ class EventListener
     bool _active;
 };
 
+} // namespace events
+
+namespace system
+{
 /*
  * Enables event handling and queueing.
  * Automatically registers itself in the system.
  */
-class SystemEventListener : public EventListener
+class SystemEventListener : public events::EventListener
 {
   public:
     SystemEventListener();
     ~SystemEventListener();
 };
+
+} //namespace system
+} //namespace ptm
 
 #endif

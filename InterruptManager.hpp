@@ -6,6 +6,11 @@
 #include "stm32f4xx.h"
 #include "Interrupt.hpp"
 
+namespace ptm
+{
+namespace system
+{
+
 /*
  * Manages Interrupt handlers.
  */
@@ -38,7 +43,7 @@ class InterruptManager
     /*
      * Maps channel to the handler.
      */
-    std::map<IRQn_Type, std::shared_ptr<AInterrupt> > _interrupt_mappings;
+    std::map<IRQn_Type, std::shared_ptr<interrupts::AInterrupt> > _interrupt_mappings;
 };
 
 template<class InterruptT, class ... ArgsT>
@@ -57,5 +62,8 @@ void InterruptManager::addInterrupt(const ArgsT& ... args)
  auto handler = std::shared_ptr<InterruptT>(new InterruptT(args...));
  if(handler) _interrupt_mappings.insert(std::pair<IRQn_Type,std::shared_ptr<InterruptT>>(handler->getChannel(),handler));
  }*/
+
+} //namespace system
+} //namespace ptm
 
 #endif

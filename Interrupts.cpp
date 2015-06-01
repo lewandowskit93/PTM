@@ -5,6 +5,7 @@ extern "C"
 {
 void EXTI0_IRQHandler(void)
 {
-  System::getInstance()->_interrupt_manager.handleInterrupt((EXTI0_IRQn));
+  ptm::system::System::getInstance()->_interrupt_manager.handleInterrupt(
+      (EXTI0_IRQn));
 }
 }

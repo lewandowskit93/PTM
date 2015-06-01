@@ -4,6 +4,7 @@
 #include <c++/4.9.3/memory>
 #include "stm32f4xx_gpio.h"
 #include "stm32f4xx_rcc.h"
+#include "Events.hpp"
 #include "DeviceManager.hpp"
 #include "LED.hpp"
 #include "Button.hpp"
@@ -21,6 +22,11 @@ void Delay(int i)
     --i;
   }
 }
+
+using namespace ptm::system;
+using namespace ptm::events;
+using namespace ptm::devices;
+using namespace ptm::interrupts;
 
 class SecondApp : public Application
 {
@@ -399,11 +405,11 @@ int main(void)
   std::weak_ptr<Button> but_w =
       System::getInstance()->_device_manager.mountDevice<Button>(
           Pin(GPIOA, GPIO_Pin_0));
-  System::getInstance()->_interrupt_manager.addInterrupt<ButtonInterrupt>(but_w);
+  System::getInstance()->_interrupt_manager.addInterrupt<ButtonInterrupt>(
+      but_w);
   std::shared_ptr<Button> but_d = but_w.lock();
   std::vector < std::weak_ptr<LED> > leds =
       System::getInstance()->_device_manager.getDevices<LED>();
-
   System::getInstance()->runApplication<InitApp>();
   System::getInstance()->run();
   while (true)

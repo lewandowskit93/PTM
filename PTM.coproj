@@ -107,8 +107,8 @@
     <File name="System.hpp" path="System.hpp" type="1"/>
     <File name="RCC.cpp" path="RCC.cpp" type="1"/>
     <File name="cmsis_lib/include/stm32f4xx_rcc.h" path="cmsis_lib/include/stm32f4xx_rcc.h" type="1"/>
-    <File name="LED.hpp" path="LED.hpp" type="1"/>
     <File name="InterruptManager.cpp" path="InterruptManager.cpp" type="1"/>
+    <File name="LED.hpp" path="LED.hpp" type="1"/>
     <File name="DeviceManager.hpp" path="DeviceManager.hpp" type="1"/>
     <File name="cmsis_lib/source/stm32f4xx_syscfg.c" path="cmsis_lib/source/stm32f4xx_syscfg.c" type="1"/>
     <File name="Events.cpp" path="Events.cpp" type="1"/>
@@ -125,8 +125,8 @@
     <File name="cmsis" path="" type="2"/>
     <File name="cmsis_lib" path="" type="2"/>
     <File name="main.cpp" path="main.cpp" type="1"/>
-    <File name="Button.cpp" path="Button.cpp" type="1"/>
     <File name="cmsis_lib/include/stm32f4xx_gpio.h" path="cmsis_lib/include/stm32f4xx_gpio.h" type="1"/>
+    <File name="Button.cpp" path="Button.cpp" type="1"/>
     <File name="syscalls" path="" type="2"/>
     <File name="System.cpp" path="System.cpp" type="1"/>
     <File name="cmsis_lib/include/misc.h" path="cmsis_lib/include/misc.h" type="1"/>

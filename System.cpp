@@ -2,6 +2,11 @@
 #include "Application.hpp"
 #include "Events.hpp"
 
+namespace ptm
+{
+namespace system
+{
+
 System* System::_instance = 0;
 System::System() :
     _device_manager(DeviceManager()), _interrupt_manager(InterruptManager()), _current_app(
@@ -80,3 +85,6 @@ void System::run()
     }
   }
 }
+
+} // namespace system
+} // namespace ptm

@@ -1,5 +1,10 @@
 #include "IDevice.hpp"
 
+namespace ptm
+{
+namespace devices
+{
+
 IDevice::IDevice()
 {
 }
@@ -13,3 +18,6 @@ Pin::Pin(GPIO_TypeDef* port, uint32_t pin) :
 {
 
 }
+
+} // namespace devices
+} // namespace ptm

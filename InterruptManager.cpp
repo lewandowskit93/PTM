@@ -1,4 +1,10 @@
 #include "InterruptManager.hpp"
+
+namespace ptm
+{
+namespace system
+{
+
 InterruptManager::InterruptManager()
 {
 
@@ -34,3 +40,6 @@ void InterruptManager::handleInterrupt(IRQn_Type channel)
     defaultHandler();
   }
 }
+
+} // namespace system
+} // namespace ptm

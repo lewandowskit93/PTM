@@ -1,5 +1,10 @@
 #include "RCC.hpp"
 
+namespace ptm
+{
+namespace devices
+{
+
 AHB1PeriphClock::AHB1PeriphClock(uint32_t RCC_AHB1Periph) :
     IDevice(), _RCC_AHB1Periph(RCC_AHB1Periph)
 {
@@ -27,3 +32,6 @@ bool AHB1PeriphClock::isEnabled()
 {
   return _enabled;
 }
+
+} // namespace devices
+} // namespace ptm

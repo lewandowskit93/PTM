@@ -2,6 +2,11 @@
 #include "System.hpp"
 #include "EventManager.hpp"
 
+namespace ptm
+{
+namespace events
+{
+
 Event::Event(EventType type) :
     _type(type)
 {
@@ -11,6 +16,7 @@ Event::~Event()
 {
 
 }
+
 EventType Event::getType() const
 {
   return _type;
@@ -23,8 +29,8 @@ EventMapping::EventMapping(EventType type, bool immediate_handle,
 
 }
 
-
-EventListener::EventListener() : _active(false)
+EventListener::EventListener() :
+    _active(false)
 {
 
 }
@@ -50,31 +56,34 @@ void EventListener::deactivate()
 
 void EventListener::handleEvents()
 {
-  std::queue<std::shared_ptr<Event>> e_queue;
+  std::queue < std::shared_ptr < Event >> e_queue;
   _events_queue.swap(e_queue);
-  while(!e_queue.empty())
+  while (!e_queue.empty())
   {
     std::shared_ptr<Event> event = e_queue.front();
     e_queue.pop();
-    if(supportsEvent(event->getType()))
+    if (supportsEvent(event->getType()))
     {
       EventMapping e_mapping = getEventMapping(event->getType());
-      if(e_mapping.type==EventType::EVENT_NONE)continue;
+      if (e_mapping.type == EventType::EVENT_NONE)
+        continue;
       e_mapping.handler(event);
     }
   }
 }
 bool EventListener::queueEvent(std::shared_ptr<Event> event)
 {
-  if(isActive() && supportsEvent(event->getType()))
+  if (isActive() && supportsEvent(event->getType()))
   {
     EventMapping e_mapping = getEventMapping(event->getType());
-    if(e_mapping.type==EventType::EVENT_NONE)return false;
-    if(e_mapping.immediate_handle)
+    if (e_mapping.type == EventType::EVENT_NONE)
+      return false;
+    if (e_mapping.immediate_handle)
     {
       e_mapping.handler(event);
     }
-    else {
+    else
+    {
       _events_queue.push(event);
     }
     return true;
@@ -83,11 +92,11 @@ bool EventListener::queueEvent(std::shared_ptr<Event> event)
 }
 bool EventListener::supportsEvent(EventType type)
 {
-  return _event_mappings.find(type)!=_event_mappings.end();
+  return _event_mappings.find(type) != _event_mappings.end();
 }
 void EventListener::registerEventHandler(EventMapping mapping)
 {
-  _event_mappings.emplace(mapping.type,mapping);
+  _event_mappings.emplace(mapping.type, mapping);
 }
 void EventListener::unregisterEventHandler(EventType type)
 {
@@ -97,11 +106,13 @@ void EventListener::unregisterEventHandler(EventType type)
 EventMapping EventListener::getEventMapping(EventType type)
 {
   auto mapping = _event_mappings.find(type);
-  if(mapping!=_event_mappings.end())
+  if (mapping != _event_mappings.end())
   {
     return mapping->second;
   }
-  else return EventMapping(EventType::EVENT_NONE,true,std::bind(&EventListener::defaultHandler,this,std::placeholders::_1));
+  else
+    return EventMapping(EventType::EVENT_NONE, true,
+        std::bind(&EventListener::defaultHandler, this, std::placeholders::_1));
 }
 
 void EventListener::defaultHandler(std::shared_ptr<Event> event)
@@ -109,9 +120,13 @@ void EventListener::defaultHandler(std::shared_ptr<Event> event)
 
 }
 
+} // namespace events
 
-SystemEventListener::SystemEventListener()
-: EventListener()
+namespace system
+{
+
+SystemEventListener::SystemEventListener() :
+    events::EventListener()
 {
   System::getInstance()->_event_manager.registerListener(this);
 }
@@ -119,3 +134,6 @@ SystemEventListener::~SystemEventListener()
 {
   System::getInstance()->_event_manager.unregisterListener(this);
 }
+
+} // namespace system
+} // namespace ptm

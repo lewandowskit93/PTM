@@ -1,5 +1,10 @@
 #include "LED.hpp"
 
+namespace ptm
+{
+namespace devices
+{
+
 LED::LED(Pin pin) :
     IDevice(), _pin(pin)
 {
@@ -37,3 +42,6 @@ bool LED::isOn()
 {
   return _enabled;
 }
+
+} // namespace devices
+} // namespace ptm

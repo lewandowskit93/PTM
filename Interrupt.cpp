@@ -1,6 +1,12 @@
 #include "Interrupt.hpp"
-AInterrupt::AInterrupt(std::weak_ptr<IDevice> device, IRQn_Type channel,
-    uint8_t priority, uint8_t subpriority) :
+
+namespace ptm
+{
+namespace interrupts
+{
+
+AInterrupt::AInterrupt(std::weak_ptr<devices::IDevice> device,
+    IRQn_Type channel, uint8_t priority, uint8_t subpriority) :
     _device(device), _channel(channel), _priority(priority), _subpriority(
         subpriority), _channel_enabled(true)
 {
@@ -31,14 +37,15 @@ bool AInterrupt::isChannelEnabled()
   return _channel_enabled;
 }
 
-std::weak_ptr<IDevice> AInterrupt::getDevice()
+std::weak_ptr<devices::IDevice> AInterrupt::getDevice()
 {
   return _device;
 }
 
-AEXTInterrupt::AEXTInterrupt(std::weak_ptr<IDevice> device, IRQn_Type channel, uint32_t line,
-    uint8_t exti_port_source, uint8_t exti_pin_source, uint8_t priority,
-    uint8_t subpriority, EXTITrigger_TypeDef trigger, EXTIMode_TypeDef mode) :
+AEXTInterrupt::AEXTInterrupt(std::weak_ptr<devices::IDevice> device,
+    IRQn_Type channel, uint32_t line, uint8_t exti_port_source,
+    uint8_t exti_pin_source, uint8_t priority, uint8_t subpriority,
+    EXTITrigger_TypeDef trigger, EXTIMode_TypeDef mode) :
     AInterrupt(device, channel, priority, subpriority), _line(line), _exti_port_source(
         exti_port_source), _exti_pin_source(exti_pin_source), _trigger(trigger), _mode(
         mode), _line_enabled(true)
@@ -71,3 +78,6 @@ bool AEXTInterrupt::isLineEnabled()
 {
   return _line_enabled;
 }
+
+} // namespace interrupts
+} // namespace ptm

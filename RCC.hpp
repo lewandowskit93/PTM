@@ -4,13 +4,23 @@
 #include "stm32f4xx_rcc.h"
 #include "IDevice.hpp"
 
+namespace ptm
+{
+namespace system
+{
+class DeviceManager;
+} // namespace system
+
+namespace devices
+{
+
 /*
  * AHB1PeriphClocks controller.
  */
 class AHB1PeriphClock : public IDevice
 {
   public:
-    friend class DeviceManager;
+    friend class system::DeviceManager;
 
     virtual ~AHB1PeriphClock();
     /*
@@ -35,4 +45,6 @@ class AHB1PeriphClock : public IDevice
     bool _enabled;
 };
 
+} //namespace device
+} //namespace ptm
 #endif

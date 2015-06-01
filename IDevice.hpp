@@ -3,8 +3,13 @@
 
 #include "stm32f4xx_gpio.h"
 
+namespace ptm
+{
+namespace devices
+{
+
 /* Device marker.
- * Classes that Derive from IDevice should declare friendship with DeviceManager.
+ * Classes that Derive from IDevice should declare friendship with ptm::system::DeviceManager.
  * Constructor of such a Device shall be protected or private so that devices can be
  * created only through manager.*/
 class IDevice
@@ -32,4 +37,6 @@ struct Pin
     uint32_t pin;
 };
 
+} //namespace devices
+} //namespace ptm
 #endif // __IDEVICE_H__

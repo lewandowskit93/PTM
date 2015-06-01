@@ -3,6 +3,11 @@
 #include "Events.hpp"
 #include <c++/4.9.3/set>
 
+namespace ptm
+{
+namespace system
+{
+
 /*
  * Manages system events
  */
@@ -15,7 +20,7 @@ class EventManager
     /*
      * Delivers event to all active listeners.
      */
-    void fireEvent(std::shared_ptr<Event> event);
+    void fireEvent(std::shared_ptr<events::Event> event);
   private:
     /*
      * Registers listener in manager.
@@ -27,5 +32,8 @@ class EventManager
     void unregisterListener(SystemEventListener* listener);
     std::set<SystemEventListener*> _listeners;
 };
+
+} //namespace system
+} //namespace ptm
 
 #endif

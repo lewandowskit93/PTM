@@ -1,4 +1,10 @@
 #include "EventManager.hpp"
+
+namespace ptm
+{
+namespace system
+{
+
 EventManager::EventManager()
 {
 
@@ -8,17 +14,18 @@ EventManager::~EventManager()
 
 }
 
-void EventManager::fireEvent(std::shared_ptr<Event> event)
+void EventManager::fireEvent(std::shared_ptr<events::Event> event)
 {
   std::set<SystemEventListener*> active_listeners;
-  for(auto listener : _listeners)
+  for (auto listener : _listeners)
   {
-    if(listener)
+    if (listener)
     {
-      if(listener->isActive())active_listeners.insert(listener);
+      if (listener->isActive())
+        active_listeners.insert(listener);
     }
   }
-  for(auto listener : active_listeners)
+  for (auto listener : active_listeners)
   {
     listener->queueEvent(event);
   }
@@ -32,3 +39,6 @@ void EventManager::unregisterListener(SystemEventListener* listener)
 {
   _listeners.erase(listener);
 }
+
+} // namespace system
+} // namespace ptm

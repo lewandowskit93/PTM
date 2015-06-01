@@ -2,6 +2,11 @@
 #include "System.hpp"
 #include "Events.hpp"
 
+namespace ptm
+{
+namespace devices
+{
+
 Button::Button(Pin pin) :
     IDevice(), _pin(pin)
 {
@@ -29,7 +34,12 @@ Pin Button::getPin()
   return _pin;
 }
 
-ButtonInterrupt::ButtonInterrupt(std::weak_ptr<Button> device,
+} // namespace devices
+
+namespace interrupts
+{
+
+ButtonInterrupt::ButtonInterrupt(std::weak_ptr<devices::Button> device,
     IRQn_Type channel, uint32_t line, uint8_t exti_port_source,
     uint8_t exti_pin_source, uint8_t priority, uint8_t subpriority) :
     AEXTInterrupt(device, channel, line, exti_port_source, exti_pin_source,
@@ -45,14 +55,14 @@ void ButtonInterrupt::handleInterrupt()
     debounce();
     EXTI_ClearITPendingBit(EXTI_Line0);
     auto device_s = _device.lock();
-    if(device_s)
+    if (device_s)
     {
-      auto button_s = std::dynamic_pointer_cast<Button>(device_s);
+      auto button_s = std::dynamic_pointer_cast < devices::Button > (device_s);
       if (button_s)
       {
-        System::getInstance()->_event_manager.fireEvent(
-            std::shared_ptr < ButtonEvent
-                > (new ButtonEvent(button_s->isPressed(),button_s)));
+        system::System::getInstance()->_event_manager.fireEvent(
+            std::shared_ptr < events::ButtonEvent
+                > (new events::ButtonEvent(button_s->isPressed(), button_s)));
       }
     }
   }
@@ -67,11 +77,17 @@ void ButtonInterrupt::debounce()
   }
 }
 
-ButtonEvent::ButtonEvent(bool pressed, std::weak_ptr<Button> device) :
+} // namespace interrupts
+
+namespace events
+{
+
+ButtonEvent::ButtonEvent(bool pressed, std::weak_ptr<devices::Button> device) :
     Event(EventType::EVENT_BUTTON), _pressed(pressed), _device(device)
 {
 
 }
+
 ButtonEvent::~ButtonEvent()
 {
 
@@ -81,7 +97,10 @@ bool ButtonEvent::isPressed() const
   return _pressed;
 }
 
-std::weak_ptr<Button> ButtonEvent::getDevice() const
+std::weak_ptr<devices::Button> ButtonEvent::getDevice() const
 {
   return _device;
 }
+
+} // namespace events
+} // namespace ptm

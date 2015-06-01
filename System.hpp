@@ -8,7 +8,10 @@
 #include <c++/4.9.3/stack>
 #include <c++/4.9.3/memory>
 
-class Event;
+namespace ptm
+{
+namespace system
+{
 
 /*
  * System singleton that gives access to all system components.
@@ -48,12 +51,14 @@ class System
 template<class ApplicationT, class ... ArgsT>
 void System::runApplication(const ArgsT& ... args)
 {
-    if(_current_app)
-    {
-      _current_app->pause();
-      _applications_stack.push(_current_app);
-    }
-    _current_app=std::shared_ptr<ApplicationT>(new ApplicationT(args...));
+  if (_current_app)
+  {
+    _current_app->pause();
+    _applications_stack.push(_current_app);
+  }
+  _current_app = std::shared_ptr < ApplicationT > (new ApplicationT(args...));
 }
 
+} //namespace system
+} //namespace ptm
 #endif
