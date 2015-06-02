@@ -75,6 +75,7 @@ void ButtonInterrupt::debounce()
   {
     --i;
   }
+  //ToDo: with timers
 }
 
 } // namespace interrupts

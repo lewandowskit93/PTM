@@ -15,14 +15,6 @@
 #include "Interrupts.hpp"
 #include "Application.hpp"
 
-void Delay(int i)
-{
-  while (i > 0)
-  {
-    --i;
-  }
-}
-
 using namespace ptm::system;
 using namespace ptm::events;
 using namespace ptm::devices;
@@ -199,7 +191,7 @@ class SecondApp : public Application
 
     void onUpdate()
     {
-      Delay(3000000);
+      System::getInstance()->sleep(300);
       auto leds = System::getInstance()->_device_manager.getDevices<LED>();
       leds[0].lock()->toggle();
     }
@@ -352,7 +344,7 @@ class InitApp : public Application
 
     void onUpdate()
     {
-      Delay(3000000);
+      System::getInstance()->sleep(300);
       auto leds = System::getInstance()->_device_manager.getDevices<LED>();
       leds[0].lock()->toggle();
     }

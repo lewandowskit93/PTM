@@ -60,7 +60,7 @@ class ButtonInterrupt : public AEXTInterrupt
     ButtonInterrupt(std::weak_ptr<devices::Button> device, IRQn_Type channel =
         EXTI0_IRQn, uint32_t line = EXTI_Line0, uint8_t exti_port_source =
         EXTI_PortSourceGPIOA, uint8_t exti_pin_source = EXTI_PinSource0,
-        uint8_t priority = 0, uint8_t subpriority = 0);
+        uint8_t priority = 1, uint8_t subpriority = 0);
   private:
     /*
      * Gets rid of contact bouncing.
