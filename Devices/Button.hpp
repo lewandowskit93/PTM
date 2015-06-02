@@ -1,9 +1,9 @@
 #ifndef __BUTTON_H__
 #define __BUTTON_H__
 
-#include "IDevice.hpp"
-#include "Interrupt.hpp"
-#include "Events.hpp"
+#include "../Devices/IDevice.hpp"
+#include "../Interrupts/Interrupt.hpp"
+#include "../Events/Events.hpp"
 #include "stm32f4xx_gpio.h"
 #include "stm32f4xx_exti.h"
 #include "stm32f4xx_syscfg.h"

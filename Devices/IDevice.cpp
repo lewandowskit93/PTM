@@ -1,4 +1,4 @@
-#include "IDevice.hpp"
+#include "../Devices/IDevice.hpp"
 
 namespace ptm
 {

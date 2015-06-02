@@ -3,7 +3,7 @@
 
 #include <c++/4.9.3/vector>
 #include <c++/4.9.3/memory>
-#include "IDevice.hpp"
+#include "../Devices/IDevice.hpp"
 
 namespace ptm
 {

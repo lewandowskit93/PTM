@@ -1,6 +1,6 @@
-#include "Events.hpp"
-#include "System.hpp"
-#include "EventManager.hpp"
+#include "../Events/Events.hpp"
+#include "../System/System.hpp"
+#include "../System/EventManager.hpp"
 
 namespace ptm
 {

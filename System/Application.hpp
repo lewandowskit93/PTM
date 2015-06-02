@@ -1,7 +1,7 @@
 #ifndef __APPLICATION_H__
 #define __APPLICATION_H__
 
-#include "Events.hpp"
+#include "../Events/Events.hpp"
 
 namespace ptm
 {

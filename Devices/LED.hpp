@@ -1,7 +1,7 @@
 #ifndef __LED_H__
 #define __LED_H__
 
-#include "IDevice.hpp"
+#include "../Devices/IDevice.hpp"
 #include "stm32f4xx_gpio.h"
 
 namespace ptm

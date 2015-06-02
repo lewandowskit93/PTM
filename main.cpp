@@ -4,16 +4,16 @@
 #include <c++/4.9.3/memory>
 #include "stm32f4xx_gpio.h"
 #include "stm32f4xx_rcc.h"
-#include "Events.hpp"
-#include "DeviceManager.hpp"
-#include "LED.hpp"
-#include "Button.hpp"
-#include "RCC.hpp"
-#include "Interrupt.hpp"
-#include "InterruptManager.hpp"
-#include "System.hpp"
-#include "Interrupts.hpp"
-#include "Application.hpp"
+#include "Events/Events.hpp"
+#include "System/DeviceManager.hpp"
+#include "Devices/LED.hpp"
+#include "Devices/Button.hpp"
+#include "Devices/RCC.hpp"
+#include "Interrupts/Interrupt.hpp"
+#include "System/InterruptManager.hpp"
+#include "System/System.hpp"
+#include "Interrupts/Interrupts.hpp"
+#include "System/Application.hpp"
 
 using namespace ptm::system;
 using namespace ptm::events;

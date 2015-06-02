@@ -1,4 +1,4 @@
-#include "Interrupt.hpp"
+#include "../Interrupts/Interrupt.hpp"
 
 namespace ptm
 {

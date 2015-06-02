@@ -2,7 +2,7 @@
 #define __RCC_H__
 
 #include "stm32f4xx_rcc.h"
-#include "IDevice.hpp"
+#include "../Devices/IDevice.hpp"
 
 namespace ptm
 {

@@ -1,5 +1,5 @@
-#include "Interrupts.hpp"
-#include "System.hpp"
+#include "../Interrupts/Interrupts.hpp"
+#include "../System/System.hpp"
 
 extern "C"
 {

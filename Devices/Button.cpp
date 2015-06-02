@@ -1,6 +1,6 @@
-#include "Button.hpp"
-#include "System.hpp"
-#include "Events.hpp"
+#include "../Devices/Button.hpp"
+#include "../System/System.hpp"
+#include "../Events/Events.hpp"
 
 namespace ptm
 {

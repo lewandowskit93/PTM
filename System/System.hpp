@@ -1,10 +1,10 @@
 #ifndef __SYSTEM_H__
 #define __SYSTEM_H__
 
-#include "DeviceManager.hpp"
-#include "InterruptManager.hpp"
-#include "EventManager.hpp"
-#include "Application.hpp"
+#include "../System/DeviceManager.hpp"
+#include "../System/InterruptManager.hpp"
+#include "../System/EventManager.hpp"
+#include "../System/Application.hpp"
 #include <c++/4.9.3/stack>
 #include <c++/4.9.3/memory>
 

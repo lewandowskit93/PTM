@@ -1,6 +1,6 @@
 #ifndef __EVENT_MANAGER_H__
 #define __EVENT_MANAGER_H__
-#include "Events.hpp"
+#include "../Events/Events.hpp"
 #include <c++/4.9.3/set>
 
 namespace ptm

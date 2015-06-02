@@ -4,7 +4,7 @@
 #include <c++/4.9.3/map>
 #include <c++/4.9.3/memory>
 #include "stm32f4xx.h"
-#include "Interrupt.hpp"
+#include "../Interrupts/Interrupt.hpp"
 
 namespace ptm
 {
