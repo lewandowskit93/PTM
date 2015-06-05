@@ -22,9 +22,9 @@ EventType Event::getType() const
   return _type;
 }
 
-EventMapping::EventMapping(EventType type, bool immediate_handle,
+EventMapping::EventMapping(EventType type,
     std::function<void(std::shared_ptr<Event>)> handler) :
-    type(type), immediate_handle(immediate_handle), handler(handler)
+    type(type), handler(handler)
 {
 
 }
@@ -56,21 +56,32 @@ void EventListener::deactivate()
 
 void EventListener::handleEvents()
 {
-  std::queue < std::shared_ptr < Event >> e_queue;
-  _events_queue.swap(e_queue);
-  while (!e_queue.empty())
+  while (handleNextEvent())
   {
-    std::shared_ptr<Event> event = e_queue.front();
-    e_queue.pop();
-    if (supportsEvent(event->getType()))
-    {
-      EventMapping e_mapping = getEventMapping(event->getType());
-      if (e_mapping.type == EventType::EVENT_NONE)
-        continue;
-      e_mapping.handler(event);
-    }
+
   }
 }
+
+bool EventListener::handleNextEvent()
+{
+  if (_events_queue.empty())
+    return false;
+  std::shared_ptr<Event> event = _events_queue.front();
+  _events_queue.pop();
+  if (supportsEvent(event->getType()))
+  {
+    EventMapping e_mapping = getEventMapping(event->getType());
+    if (e_mapping.type != EventType::EVENT_NONE)
+      e_mapping.handler(event);
+  }
+  return true;
+}
+
+void EventListener::removeEvents()
+{
+  _events_queue=std::queue<std::shared_ptr<Event>>();
+}
+
 bool EventListener::queueEvent(std::shared_ptr<Event> event)
 {
   if (isActive() && supportsEvent(event->getType()))
@@ -78,14 +89,7 @@ bool EventListener::queueEvent(std::shared_ptr<Event> event)
     EventMapping e_mapping = getEventMapping(event->getType());
     if (e_mapping.type == EventType::EVENT_NONE)
       return false;
-    if (e_mapping.immediate_handle)
-    {
-      e_mapping.handler(event);
-    }
-    else
-    {
-      _events_queue.push(event);
-    }
+    _events_queue.push(event);
     return true;
   }
   return false;
@@ -111,7 +115,7 @@ EventMapping EventListener::getEventMapping(EventType type)
     return mapping->second;
   }
   else
-    return EventMapping(EventType::EVENT_NONE, true,
+    return EventMapping(EventType::EVENT_NONE,
         std::bind(&EventListener::defaultHandler, this, std::placeholders::_1));
 }
 

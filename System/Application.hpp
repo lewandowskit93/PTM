@@ -10,10 +10,13 @@ namespace system
 class System;
 class Application;
 
+namespace ApplicationLifeState
+{
 enum ApplicationLifeState
 {
   UNINITIALIZED, INITIALIZED, RUNNABLE, RUNNING, PAUSED, STOPPED, TERMINATED
 };
+} // namespace ApplicationLifeState
 
 /*
  * Application Context is an Application State.
@@ -55,7 +58,7 @@ class ApplicationContext
      */
     void stop();
 
-    ApplicationLifeState getApplicationState();
+    ApplicationLifeState::ApplicationLifeState getApplicationState();
   protected:
     virtual void onStart()=0;
     /*
@@ -65,9 +68,14 @@ class ApplicationContext
     virtual void onPause()=0;
     virtual void onResume()=0;
     virtual void onStop()=0;
-    ApplicationLifeState _app_state;
+    ApplicationLifeState::ApplicationLifeState _app_state;
     SystemEventListener _event_listener;
-
+  private:
+    /*
+     * Handles events delivered to the application context one by one.
+     * If any event stops or pauses the application context than the rest of it is omitted.
+     */
+    void handleEvents();
 };
 
 /*
@@ -122,7 +130,7 @@ class Application
      */
     void switchContext(ApplicationContext* _new_context);
 
-    ApplicationLifeState getApplicationState();
+    ApplicationLifeState::ApplicationLifeState getApplicationState();
   protected:
     virtual void onStart()=0;
     /*
@@ -135,7 +143,12 @@ class Application
     SystemEventListener _event_listener;
   private:
     ApplicationContext* _current_context;
-    ApplicationLifeState _app_state;
+    ApplicationLifeState::ApplicationLifeState _app_state;
+    /*
+     * Handles events delivered to the application one by one.
+     * If any event stops or pauses the application than the rest of it is omitted.
+     */
+    void handleEvents();
 };
 
 } //namespace system

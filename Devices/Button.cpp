@@ -60,7 +60,7 @@ void ButtonInterrupt::handleInterrupt()
       auto button_s = std::dynamic_pointer_cast < devices::Button > (device_s);
       if (button_s)
       {
-        system::System::getInstance()->_event_manager.fireEvent(
+        system::System::getInstance()->_event_manager.raiseEvent(
             std::shared_ptr < events::ButtonEvent
                 > (new events::ButtonEvent(button_s->isPressed(), button_s)));
       }

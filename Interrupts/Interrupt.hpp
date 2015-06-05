@@ -47,7 +47,7 @@ class AInterrupt
     std::weak_ptr<devices::IDevice> getDevice();
   protected:
     AInterrupt(std::weak_ptr<devices::IDevice> device, IRQn_Type channel,
-        uint8_t priority = 1, uint8_t subpriority = 0);
+        uint8_t priority = 0, uint8_t subpriority = 0);
 
     std::weak_ptr<devices::IDevice> _device;
     IRQn_Type _channel;
@@ -69,7 +69,7 @@ class AEXTInterrupt : public AInterrupt
   protected:
     AEXTInterrupt(std::weak_ptr<devices::IDevice> device, IRQn_Type channel,
         uint32_t line, uint8_t exti_port_source, uint8_t exti_pin_source,
-        uint8_t priority = 1, uint8_t subpriority = 0,
+        uint8_t priority = 0, uint8_t subpriority = 0,
         EXTITrigger_TypeDef trigger = EXTI_Trigger_Rising_Falling,
         EXTIMode_TypeDef mode = EXTI_Mode_Interrupt);
 

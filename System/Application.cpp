@@ -31,11 +31,20 @@ void ApplicationContext::update()
   if (_app_state == ApplicationLifeState::RUNNABLE)
   {
     _app_state = ApplicationLifeState::RUNNING;
-    _event_listener.handleEvents();
-    onUpdate();
+    handleEvents();
+    if(_app_state==ApplicationLifeState::RUNNING)onUpdate();
     if (_app_state == ApplicationLifeState::RUNNING)
       _app_state = ApplicationLifeState::RUNNABLE;
   }
+}
+
+void ApplicationContext::handleEvents()
+{
+  while(_app_state==ApplicationLifeState::RUNNING)
+  {
+    if(!_event_listener.handleNextEvent())break;
+  }
+  if(_app_state!=ApplicationLifeState::RUNNING)_event_listener.removeEvents();
 }
 
 void ApplicationContext::pause()
@@ -68,7 +77,7 @@ void ApplicationContext::stop()
   }
 }
 
-ApplicationLifeState ApplicationContext::getApplicationState()
+ApplicationLifeState::ApplicationLifeState ApplicationContext::getApplicationState()
 {
   return _app_state;
 }
@@ -99,13 +108,22 @@ void Application::update()
   if (_app_state == ApplicationLifeState::RUNNABLE)
   {
     _app_state = ApplicationLifeState::RUNNING;
-    _event_listener.handleEvents();
-    onUpdate();
-    if (_current_context)
+    handleEvents();
+    if(_app_state==ApplicationLifeState::RUNNING)onUpdate();
+    if (_current_context && _app_state==ApplicationLifeState::RUNNING)
       _current_context->update();
     if (_app_state == ApplicationLifeState::RUNNING)
       _app_state = ApplicationLifeState::RUNNABLE;
   }
+}
+
+void Application::handleEvents()
+{
+  while(_app_state==ApplicationLifeState::RUNNING)
+  {
+    if(!_event_listener.handleNextEvent())break;
+  }
+  if(_app_state!=ApplicationLifeState::RUNNING)_event_listener.removeEvents();
 }
 
 void Application::pause()
@@ -170,7 +188,7 @@ void Application::switchContext(ApplicationContext* _new_context)
   }
 }
 
-ApplicationLifeState Application::getApplicationState()
+ApplicationLifeState::ApplicationLifeState Application::getApplicationState()
 {
   return _app_state;
 }

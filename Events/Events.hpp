@@ -38,14 +38,9 @@ class Event
 struct EventMapping
 {
   public:
-    EventMapping(EventType type, bool immediate_handle,
+    EventMapping(EventType type,
         std::function<void(std::shared_ptr<Event>)> handler);
     EventType type;
-    /*
-     * Specifies if event should be handled imediately (true)
-     * or queued (false).
-     */
-    bool immediate_handle;
     std::function<void(std::shared_ptr<Event>)> handler;
 };
 
@@ -81,6 +76,19 @@ class EventListener
      * Handles all events in the queue.
      */
     void handleEvents();
+
+    /*
+     * Handles next event.
+     * Returns true if there was event to handle.
+     * Returns false if the queue was empty.
+     */
+    bool handleNextEvent();
+
+    /*
+     * Removes all events from the queue.
+     */
+    void removeEvents();
+
     /*
      * If the listener is active and the event type is supported
      * then it is queued or handled depending on the immediate_handle field in mapping.

@@ -14,6 +14,22 @@ EventManager::~EventManager()
 
 }
 
+void EventManager::raiseEvent(std::shared_ptr<events::Event> event)
+{
+  _events.push(event);
+}
+
+void EventManager::update()
+{
+  std::queue<std::shared_ptr<events::Event> > events(_events);
+  _events = std::queue<std::shared_ptr<events::Event> > ();
+  while(!events.empty())
+  {
+    fireEvent(events.front());
+    events.pop();
+  }
+}
+
 void EventManager::fireEvent(std::shared_ptr<events::Event> event)
 {
   std::set<SystemEventListener*> active_listeners;

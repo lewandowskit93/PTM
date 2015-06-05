@@ -14,6 +14,7 @@
 #include "System/System.hpp"
 #include "Interrupts/Interrupts.hpp"
 #include "System/Application.hpp"
+#include "System/ManagedTimer.hpp"
 
 using namespace ptm::system;
 using namespace ptm::events;
@@ -27,10 +28,10 @@ class SecondApp : public Application
     {
       public:
         FirstContext(SecondApp* application) :
-            ApplicationContext(), _application(application)
+            ApplicationContext(), _application(application), _timer(SystemTimer(100,false))
         {
           _event_listener.registerEventHandler(
-              EventMapping(EVENT_BUTTON, true,
+              EventMapping(EVENT_BUTTON,
                   std::bind(&FirstContext::handleButton, this,
                       std::placeholders::_1)));
         }
@@ -59,8 +60,12 @@ class SecondApp : public Application
 
         void onUpdate()
         {
-          auto leds = System::getInstance()->_device_manager.getDevices<LED>();
-          leds[1].lock()->toggle();
+          if(_timer.hasFinished())
+          {
+            auto leds = System::getInstance()->_device_manager.getDevices<LED>();
+            leds[1].lock()->toggle();
+            _timer.start();
+          }
         }
 
         void onStart()
@@ -68,6 +73,7 @@ class SecondApp : public Application
           auto leds = System::getInstance()->_device_manager.getDevices<LED>();
           leds[1].lock()->off();
           leds[2].lock()->off();
+          _timer.start();
         }
 
         void onPause()
@@ -75,6 +81,7 @@ class SecondApp : public Application
           auto leds = System::getInstance()->_device_manager.getDevices<LED>();
           _led_one_state = leds[1].lock()->isOn();
           _led_two_state = leds[2].lock()->isOn();
+          _timer.pause();
         }
 
         void onResume()
@@ -96,10 +103,12 @@ class SecondApp : public Application
           {
             leds[2].lock()->off();
           }
+          _timer.resume();
         }
 
         void onStop()
         {
+          _timer.stop();
           auto leds = System::getInstance()->_device_manager.getDevices<LED>();
           leds[1].lock()->off();
           leds[2].lock()->off();
@@ -107,13 +116,14 @@ class SecondApp : public Application
         bool _led_one_state;
         bool _led_two_state;
         SecondApp* _application;
+        SystemTimer _timer;
     };
 
     class SecondContext : public ApplicationContext
     {
       public:
         SecondContext() :
-            ApplicationContext()
+            ApplicationContext(), _timer(SystemTimer(500,std::bind(&SecondContext::onTimer,this),false))
         {
         }
 
@@ -121,16 +131,29 @@ class SecondApp : public Application
         {
           auto leds = System::getInstance()->_device_manager.getDevices<LED>();
           leds[2].lock()->on();
+          _timer.start();
         }
 
         void onUpdate()
         {
+          if(_timer.hasFinished())
+          {
+            _timer.invoke();
+          }
+          //auto leds = System::getInstance()->_device_manager.getDevices<LED>();
+          //leds[2].lock()->toggle();
+        }
+
+        void onTimer()
+        {
           auto leds = System::getInstance()->_device_manager.getDevices<LED>();
           leds[2].lock()->toggle();
+          _timer.start();
         }
 
         void onPause()
         {
+          _timer.pause();
           auto leds = System::getInstance()->_device_manager.getDevices<LED>();
           _led_two_state = leds[2].lock()->isOn();
         }
@@ -146,23 +169,25 @@ class SecondApp : public Application
           {
             leds[2].lock()->off();
           }
+          _timer.resume();
         }
 
         void onStop()
         {
+          _timer.stop();
           auto leds = System::getInstance()->_device_manager.getDevices<LED>();
           leds[2].lock()->off();
         }
-
+        SystemTimer _timer;
         bool _led_two_state;
     };
 
     SecondApp() :
-        Application(), _context1(FirstContext(this))
+        Application(), _context1(FirstContext(this)), _timer(SystemTimer(1000,std::bind(&SecondApp::onTimer,this),true))
     {
       auto leds = System::getInstance()->_device_manager.getDevices<LED>();
       _event_listener.registerEventHandler(
-          EventMapping(EVENT_BUTTON, true,
+          EventMapping(EVENT_BUTTON,
               std::bind(&SecondApp::handleButton, this,
                   std::placeholders::_1)));
     }
@@ -191,9 +216,16 @@ class SecondApp : public Application
 
     void onUpdate()
     {
-      System::getInstance()->sleep(300);
+      //System::getInstance()->sleep(300);
+      //auto leds = System::getInstance()->_device_manager.getDevices<LED>();
+      //leds[0].lock()->toggle();
+    }
+
+    void onTimer()
+    {
       auto leds = System::getInstance()->_device_manager.getDevices<LED>();
       leds[0].lock()->toggle();
+      _timer.start();
     }
 
     void onStart()
@@ -202,10 +234,12 @@ class SecondApp : public Application
       leds[0].lock()->off();
       leds[3].lock()->off();
       switchContext(&_context1);
+      _timer.start();
     }
 
     void onPause()
     {
+      _timer.pause();
       auto leds = System::getInstance()->_device_manager.getDevices<LED>();
       _led_zero_state = leds[0].lock()->isOn();
       _led_three_state = leds[3].lock()->isOn();
@@ -230,10 +264,12 @@ class SecondApp : public Application
       {
         leds[3].lock()->off();
       }
+      _timer.resume();
     }
 
     void onStop()
     {
+      _timer.stop();
       auto leds = System::getInstance()->_device_manager.getDevices<LED>();
       leds[0].lock()->off();
       leds[3].lock()->off();
@@ -243,6 +279,7 @@ class SecondApp : public Application
     SecondContext _context2;
     bool _led_zero_state;
     bool _led_three_state;
+    SystemTimer _timer;
 };
 
 class InitApp : public Application
@@ -256,7 +293,7 @@ class InitApp : public Application
             ApplicationContext()
         {
           _event_listener.registerEventHandler(
-              EventMapping(EVENT_BUTTON, true,
+              EventMapping(EVENT_BUTTON,
                   std::bind(&InitContext::handleButton, this,
                       std::placeholders::_1)));
         }
@@ -382,6 +419,7 @@ int main(void)
 {
   SystemInit();
   SystemCoreClockUpdate();
+  __disable_irq();
   System::getInstance()->_device_manager.mountDevice<AHB1PeriphClock>(
       RCC_AHB1Periph_GPIOD);
   System::getInstance()->_device_manager.mountDevice<AHB1PeriphClock>(

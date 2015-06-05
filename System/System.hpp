@@ -4,6 +4,7 @@
 #include "../System/DeviceManager.hpp"
 #include "../System/InterruptManager.hpp"
 #include "../System/EventManager.hpp"
+#include "../System/ManagedTimer.hpp"
 #include "../System/Application.hpp"
 #include <c++/4.9.3/stack>
 #include <c++/4.9.3/memory>
@@ -24,6 +25,7 @@ class System
     DeviceManager _device_manager;
     InterruptManager _interrupt_manager;
     EventManager _event_manager;
+    TimerManager _timer_manager;
     /*
      * Starts new application as the current one.
      * It pushes current one onto the stack.
@@ -35,7 +37,7 @@ class System
      */
     void run();
     /*
-     * Returns system time counted from the system start in milliseconds.
+     * Returns system time counted from the system start in milliseconds (SysTick).
      */
     uint64_t getTime();
     /*
@@ -56,6 +58,11 @@ class System
      * because system time will not be updated.
      */
     void sleep(uint64_t millis);
+
+    /*
+     * Updates system components (managers).
+     */
+    void update();
   protected:
   private:
     volatile uint64_t _time;
@@ -69,6 +76,11 @@ class System
      * If there is no application on stack then system freezes.
      */
     void nextAppFromStack();
+    /*
+     * Does one system step.
+     * Updates system components and current application.
+     */
+    void step();
 };
 
 template<class ApplicationT, class ... ArgsT>
