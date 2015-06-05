@@ -43,7 +43,7 @@ ButtonInterrupt::ButtonInterrupt(std::weak_ptr<devices::Button> device,
     IRQn_Type channel, uint32_t line, uint8_t exti_port_source,
     uint8_t exti_pin_source, uint8_t priority, uint8_t subpriority) :
     AEXTInterrupt(device, channel, line, exti_port_source, exti_pin_source,
-        priority, subpriority, EXTI_Trigger_Rising_Falling, EXTI_Mode_Interrupt)
+        priority, subpriority, EXTI_Trigger_Rising_Falling, EXTI_Mode_Interrupt), _debounce_timer(system::SystemTimer(15,std::bind(&ButtonInterrupt::after_debounce,this)))
 {
 
 }
@@ -52,30 +52,34 @@ void ButtonInterrupt::handleInterrupt()
 {
   if (EXTI_GetITStatus(EXTI_Line0) != RESET)
   {
-    debounce();
+    if(!_debounce_timer.isRunning())debounce();
     EXTI_ClearITPendingBit(EXTI_Line0);
-    auto device_s = _device.lock();
-    if (device_s)
-    {
-      auto button_s = std::dynamic_pointer_cast < devices::Button > (device_s);
-      if (button_s)
-      {
-        system::System::getInstance()->_event_manager.raiseEvent(
-            std::shared_ptr < events::ButtonEvent
-                > (new events::ButtonEvent(button_s->isPressed(), button_s)));
-      }
-    }
   }
 }
 
 void ButtonInterrupt::debounce()
 {
-  int i = 500;
+  /*int i = 500;
   while (i > 0)
   {
     --i;
+  }*/
+  _debounce_timer.start();
+}
+
+void ButtonInterrupt::after_debounce()
+{
+  auto device_s = _device.lock();
+  if (device_s)
+  {
+    auto button_s = std::dynamic_pointer_cast < devices::Button > (device_s);
+    if (button_s)
+    {
+      system::System::getInstance()->_event_manager.raiseEvent(
+          std::shared_ptr < events::ButtonEvent
+              > (new events::ButtonEvent(button_s->isPressed(), button_s)));
+    }
   }
-  //ToDo: with timers
 }
 
 } // namespace interrupts

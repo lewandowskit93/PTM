@@ -1,4 +1,5 @@
 #include "../System/Application.hpp"
+#include "../System/System.hpp"
 
 namespace ptm
 {
@@ -23,6 +24,7 @@ void ApplicationContext::start()
     _event_listener.activate();
     onStart();
     _app_state = ApplicationLifeState::RUNNABLE;
+    _last_update_time=System::getInstance()->getTime();
   }
 }
 
@@ -32,19 +34,35 @@ void ApplicationContext::update()
   {
     _app_state = ApplicationLifeState::RUNNING;
     handleEvents();
-    if(_app_state==ApplicationLifeState::RUNNING)onUpdate();
+    handleTimers();
+    if (_app_state == ApplicationLifeState::RUNNING)
+      onUpdate();
     if (_app_state == ApplicationLifeState::RUNNING)
       _app_state = ApplicationLifeState::RUNNABLE;
+    _last_update_time=System::getInstance()->getTime();
   }
 }
 
 void ApplicationContext::handleEvents()
 {
-  while(_app_state==ApplicationLifeState::RUNNING)
+  while (_app_state == ApplicationLifeState::RUNNING)
   {
-    if(!_event_listener.handleNextEvent())break;
+    if (!_event_listener.handleNextEvent())
+      break;
   }
-  if(_app_state!=ApplicationLifeState::RUNNING)_event_listener.removeEvents();
+  if (_app_state != ApplicationLifeState::RUNNING)
+    _event_listener.removeEvents();
+}
+
+void ApplicationContext::handleTimers()
+{
+  uint64_t delta = System::getInstance()->getTime() - _last_update_time;
+  auto timers = _timer_manager.getTimers();
+  for(auto timer : timers)
+  {
+    if(_app_state == ApplicationLifeState::RUNNING)timer->update(delta);
+    else break;
+  }
 }
 
 void ApplicationContext::pause()
@@ -64,6 +82,7 @@ void ApplicationContext::resume()
     _event_listener.activate();
     onResume();
     _app_state = ApplicationLifeState::RUNNABLE;
+    _last_update_time=System::getInstance()->getTime();
   }
 }
 void ApplicationContext::stop()
@@ -99,7 +118,10 @@ void Application::start()
   {
     _event_listener.activate();
     onStart();
+    if (_current_context)
+      _current_context->start();
     _app_state = ApplicationLifeState::RUNNABLE;
+    _last_update_time=System::getInstance()->getTime();
   }
 }
 
@@ -109,21 +131,37 @@ void Application::update()
   {
     _app_state = ApplicationLifeState::RUNNING;
     handleEvents();
-    if(_app_state==ApplicationLifeState::RUNNING)onUpdate();
-    if (_current_context && _app_state==ApplicationLifeState::RUNNING)
+    handleTimers();
+    if (_app_state == ApplicationLifeState::RUNNING)
+      onUpdate();
+    if (_current_context && _app_state == ApplicationLifeState::RUNNING)
       _current_context->update();
     if (_app_state == ApplicationLifeState::RUNNING)
       _app_state = ApplicationLifeState::RUNNABLE;
+    _last_update_time=System::getInstance()->getTime();
   }
 }
 
 void Application::handleEvents()
 {
-  while(_app_state==ApplicationLifeState::RUNNING)
+  while (_app_state == ApplicationLifeState::RUNNING)
   {
-    if(!_event_listener.handleNextEvent())break;
+    if (!_event_listener.handleNextEvent())
+      break;
   }
-  if(_app_state!=ApplicationLifeState::RUNNING)_event_listener.removeEvents();
+  if (_app_state != ApplicationLifeState::RUNNING)
+    _event_listener.removeEvents();
+}
+
+void Application::handleTimers()
+{
+  uint64_t delta = System::getInstance()->getTime() - _last_update_time;
+  auto timers = _timer_manager.getTimers();
+  for(auto timer : timers)
+  {
+    if(_app_state == ApplicationLifeState::RUNNING)timer->update(delta);
+    else break;
+  }
 }
 
 void Application::pause()
@@ -132,9 +170,9 @@ void Application::pause()
       || _app_state == ApplicationLifeState::RUNNABLE)
   {
     _event_listener.deactivate();
+    onPause();
     if (_current_context)
       _current_context->pause();
-    onPause();
     _app_state = ApplicationLifeState::PAUSED;
   }
 }
@@ -144,10 +182,11 @@ void Application::resume()
   if (_app_state == ApplicationLifeState::PAUSED)
   {
     _event_listener.activate();
+    onResume();
     if (_current_context)
       _current_context->resume();
-    onResume();
     _app_state = ApplicationLifeState::RUNNABLE;
+    _last_update_time=System::getInstance()->getTime();
   }
 }
 
@@ -157,9 +196,9 @@ void Application::stop()
       || _app_state == ApplicationLifeState::RUNNABLE)
   {
     _event_listener.deactivate();
+    onStop();
     if (_current_context)
       _current_context->stop();
-    onStop();
     _app_state = ApplicationLifeState::STOPPED;
   }
 }

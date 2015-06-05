@@ -4,6 +4,7 @@
 #include "../Devices/IDevice.hpp"
 #include "../Interrupts/Interrupt.hpp"
 #include "../Events/Events.hpp"
+#include "../System/ManagedTimer.hpp"
 #include "stm32f4xx_gpio.h"
 #include "stm32f4xx_exti.h"
 #include "stm32f4xx_syscfg.h"
@@ -66,7 +67,8 @@ class ButtonInterrupt : public AEXTInterrupt
      * Gets rid of contact bouncing.
      */
     void debounce();
-
+    void after_debounce();
+    system::SystemTimer _debounce_timer;
 };
 
 } // namespace interrupts

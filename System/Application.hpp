@@ -2,6 +2,7 @@
 #define __APPLICATION_H__
 
 #include "../Events/Events.hpp"
+#include "../System/ManagedTimer.hpp"
 
 namespace ptm
 {
@@ -70,12 +71,19 @@ class ApplicationContext
     virtual void onStop()=0;
     ApplicationLifeState::ApplicationLifeState _app_state;
     SystemEventListener _event_listener;
+    TimerManager _timer_manager;
+
+    uint64_t _last_update_time;
   private:
     /*
      * Handles events delivered to the application context one by one.
      * If any event stops or pauses the application context than the rest of it is omitted.
      */
     void handleEvents();
+    /*
+     * Updates timers one by one.
+     */
+    void handleTimers();
 };
 
 /*
@@ -141,6 +149,9 @@ class Application
     virtual void onResume()=0;
     virtual void onStop()=0;
     SystemEventListener _event_listener;
+    TimerManager _timer_manager;
+
+    uint64_t _last_update_time;
   private:
     ApplicationContext* _current_context;
     ApplicationLifeState::ApplicationLifeState _app_state;
@@ -149,6 +160,10 @@ class Application
      * If any event stops or pauses the application than the rest of it is omitted.
      */
     void handleEvents();
+    /*
+     * Updates timers one by one.
+     */
+    void handleTimers();
 };
 
 } //namespace system

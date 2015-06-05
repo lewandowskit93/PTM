@@ -35,8 +35,10 @@ class TimerManager
      * Unregisters timer from manager.
      */
     void unregisterTimer(ManagedTimer* timer);
-    std::set<ManagedTimer*> _timers;
+
+    std::set<ManagedTimer*> getTimers();
   private:
+    std::set<ManagedTimer*> _timers;
 };
 
 /*

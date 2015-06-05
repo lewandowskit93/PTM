@@ -53,6 +53,11 @@ void TimerManager::unregisterTimer(ManagedTimer* timer)
   }
 }
 
+std::set<ManagedTimer*> TimerManager::getTimers()
+{
+  return _timers;
+}
+
 
 ManagedTimer::ManagedTimer(TimerManager *manager, uint64_t duration)
 : AutoTimer(duration), _manager(0)
