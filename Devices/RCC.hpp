@@ -45,6 +45,37 @@ class AHB1PeriphClock : public IDevice
     bool _enabled;
 };
 
+/*
+ * APB1PeriphClocks controller.
+ */
+class APB1PeriphClock : public IDevice
+{
+  public:
+    friend class system::DeviceManager;
+
+    virtual ~APB1PeriphClock();
+    /*
+     * Switches on the clock.
+     */
+    void enable();
+    /*
+     * Switches off the clock.
+     */
+    void disable();
+    /*
+     * Returns true if the clock is enabled.
+     */
+    bool isEnabled();
+  protected:
+    /*
+     * Creates and switches on the clock for given AHB1Periph.
+     */
+    APB1PeriphClock(uint32_t RCC_APB1Periph);
+  private:
+    uint32_t _RCC_APB1Periph;
+    bool _enabled;
+};
+
 } //namespace device
 } //namespace ptm
 #endif

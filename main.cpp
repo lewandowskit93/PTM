@@ -15,6 +15,7 @@
 #include "Interrupts/Interrupts.hpp"
 #include "System/Application.hpp"
 #include "System/ManagedTimer.hpp"
+#include "Devices/Display.hpp"
 
 using namespace ptm::system;
 using namespace ptm::events;
@@ -28,7 +29,8 @@ class SecondApp : public Application
     {
       public:
         FirstContext(SecondApp* application) :
-            ApplicationContext(), _application(application), _timer(ManagedTimer(&_timer_manager,100,false))
+            ApplicationContext(), _application(application), _timer(
+                ManagedTimer(&_timer_manager, 100, false))
         {
           _event_listener.registerEventHandler(
               EventMapping(EVENT_BUTTON,
@@ -60,9 +62,10 @@ class SecondApp : public Application
 
         void onUpdate()
         {
-          if(_timer.hasFinished())
+          if (_timer.hasFinished())
           {
-            auto leds = System::getInstance()->_device_manager.getDevices<LED>();
+            auto leds =
+                System::getInstance()->_device_manager.getDevices<LED>();
             leds[1].lock()->toggle();
             _timer.start();
           }
@@ -120,7 +123,9 @@ class SecondApp : public Application
     {
       public:
         SecondContext() :
-            ApplicationContext(), _timer(ManagedTimer(&_timer_manager,500,std::bind(&SecondContext::onTimer,this),false))
+            ApplicationContext(), _timer(
+                ManagedTimer(&_timer_manager, 500,
+                    std::bind(&SecondContext::onTimer, this), false))
         {
         }
 
@@ -133,7 +138,7 @@ class SecondApp : public Application
 
         void onUpdate()
         {
-          if(_timer.hasFinished())
+          if (_timer.hasFinished())
           {
             _timer.invoke();
           }
@@ -177,7 +182,9 @@ class SecondApp : public Application
     };
 
     SecondApp() :
-        Application(), _context1(FirstContext(this)), _timer(ManagedTimer(&_timer_manager,1000,std::bind(&SecondApp::onTimer,this),true))
+        Application(), _context1(FirstContext(this)), _timer(
+            ManagedTimer(&_timer_manager, 1000,
+                std::bind(&SecondApp::onTimer, this), true))
     {
       auto leds = System::getInstance()->_device_manager.getDevices<LED>();
       _event_listener.registerEventHandler(
@@ -281,7 +288,8 @@ class InitApp : public Application
     {
       public:
         InitContext() :
-            ApplicationContext(), _timer(ManagedTimer(&_timer_manager,300,false))
+            ApplicationContext(), _timer(
+                ManagedTimer(&_timer_manager, 300, false))
         {
           _event_listener.registerEventHandler(
               EventMapping(EVENT_BUTTON,
@@ -309,9 +317,10 @@ class InitApp : public Application
 
         void onUpdate()
         {
-          if(_timer.hasFinished())
+          if (_timer.hasFinished())
           {
-            auto leds = System::getInstance()->_device_manager.getDevices<LED>();
+            auto leds =
+                System::getInstance()->_device_manager.getDevices<LED>();
             leds[1].lock()->toggle();
             _timer.start();
           }
@@ -365,7 +374,8 @@ class InitApp : public Application
     };
 
     InitApp() :
-        Application(), _timer(ManagedTimer(&_timer_manager,300,false))
+        Application(), _timer(ManagedTimer(&_timer_manager, 300, false)), _x(0), _y(
+            0)
     {
     }
 
@@ -373,18 +383,36 @@ class InitApp : public Application
     {
       auto leds = System::getInstance()->_device_manager.getDevices<LED>();
       leds[0].lock()->off();
+      _x = 0;
+      _y = 0;
       switchContext(&_context);
       _timer.start();
     }
 
     void onUpdate()
     {
-      if(_timer.hasFinished())
       {
+        auto screen_w = System::getInstance()->_device_manager.getDevice<
+            displays::monochromatic::IMonochromaticDisplay>();
+        auto screen_s = screen_w.lock();
+        screen_s->clearScreen();
+        screen_s->setPixel(_x % 84, _y % 48);
+        screen_s->setPixel((_x + 1) % 84, (_y + 1) % 48);
+        screen_s->setPixel(_x % 84, (_y + 1) % 48);
+        screen_s->setPixel((_x + 1) % 84, _y % 48);
+        screen_s->refreshScreen();
+      }
+      if (_timer.hasFinished())
+      {
+        ++_y;
+        _y %= 48;
         auto leds = System::getInstance()->_device_manager.getDevices<LED>();
         leds[0].lock()->toggle();
         _timer.start();
       }
+      System::getInstance()->sleep(80);
+      ++_x;
+      _x %= 84;
     }
 
     void onPause()
@@ -415,6 +443,8 @@ class InitApp : public Application
     bool _led_zero_state;
     InitContext _context;
     ManagedTimer _timer;
+    uint32_t _x;
+    uint32_t _y;
 };
 
 int main(void)
@@ -426,6 +456,12 @@ int main(void)
       RCC_AHB1Periph_GPIOD);
   System::getInstance()->_device_manager.mountDevice<AHB1PeriphClock>(
       RCC_AHB1Periph_GPIOA);
+  System::getInstance()->_device_manager.mountDevice<AHB1PeriphClock>(
+      RCC_AHB1Periph_GPIOB);
+  System::getInstance()->_device_manager.mountDevice<AHB1PeriphClock>(
+      RCC_AHB1Periph_GPIOC);
+  System::getInstance()->_device_manager.mountDevice<APB1PeriphClock>(
+      RCC_APB1Periph_SPI2);
   System::getInstance()->_device_manager.mountDevice<LED>(
       Pin(GPIOD, GPIO_Pin_12));
   System::getInstance()->_device_manager.mountDevice<LED>(
@@ -437,11 +473,15 @@ int main(void)
   std::weak_ptr<Button> but_w =
       System::getInstance()->_device_manager.mountDevice<Button>(
           Pin(GPIOA, GPIO_Pin_0));
+  System::getInstance()->_device_manager.mountDevice<
+      displays::monochromatic::PCD8544::PCD8544>(SPI2,
+      PinAFMapping(Pin(GPIOC, GPIO_Pin_3), GPIO_PinSource3, GPIO_AF_SPI2), //mosi
+      PinAFMapping(Pin(GPIOB, GPIO_Pin_10), GPIO_PinSource10, GPIO_AF_SPI2), //sclk
+      Pin(GPIOC, GPIO_Pin_14), Pin(GPIOC, GPIO_Pin_13), //dc, ce
+      Pin(GPIOC, GPIO_Pin_15)); //rst
   System::getInstance()->_interrupt_manager.addInterrupt<ButtonInterrupt>(
       but_w);
-  std::shared_ptr<Button> but_d = but_w.lock();
-  std::vector < std::weak_ptr<LED> > leds =
-      System::getInstance()->_device_manager.getDevices<LED>();
+  System::getInstance()->_device_manager.getDevices<LED>();
   System::getInstance()->runApplication<InitApp>();
   System::getInstance()->run();
   while (true)

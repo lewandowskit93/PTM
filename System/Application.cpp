@@ -24,7 +24,7 @@ void ApplicationContext::start()
     _event_listener.activate();
     onStart();
     _app_state = ApplicationLifeState::RUNNABLE;
-    _last_update_time=System::getInstance()->getTime();
+    _last_update_time = System::getInstance()->getTime();
   }
 }
 
@@ -39,7 +39,7 @@ void ApplicationContext::update()
       onUpdate();
     if (_app_state == ApplicationLifeState::RUNNING)
       _app_state = ApplicationLifeState::RUNNABLE;
-    _last_update_time=System::getInstance()->getTime();
+    _last_update_time = System::getInstance()->getTime();
   }
 }
 
@@ -56,12 +56,13 @@ void ApplicationContext::handleEvents()
 
 void ApplicationContext::handleTimers()
 {
-  uint64_t delta = System::getInstance()->getTime() - _last_update_time;
   auto timers = _timer_manager.getTimers();
-  for(auto timer : timers)
+  for (auto timer : timers)
   {
-    if(_app_state == ApplicationLifeState::RUNNING)timer->update(delta);
-    else break;
+    if (_app_state == ApplicationLifeState::RUNNING)
+      timer->update();
+    else
+      break;
   }
 }
 
@@ -82,7 +83,7 @@ void ApplicationContext::resume()
     _event_listener.activate();
     onResume();
     _app_state = ApplicationLifeState::RUNNABLE;
-    _last_update_time=System::getInstance()->getTime();
+    _last_update_time = System::getInstance()->getTime();
   }
 }
 void ApplicationContext::stop()
@@ -121,7 +122,7 @@ void Application::start()
     if (_current_context)
       _current_context->start();
     _app_state = ApplicationLifeState::RUNNABLE;
-    _last_update_time=System::getInstance()->getTime();
+    _last_update_time = System::getInstance()->getTime();
   }
 }
 
@@ -138,7 +139,7 @@ void Application::update()
       _current_context->update();
     if (_app_state == ApplicationLifeState::RUNNING)
       _app_state = ApplicationLifeState::RUNNABLE;
-    _last_update_time=System::getInstance()->getTime();
+    _last_update_time = System::getInstance()->getTime();
   }
 }
 
@@ -155,12 +156,13 @@ void Application::handleEvents()
 
 void Application::handleTimers()
 {
-  uint64_t delta = System::getInstance()->getTime() - _last_update_time;
   auto timers = _timer_manager.getTimers();
-  for(auto timer : timers)
+  for (auto timer : timers)
   {
-    if(_app_state == ApplicationLifeState::RUNNING)timer->update(delta);
-    else break;
+    if (_app_state == ApplicationLifeState::RUNNING)
+      timer->update();
+    else
+      break;
   }
 }
 
@@ -186,7 +188,7 @@ void Application::resume()
     if (_current_context)
       _current_context->resume();
     _app_state = ApplicationLifeState::RUNNABLE;
-    _last_update_time=System::getInstance()->getTime();
+    _last_update_time = System::getInstance()->getTime();
   }
 }
 
