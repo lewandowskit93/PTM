@@ -26,10 +26,13 @@ class Event
 {
   public:
     Event(EventType type);
+    Event(EventType, void* source);
     ~Event();
     EventType getType() const;
+    void* getSource() const;
   private:
     EventType _type;
+    void* _source;
 };
 
 /*

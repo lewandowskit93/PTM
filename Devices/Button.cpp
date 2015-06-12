@@ -88,7 +88,7 @@ namespace events
 {
 
 ButtonEvent::ButtonEvent(bool pressed, std::weak_ptr<devices::Button> device) :
-    Event(EventType::EVENT_BUTTON), _pressed(pressed), _device(device)
+    Event(EventType::EVENT_BUTTON, device.lock().get()), _pressed(pressed), _device(device)
 {
 
 }

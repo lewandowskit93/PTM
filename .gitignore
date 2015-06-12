@@ -37,3 +37,4 @@
 *.bin
 *.cogui
 PTM/Debug/*
+logs/*

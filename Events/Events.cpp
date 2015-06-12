@@ -8,10 +8,17 @@ namespace events
 {
 
 Event::Event(EventType type) :
-    _type(type)
+    _type(type), _source(0)
 {
 
 }
+
+Event::Event(EventType type, void* source) :
+    _type(type), _source(source)
+{
+
+}
+
 Event::~Event()
 {
 
@@ -20,6 +27,11 @@ Event::~Event()
 EventType Event::getType() const
 {
   return _type;
+}
+
+void* Event::getSource() const
+{
+  return _source;
 }
 
 EventMapping::EventMapping(EventType type,
