@@ -33,5 +33,33 @@ bool AHB1PeriphClock::isEnabled()
   return _enabled;
 }
 
+APB1PeriphClock::APB1PeriphClock(uint32_t RCC_APB1Periph) :
+    IDevice(), _RCC_APB1Periph(RCC_APB1Periph)
+{
+  enable();
+}
+
+APB1PeriphClock::~APB1PeriphClock()
+{
+  disable();
+}
+
+void APB1PeriphClock::enable()
+{
+  _enabled = true;
+  RCC_APB1PeriphClockCmd(_RCC_APB1Periph, ENABLE);
+}
+
+void APB1PeriphClock::disable()
+{
+  _enabled = false;
+  RCC_APB1PeriphClockCmd(_RCC_APB1Periph, DISABLE);
+}
+
+bool APB1PeriphClock::isEnabled()
+{
+  return _enabled;
+}
+
 } // namespace devices
 } // namespace ptm

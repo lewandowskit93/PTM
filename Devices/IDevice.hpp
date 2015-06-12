@@ -37,6 +37,14 @@ struct Pin
     uint32_t pin;
 };
 
+struct PinAFMapping
+{
+    PinAFMapping(Pin pin, uint8_t pin_source, uint8_t alternate_function);
+    Pin pin;
+    uint8_t pin_source;
+    uint8_t alternate_function;
+};
+
 } //namespace devices
 } //namespace ptm
 #endif // __IDEVICE_H__
