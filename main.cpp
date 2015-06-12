@@ -395,12 +395,13 @@ class InitApp : public Application
         auto screen_w = System::getInstance()->_device_manager.getDevice<
             displays::monochromatic::IMonochromaticDisplay>();
         auto screen_s = screen_w.lock();
-        screen_s->clearScreen();
+        screen_s->clearArea(1,0,83,48);
+        screen_s->togglePixel(0,0);
         screen_s->setPixel(_x % 84, _y % 48);
         screen_s->setPixel((_x + 1) % 84, (_y + 1) % 48);
         screen_s->setPixel(_x % 84, (_y + 1) % 48);
         screen_s->setPixel((_x + 1) % 84, _y % 48);
-        screen_s->refreshScreen();
+        screen_s->refresh();
       }
       if (_timer.hasFinished())
       {

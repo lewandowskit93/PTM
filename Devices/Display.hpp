@@ -2,6 +2,7 @@
 #define __DEVICES_DISPLAY_H__
 
 #include "../Devices/IDevice.hpp"
+#include "../Utilities/Color.hpp"
 
 namespace ptm
 {
@@ -15,8 +16,13 @@ class IDisplay : public IDevice
   public:
     IDisplay(uint32_t width, uint32_t height);
     virtual ~IDisplay();
-    virtual void refreshScreen()=0;
-    virtual void clearScreen()=0;
+    void refresh();
+    virtual void refreshArea(uint32_t x, uint32_t y, uint32_t width, uint32_t height)=0;
+    void clear();
+    void clearArea(uint32_t x, uint32_t y, uint32_t width, uint32_t height);
+    virtual void clearPixel(uint32_t x, uint32_t y)=0;
+    virtual void setPixelColor(uint32_t x, uint32_t y, utilities::colors::RGBA color)=0;
+    virtual utilities::colors::RGBA getPixelColor(uint32_t x, uint32_t y)=0;
     uint32_t getWidth();
     uint32_t getHeight();
   private:
@@ -32,9 +38,10 @@ class IMonochromaticDisplay : public IDisplay
   public:
     IMonochromaticDisplay(uint32_t width, uint32_t height);
     virtual ~IMonochromaticDisplay();
-    virtual void setPixel(uint32_t x, uint32_t y)=0;
-    virtual void resetPixel(uint32_t x, uint32_t y)=0;
-    virtual void togglePixel(uint32_t x, uint32_t y)=0;
+    void setPixel(uint32_t x, uint32_t y);
+    void resetPixel(uint32_t x, uint32_t y);
+    void togglePixel(uint32_t x, uint32_t y);
+    virtual void clearPixel(uint32_t x, uint32_t y);
 };
 
 namespace PCD8544
@@ -82,12 +89,14 @@ class PCD8544 : public IMonochromaticDisplay
     PCD8544(SPI_TypeDef* spi, PinAFMapping spi_mosi, PinAFMapping spi_clk,
         Pin spi_data_command, Pin spi_chip_select, Pin spi_reset);
     ~PCD8544();
-    virtual void refreshScreen();
-    virtual void clearScreen();
-    virtual void setPixel(uint32_t x, uint32_t y);
-    virtual void resetPixel(uint32_t x, uint32_t y);
-    virtual void togglePixel(uint32_t x, uint32_t y);
+
+    virtual void refreshArea(uint32_t x, uint32_t y, uint32_t width, uint32_t height);
+    virtual void setPixelColor(uint32_t x, uint32_t y, utilities::colors::RGBA color);
+    virtual utilities::colors::RGBA getPixelColor(uint32_t x, uint32_t y);
   private:
+    uint32_t getPixelByteOffset(uint32_t x, uint32_t y);
+    uint32_t getPixelBitOffset(uint32_t x, uint32_t y);
+
     void initPins();
     void initSPI();
     void initDevice();

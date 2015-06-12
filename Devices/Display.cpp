@@ -30,6 +30,32 @@ uint32_t IDisplay::getHeight()
   return _height;
 }
 
+void IDisplay::refresh()
+{
+  refreshArea(0, 0, _width, _height);
+}
+
+void IDisplay::clear()
+{
+  clearArea(0, 0, _width, _height);
+}
+
+void IDisplay::clearArea(uint32_t x, uint32_t y, uint32_t width,
+    uint32_t height)
+{
+  if(x>_width)x=_width;
+  if(y>_height)y=_height;
+  if((width+x) > _width)width=_width-x;
+  if((height+y) > _height)height=_height-y;
+  for (uint32_t i=0; i < width; ++i)
+  {
+    for (uint32_t j = 0; j < height; ++j)
+    {
+      clearPixel(x+i, y+j);
+    }
+  }
+}
+
 namespace monochromatic
 {
 
@@ -42,6 +68,31 @@ IMonochromaticDisplay::IMonochromaticDisplay(uint32_t width, uint32_t height) :
 IMonochromaticDisplay::~IMonochromaticDisplay()
 {
 
+}
+
+void IMonochromaticDisplay::setPixel(uint32_t x, uint32_t y)
+{
+  setPixelColor(x, y, utilities::colors::RGBA(0xFFFFFFFF));
+}
+
+void IMonochromaticDisplay::resetPixel(uint32_t x, uint32_t y)
+{
+  clearPixel(x, y);
+}
+
+void IMonochromaticDisplay::togglePixel(uint32_t x, uint32_t y)
+{
+  if (getPixelColor(x, y) == utilities::colors::RGBA(0xFFFFFFFF))
+  {
+    resetPixel(x, y);
+  }
+  else
+    setPixel(x, y);
+}
+
+void IMonochromaticDisplay::clearPixel(uint32_t x, uint32_t y)
+{
+  setPixelColor(x, y, utilities::colors::RGBA(0x00000000));
 }
 
 namespace PCD8544
@@ -132,40 +183,53 @@ void PCD8544::initDevice()
   horizontalAddressing();
   setDisplayMode(display_modes::NORMAL);
   setXY(0, 0);
-  refreshScreen();
+  refresh();
 }
 
 PCD8544::~PCD8544()
 {
 }
 
-void PCD8544::refreshScreen()
+void PCD8544::refreshArea(uint32_t x, uint32_t y, uint32_t width,
+    uint32_t height)
 {
+  //ToDo support area refreshing when x!=0 || y!=0 || width!=_width || height!=_height, otherwise full refresh
   setXY(0, 0);
   WriteData(_buffer, 504);
 }
 
-void PCD8544::clearScreen()
+uint32_t PCD8544::getPixelByteOffset(uint32_t x, uint32_t y)
 {
-  for (uint32_t i = 0; i < 504; ++i)
+  return x + (y / 8) * 84;
+}
+
+uint32_t PCD8544::getPixelBitOffset(uint32_t x, uint32_t y)
+{
+  return y % 8;
+}
+
+void PCD8544::setPixelColor(uint32_t x, uint32_t y, utilities::colors::RGBA color)
+{
+  if (color == utilities::colors::RGBA(0x00000000))
   {
-    _buffer[i] = 0x00;
+    _buffer[getPixelByteOffset(x, y)] &= ~(1 << (getPixelBitOffset(x,y)));
+  }
+  else
+  {
+    _buffer[getPixelByteOffset(x, y)] |= 1 << (getPixelBitOffset(x,y));
   }
 }
 
-void PCD8544::setPixel(uint32_t x, uint32_t y)
+utilities::colors::RGBA PCD8544::getPixelColor(uint32_t x, uint32_t y)
 {
-  _buffer[x + (y / 8) * 84] |= 1 << (y % 8);
-}
-
-void PCD8544::resetPixel(uint32_t x, uint32_t y)
-{
-  _buffer[x + (y / 8) * 84] &= ~(1 << (y % 8));
-}
-
-void PCD8544::togglePixel(uint32_t x, uint32_t y)
-{
-  _buffer[x + (y / 8) * 84] ^= 1 << (y % 8);
+  if ((_buffer[getPixelByteOffset(x, y)] & (1 << (getPixelBitOffset(x,y)))) == (1 << (getPixelBitOffset(x,y))))
+  {
+    return utilities::colors::RGBA(0xFFFFFFFF);
+  }
+  else
+  {
+    return utilities::colors::RGBA(0x00000000);
+  }
 }
 
 void PCD8544::selectDevice()
