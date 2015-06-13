@@ -24,7 +24,7 @@ class RGBA
     uint8_t getA() const;
     bool operator==(const RGBA & rgba);
   private:
-    const uint32_t _rgba;
+    uint32_t _rgba;
 };
 }
 }

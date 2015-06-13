@@ -16,11 +16,13 @@
 #include "System/Application.hpp"
 #include "System/ManagedTimer.hpp"
 #include "Devices/Display.hpp"
+#include "GUI/Canvas.hpp"
 
 using namespace ptm::system;
 using namespace ptm::events;
 using namespace ptm::devices;
 using namespace ptm::interrupts;
+using namespace ptm::gui;
 
 class SecondApp : public Application
 {
@@ -395,13 +397,15 @@ class InitApp : public Application
         auto screen_w = System::getInstance()->_device_manager.getDevice<
             displays::monochromatic::IMonochromaticDisplay>();
         auto screen_s = screen_w.lock();
-        screen_s->clearArea(1,0,83,48);
+        MonochromaticCanvas canvas(83,48);
+        canvas.clear();
+        canvas.drawPixel(_x % 84, _y % 48);
+        canvas.drawPixel((_x + 1) % 84, (_y + 1) % 48);
+        canvas.drawPixel(_x % 84, (_y + 1) % 48);
+        canvas.drawPixel((_x + 1) % 84, _y % 48);
+        canvas.repaint(1,0,screen_w);
+        //screen_s->clearArea(1,0,83,48);
         screen_s->togglePixel(0,0);
-        screen_s->setPixel(_x % 84, _y % 48);
-        screen_s->setPixel((_x + 1) % 84, (_y + 1) % 48);
-        screen_s->setPixel(_x % 84, (_y + 1) % 48);
-        screen_s->setPixel((_x + 1) % 84, _y % 48);
-        screen_s->refresh();
       }
       if (_timer.hasFinished())
       {
