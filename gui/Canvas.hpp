@@ -20,8 +20,11 @@ class Canvas
     void clearArea(uint32_t x, uint32_t y, uint32_t width, uint32_t height);
     virtual void repaint(uint32_t x, uint32_t y,
         std::weak_ptr<devices::displays::IDisplay> display)=0;
+    utilities::colors::RGBA getColor();
     void setColor(utilities::colors::RGBA color);
+    utilities::colors::RGBA getBgColor();
     void setBgColor(utilities::colors::RGBA color);
+    virtual utilities::colors::RGBA getPixelColor(uint32_t x, uint32_t y)=0;
     virtual void drawPixel(uint32_t x, uint32_t y);
     virtual void drawBgPixel(uint32_t x, uint32_t y);
     virtual Canvas* getSubCanvas(uint32_t x, uint32_t y, uint32_t width,
@@ -48,6 +51,7 @@ class MonochromaticCanvas : public Canvas
         std::weak_ptr<devices::displays::IDisplay> display);
     virtual MonochromaticCanvas* getSubCanvas(uint32_t x, uint32_t y,
         uint32_t width, uint32_t height);
+    virtual utilities::colors::RGBA getPixelColor(uint32_t x, uint32_t y);
   protected:
     MonochromaticCanvas(uint32_t x, uint32_t y, uint32_t width, uint32_t height,
         MonochromaticCanvas &canvas);

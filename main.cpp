@@ -17,6 +17,8 @@
 #include "System/ManagedTimer.hpp"
 #include "Devices/Display.hpp"
 #include "GUI/Canvas.hpp"
+#include "GUI/Panel.hpp"
+#include "GUI/Component.hpp"
 
 using namespace ptm::system;
 using namespace ptm::events;
@@ -286,6 +288,32 @@ class InitApp : public Application
 {
   public:
 
+    class Box : public Component
+    {
+      public:
+        Box(uint32_t x, uint32_t y) : Component(x,y,2,2)
+        {
+
+        }
+        virtual ~Box()
+        {
+
+        }
+
+        virtual void paintOn(Canvas * canvas)
+        {
+          if(canvas)
+          {
+            canvas->drawPixel(0,0);
+            canvas->drawPixel(0,1);
+            canvas->drawPixel(1,0);
+            canvas->drawPixel(1,1);
+          }
+        }
+      protected:
+      private:
+    };
+
     class InitContext : public ApplicationContext
     {
       public:
@@ -376,8 +404,7 @@ class InitApp : public Application
     };
 
     InitApp() :
-        Application(), _timer(ManagedTimer(&_timer_manager, 300, false)), _x(0), _y(
-            0)
+        Application(), _timer(ManagedTimer(&_timer_manager, 300, false)),_canvas(83,48),_box(0,0), _box2(18,9), _panel(1,0,83,48), _inner_panel(10,10,20,20)
     {
     }
 
@@ -385,8 +412,11 @@ class InitApp : public Application
     {
       auto leds = System::getInstance()->_device_manager.getDevices<LED>();
       leds[0].lock()->off();
-      _x = 0;
-      _y = 0;
+      _box.setX(0);
+      _box.setY(0);
+      _panel.addChild(&_inner_panel);
+      _inner_panel.addChild(&_box);
+      _inner_panel.addChild(&_box2);
       switchContext(&_context);
       _timer.start();
     }
@@ -397,27 +427,19 @@ class InitApp : public Application
         auto screen_w = System::getInstance()->_device_manager.getDevice<
             displays::monochromatic::IMonochromaticDisplay>();
         auto screen_s = screen_w.lock();
-        MonochromaticCanvas canvas(83,48);
-        canvas.clear();
-        canvas.drawPixel(_x % 84, _y % 48);
-        canvas.drawPixel((_x + 1) % 84, (_y + 1) % 48);
-        canvas.drawPixel(_x % 84, (_y + 1) % 48);
-        canvas.drawPixel((_x + 1) % 84, _y % 48);
-        canvas.repaint(1,0,screen_w);
-        //screen_s->clearArea(1,0,83,48);
+        _panel.paintOn(&_canvas);
+        _canvas.repaint(_panel.getX(),_panel.getY(),screen_w);
         screen_s->togglePixel(0,0);
       }
       if (_timer.hasFinished())
       {
-        ++_y;
-        _y %= 48;
+        _box.setY((_box.getY()+1)%_inner_panel.getHeight());
         auto leds = System::getInstance()->_device_manager.getDevices<LED>();
         leds[0].lock()->toggle();
         _timer.start();
       }
       System::getInstance()->sleep(80);
-      ++_x;
-      _x %= 84;
+      _box.setX((_box.getX()+1)%_inner_panel.getWidth());
     }
 
     void onPause()
@@ -448,8 +470,11 @@ class InitApp : public Application
     bool _led_zero_state;
     InitContext _context;
     ManagedTimer _timer;
-    uint32_t _x;
-    uint32_t _y;
+    MonochromaticCanvas _canvas;
+    Box _box;
+    Box _box2;
+    Panel _panel;
+    Panel _inner_panel;
 };
 
 int main(void)

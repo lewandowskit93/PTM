@@ -14,9 +14,19 @@ Canvas::~Canvas()
 {
 }
 
+utilities::colors::RGBA Canvas::getColor()
+{
+  return _color;
+}
+
 void Canvas::setColor(utilities::colors::RGBA color)
 {
   _color=color;
+}
+
+utilities::colors::RGBA Canvas::getBgColor()
+{
+  return _bg_color;
 }
 
 void Canvas::setBgColor(utilities::colors::RGBA color)
@@ -66,7 +76,7 @@ MonochromaticCanvas::MonochromaticCanvas(uint32_t width, uint32_t height)
 }
 
 MonochromaticCanvas::MonochromaticCanvas(uint32_t x, uint32_t y, uint32_t width, uint32_t height, MonochromaticCanvas &canvas)
-: Canvas(x,y,width,height,true), _canvas(canvas._canvas)
+: Canvas(x+canvas._x_offset,y+canvas._y_offset,width,height,true), _canvas(canvas._canvas)
 {
 }
 
@@ -91,7 +101,7 @@ void MonochromaticCanvas::repaint(uint32_t x, uint32_t y, std::weak_ptr<devices:
     {
       for(uint32_t j=0;j<_height;++j)
       {
-        display_s->setPixelColor(x+i,y+j,utilities::colors::RGBA(_canvas[i][j] ? 0xFFFFFFFF : 0x00000000));
+        display_s->setPixelColor(x+i,y+j,utilities::colors::RGBA(_canvas[i+_x_offset][j+_y_offset] ? 0xFFFFFFFF : 0x00000000));
       }
     }
     display_s->refreshArea(x,y,_width,_height);
@@ -105,6 +115,16 @@ MonochromaticCanvas* MonochromaticCanvas::getSubCanvas(uint32_t x, uint32_t y, u
   if(x+width>_width)return 0;
   if(y+height>_height)return 0;
   return new MonochromaticCanvas(x,y,width,height,*this);
+}
+
+utilities::colors::RGBA MonochromaticCanvas::getPixelColor(uint32_t x, uint32_t y)
+{
+  if(x>=_width || y>=_height) return utilities::colors::RGBA(_bg_color);
+  else
+  {
+    if(_canvas[x+_x_offset][y+_y_offset]) return utilities::colors::RGBA(0xFFFFFFFF);
+    else return utilities::colors::RGBA(0x00000000);
+  }
 }
 
 void MonochromaticCanvas::drawCPixel(uint32_t x, uint32_t y,utilities::colors::RGBA color)
