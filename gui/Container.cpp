@@ -52,9 +52,10 @@ void Container::paintChildrens(Canvas* canvas)
         attributes::VISIBILITY);
     if (child_visibility == attributes::states::ENABLED)
     {
-      child->paintOn(
-          canvas->getSubCanvas(child->getX(), child->getY(), child->getWidth(),
-              child->getHeight()));
+      Canvas* subcanvas = canvas->getSubCanvas(child->getX(), child->getY(), child->getWidth(),
+          child->getHeight());
+      child->paintOn(subcanvas);
+      delete subcanvas;
     }
   }
 }
