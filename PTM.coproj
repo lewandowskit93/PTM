@@ -38,7 +38,7 @@
           <Memory name="IROM2" type="ReadOnly" size="" startValue=""/>
           <Memory name="IRAM2" type="ReadWrite" size="0x00010000" startValue="0x10000000"/>
         </MemoryAreas>
-        <LocateLinkFile path="d:/windows8/coocox/coide/configuration/programdata/ptm/arm-gcc-link.ld" type="0"/>
+        <LocateLinkFile path="d:/coocox/coide/configuration/programdata/ptm/arm-gcc-link.ld" type="0"/>
       </Link>
       <Output>
         <Option name="OutputFileType" value="0"/>
@@ -101,13 +101,14 @@
     <File name="cmsis/core_cm4.h" path="cmsis/core_cm4.h" type="1"/>
     <File name="Devices/Display.hpp" path="Devices/Display.hpp" type="1"/>
     <File name="Devices/IDevice.cpp" path="Devices/IDevice.cpp" type="1"/>
+    <File name="Devices/Accelometer.cpp" path="Devices/Accelometer.cpp" type="1"/>
     <File name="Interrupts/Interrupts.cpp" path="Interrupts/Interrupts.cpp" type="1"/>
     <File name="Applications" path="" type="2"/>
     <File name="Devices/IDevice.hpp" path="Devices/IDevice.hpp" type="1"/>
-    <File name="System/System.hpp" path="System/System.hpp" type="1"/>
-    <File name="System/DeviceManager.hpp" path="System/DeviceManager.hpp" type="1"/>
     <File name="cmsis_lib/source/misc.c" path="cmsis_lib/source/misc.c" type="1"/>
+    <File name="System/DeviceManager.hpp" path="System/DeviceManager.hpp" type="1"/>
     <File name="Devices/LED.hpp" path="Devices/LED.hpp" type="1"/>
+    <File name="System/System.hpp" path="System/System.hpp" type="1"/>
     <File name="syscalls/syscalls.c" path="syscalls/syscalls.c" type="1"/>
     <File name="cmsis_lib/source" path="" type="2"/>
     <File name="System/Application.hpp" path="System/Application.hpp" type="1"/>
@@ -123,6 +124,7 @@
     <File name="System/EventManager.cpp" path="System/EventManager.cpp" type="1"/>
     <File name="cmsis_lib/source/stm32f4xx_syscfg.c" path="cmsis_lib/source/stm32f4xx_syscfg.c" type="1"/>
     <File name="Utilities/Color.hpp" path="utilities/Color.hpp" type="1"/>
+    <File name="Devices/Accelometer.hpp" path="Devices/Accelometer.hpp" type="1"/>
     <File name="Devices/Button.hpp" path="Devices/Button.hpp" type="1"/>
     <File name="cmsis_boot/startup/startup_stm32f4xx.c" path="cmsis_boot/startup/startup_stm32f4xx.c" type="1"/>
     <File name="cmsis_lib/source/stm32f4xx_rcc.c" path="cmsis_lib/source/stm32f4xx_rcc.c" type="1"/>
@@ -132,8 +134,8 @@
     <File name="System/InterruptManager.cpp" path="System/InterruptManager.cpp" type="1"/>
     <File name="System/Timer.cpp" path="System/Timer.cpp" type="1"/>
     <File name="Utilities/Color.cpp" path="utilities/Color.cpp" type="1"/>
-    <File name="cmsis_lib/include/stm32f4xx_exti.h" path="cmsis_lib/include/stm32f4xx_exti.h" type="1"/>
     <File name="cmsis_lib/source/stm32f4xx_exti.c" path="cmsis_lib/source/stm32f4xx_exti.c" type="1"/>
+    <File name="cmsis_lib/include/stm32f4xx_exti.h" path="cmsis_lib/include/stm32f4xx_exti.h" type="1"/>
     <File name="cmsis_boot/system_stm32f4xx.c" path="cmsis_boot/system_stm32f4xx.c" type="1"/>
     <File name="System/ManagedTimer.hpp" path="System/ManagedTimer.hpp" type="1"/>
     <File name="Utilities" path="" type="2"/>
@@ -150,8 +152,8 @@
     <File name="cmsis_lib/include/misc.h" path="cmsis_lib/include/misc.h" type="1"/>
     <File name="System/System.cpp" path="System/System.cpp" type="1"/>
     <File name="cmsis_lib/include" path="" type="2"/>
-    <File name="Devices/Display.cpp" path="Devices/Display.cpp" type="1"/>
     <File name="Events" path="" type="2"/>
+    <File name="Devices/Display.cpp" path="Devices/Display.cpp" type="1"/>
     <File name="Devices" path="" type="2"/>
   </Files>
 </Project>

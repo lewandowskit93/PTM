@@ -16,6 +16,7 @@
 #include "System/Application.hpp"
 #include "System/ManagedTimer.hpp"
 #include "Devices/Display.hpp"
+#include "Devices/Accelometer.hpp"
 
 using namespace ptm::system;
 using namespace ptm::events;
@@ -480,6 +481,27 @@ int main(void)
       PinAFMapping(Pin(GPIOB, GPIO_Pin_10), GPIO_PinSource10, GPIO_AF_SPI2), //sclk
       Pin(GPIOC, GPIO_Pin_14), Pin(GPIOC, GPIO_Pin_13), //dc, ce
       Pin(GPIOC, GPIO_Pin_15)); //rst
+
+  ////Accelometer
+  //Pins used: 4, 5, 6, 7, 8, 9
+  System::getInstance()->_device_manager.mountDevice<APB2PeriphClock>(
+		  RCC_APB2Periph_SPI1);
+  System::getInstance()->_device_manager.mountDevice<AHB1PeriphClock>(
+ 		  RCC_AHB1Periph_GPIOE);
+
+  std::weak_ptr<Accelometer> acc =
+		  System::getInstance()->_device_manager.mountDevice<Accelometer>(
+		  SPI1,
+			  PinAFMapping(Pin(GPIOA, GPIO_Pin_5), GPIO_PinSource5, GPIO_AF_SPI1),
+			  PinAFMapping(Pin(GPIOA, GPIO_Pin_6), GPIO_PinSource6, GPIO_AF_SPI1),
+			  PinAFMapping(Pin(GPIOA, GPIO_Pin_7), GPIO_PinSource7, GPIO_AF_SPI1),
+			  Pin(GPIOE, GPIO_Pin_3),
+			  Pin(GPIOE, GPIO_Pin_0),
+			  Pin(GPIOE, GPIO_Pin_1));
+
+
+  //
+  ////
   System::getInstance()->_interrupt_manager.addInterrupt<ButtonInterrupt>(
       but_w);
   System::getInstance()->_device_manager.getDevices<LED>();
