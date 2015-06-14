@@ -18,10 +18,15 @@ inline void Accelometer::LIS302DL_CS_HIGH()
 
 Accelometer::Accelometer(SPI_TypeDef* spi, PinAFMapping sck, PinAFMapping miso, PinAFMapping mosi,
 		Pin cs, Pin int1, Pin int2) :
-	    IDevice(), _timer(500,std::bind(&Accelometer::updateAccelometerAxis,this), true),
+		 IDevice(), _timer(500,std::bind(&Accelometer::updateAccelometerAxis,this), true),
 	    _spi(spi),  _sck(sck), _miso(miso),
 	    _mosi(mosi), _cs(cs), _int1(int1), _int2(int2)
+
 {
+
+	 	 GPIO_PinAFConfig(_sck.pin.port, _sck.pin_source, _sck.alternate_function);
+	 	 GPIO_PinAFConfig(_miso.pin.port, _miso.pin_source, _miso.alternate_function);
+	 	 GPIO_PinAFConfig(_mosi.pin.port, _mosi.pin_source, _mosi.alternate_function);
 
 	    GPIO_InitTypeDef GPIO_InitStructure;
 	    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF;
@@ -105,64 +110,113 @@ Accelometer::~Accelometer()
 {
 	//ToDo
 }
+void Accelometer::setAccDirection(Moved a)
+{
+	accelDirection = a;
+}
+
+bool Accelometer::isMovedTop()
+{
+	if (accelDirection == movedFront)
+		return true;
+	return false;
+}
+
+bool Accelometer::isMovedDown()
+{
+	if (accelDirection == movedBack)
+			return true;
+		return false;
+}
+bool Accelometer::isMovedRight()
+{
+	if (accelDirection == movedRight)
+		return true;
+	return false;
+}
+
+bool Accelometer::isMovedLeft()
+{
+	if (accelDirection == movedLeft)
+			return true;
+		return false;
+}
+
+void Accelometer::resetAllifEvent()
+{
+	accelDirection = none;
+}
+
+void Accelometer::checkForMenuEvents()
+{
+	std::weak_ptr<devices::Accelometer> _device;
+	auto x = _device.lock();
+	auto a = std::dynamic_pointer_cast < devices::Accelometer > (x);
+
+	if (isMovedDown())
+	{
+		system::System::getInstance()->_event_manager.raiseEvent(
+		  std::shared_ptr < events::AccelometerMenuEvent
+			  > (new events::AccelometerMenuEvent(this->isMovedDown(), this->isMovedTop(),a)));
+
+	 }
+	else if (isMovedTop())
+	{
+		 	system::System::getInstance()->_event_manager.raiseEvent(
+			  std::shared_ptr < events::AccelometerMenuEvent
+				  > (new events::AccelometerMenuEvent(this->isMovedDown(), this->isMovedTop(),a)));
+	}
+
+	ptm::axisXY axis;
+	axis.x = this->axis.ACCX;
+	axis.y = this->axis.ACCY;
+	system::System::getInstance()->_event_manager.raiseEvent(
+				  std::shared_ptr < events::AccelometerGetPositionEvent
+					  > (new events::AccelometerGetPositionEvent(axis,a)));
+
+	resetAllifEvent();
+
+}
+
 
 void Accelometer::updateAccelometerAxis()
 {
-	LIS302DL_Read(&axis.ACCX, LIS302DL_OUT_X_ADDR, 1);
-	if(axis.ACCX > 60 || axis.ACCX < -60)
-	{
-		axis.ACCX = axis.ACCX - 1;
-		axis.ACCX = ( ~axis.ACCX ) & 0xFF;
-		axis.ACCX = -axis.ACCX;
+	uint8_t x, y, z;
+	LIS302DL_Read(&x, LIS302DL_OUT_X_ADDR, 1);
+	x = x - 1;
+	x = ( ~x ) & 0xFF;
+	x = -x;
 
-	}
-	LIS302DL_Read(&axis.ACCY, LIS302DL_OUT_Y_ADDR, 1);
-	if(axis.ACCY >60 || axis.ACCY < -60)
-	{
-		axis.ACCY = axis.ACCY - 1;
-		axis.ACCY= ( ~axis.ACCY ) & 0xFF;
-		axis.ACCY= -axis.ACCY;
+	LIS302DL_Read(&y, LIS302DL_OUT_Y_ADDR, 1);
+	y = y - 1;
+	y = ( ~y ) & 0xFF;
+	y= -y;
 
-	}
-	LIS302DL_Read(&axis.ACCZ, LIS302DL_OUT_Z_ADDR, 1);
-	if( axis.ACCZ > 60 || axis.ACCZ < -60 )
-	{
-		axis.ACCZ = axis.ACCZ - 1;
-		axis.ACCZ = ( ~axis.ACCZ ) & 0xFF;
-		axis.ACCZ = -axis.ACCZ;
-	}
+	LIS302DL_Read(&z, LIS302DL_OUT_Z_ADDR, 1);
+	z = z- 1;
+	z = ( ~z ) & 0xFF;
+	z = -z;
+	axis.ACCX = (int8_t) x; // values are from -66 to 66 approximtally
+	axis.ACCY = (int8_t) y;
+	axis.ACCZ = (int8_t) z;
+
+	if (axis.ACCY > 45)
+		setAccDirection(movedBack);
+	else if (axis.ACCY < -45)
+		setAccDirection(movedFront);
+	else if (axis.ACCX > 45)
+		setAccDirection(movedLeft);
+	else if (axis.ACCX < - 45)
+		setAccDirection(movedRight);
+
+	checkForMenuEvents();
+
+
 	_timer.start();
 }
 
-ptm::Moved Accelometer::getAccelometerAxis()
-{
-	LIS302DL_Read(&axis.ACCX, LIS302DL_OUT_X_ADDR, 1);
-	if(axis.ACCX > 60 || axis.ACCX < -60)
-	{
-		axis.ACCX = axis.ACCX - 1;
-		axis.ACCX = ( ~axis.ACCX ) & 0xFF;
-		axis.ACCX = -axis.ACCX;
-		return ptm::movedLeft;
-	}
-	LIS302DL_Read(&axis.ACCY, LIS302DL_OUT_Y_ADDR, 1);
-	if(axis.ACCY >60 || axis.ACCY < -60)
-	{
-		axis.ACCY = axis.ACCY - 1;
-		axis.ACCY= ( ~axis.ACCY ) & 0xFF;
-		axis.ACCY= -axis.ACCY;
-		return ptm::movedFront;
-	}
-	LIS302DL_Read(&axis.ACCZ, LIS302DL_OUT_Z_ADDR, 1);
-	if( axis.ACCZ > 60 || axis.ACCZ < -60 )
-	{
-		axis.ACCZ = axis.ACCZ - 1;
-		axis.ACCZ = ( ~axis.ACCZ ) & 0xFF;
-		axis.ACCZ = -axis.ACCZ;
-		return ptm::movedBack;
-	}
-	return ptm::movedBack;
 
-}
+
 
 void Accelometer::LIS302DL_Init(LIS302DL_InitTypeDef *LIS302DL_InitStruct)
 {
@@ -194,11 +248,11 @@ void Accelometer::LIS302DL_Write(uint8_t* pBuffer, uint8_t WriteAddr, uint16_t N
   LIS302DL_CS_LOW();
 
   /* Send the Address of the indexed register */
-  LIS302DL_SendByte(this, WriteAddr);
+  LIS302DL_SendByte(WriteAddr);
   /* Send the data that will be written into the device (MSB First) */
   while(NumByteToWrite >= 0x01)
   {
-    LIS302DL_SendByte(this, *pBuffer);
+    LIS302DL_SendByte(*pBuffer);
     NumByteToWrite--;
     pBuffer++;
   }
@@ -207,27 +261,27 @@ void Accelometer::LIS302DL_Write(uint8_t* pBuffer, uint8_t WriteAddr, uint16_t N
   LIS302DL_CS_HIGH();
 }
 
-uint8_t Accelometer::LIS302DL_SendByte(Accelometer *a, uint8_t byte)
+uint8_t Accelometer::LIS302DL_SendByte(uint8_t byte)
 {
   /* Loop while DR register in not emplty */
-  a->LIS302DLTimeout = LIS302DL_FLAG_TIMEOUT;
-  while (SPI_I2S_GetFlagStatus(a->_spi, SPI_I2S_FLAG_TXE) == RESET)
+  LIS302DLTimeout = LIS302DL_FLAG_TIMEOUT;
+  while (SPI_I2S_GetFlagStatus(_spi, SPI_I2S_FLAG_TXE) == RESET)
   {
-    if((a->LIS302DLTimeout--) == 0) return a->LIS302DL_TIMEOUT_UserCallback();
+    if((LIS302DLTimeout--) == 0) return LIS302DL_TIMEOUT_UserCallback();
   }
 
   /* Send a Byte through the SPI peripheral */
-  SPI_I2S_SendData(a->_spi, byte);
+  SPI_I2S_SendData(_spi, byte);
 
   /* Wait to receive a Byte */
-  a->LIS302DLTimeout = LIS302DL_FLAG_TIMEOUT;
-  while (SPI_I2S_GetFlagStatus(a->_spi, SPI_I2S_FLAG_RXNE) == RESET)
+  LIS302DLTimeout = LIS302DL_FLAG_TIMEOUT;
+  while (SPI_I2S_GetFlagStatus(_spi, SPI_I2S_FLAG_RXNE) == RESET)
   {
-    if((a->LIS302DLTimeout--) == 0) return a->LIS302DL_TIMEOUT_UserCallback();
+    if((LIS302DLTimeout--) == 0) return LIS302DL_TIMEOUT_UserCallback();
   }
 
   /* Return the Byte read from the SPI bus */
-  return (uint8_t)SPI_I2S_ReceiveData(a->_spi);
+  return (uint8_t)SPI_I2S_ReceiveData(_spi);
 }
 
 void Accelometer::LIS302DL_InterruptConfig(LIS302DL_InterruptConfigTypeDef *LIS302DL_IntConfigStruct)
@@ -260,13 +314,13 @@ void Accelometer::LIS302DL_Read(uint8_t* pBuffer, uint8_t ReadAddr, uint16_t Num
   LIS302DL_CS_LOW();
 
   /* Send the Address of the indexed register */
-  LIS302DL_SendByte(this, ReadAddr);
+  LIS302DL_SendByte(ReadAddr);
 
   /* Receive the data that will be read from the device (MSB First) */
   while(NumByteToRead > 0x00)
   {
     /* Send dummy byte (0x00) to generate the SPI clock to LIS302DL (Slave device) */
-    *pBuffer = LIS302DL_SendByte(this, DUMMY_BYTE);
+    *pBuffer = LIS302DL_SendByte(DUMMY_BYTE);
     NumByteToRead--;
     pBuffer++;
   }
@@ -293,51 +347,56 @@ uint32_t Accelometer::LIS302DL_TIMEOUT_UserCallback(void)
 
 namespace events
 {
-////Menu events
-AccelometerMenuEvents::AccelometerMenuEvents(Moved moved, std::weak_ptr<devices::Accelometer> device) :
-    Event(EventType::EVENT_EXTI0_IRQn, device.lock().get()), _moved(moved), _device(device)
+
+AccelometerMenuEvent::AccelometerMenuEvent(bool movedTop, bool movedDown, std::weak_ptr<devices::Accelometer> device) :
+		Event(EventType::EVENT_ACC_IN_MENU, device.lock().get()), _top(movedTop), _down(movedDown), _device(device)
 {
 
 }
 
-AccelometerMenuEvents::~AccelometerMenuEvents()
+AccelometerMenuEvent::~AccelometerMenuEvent()
+{
+
+}
+bool AccelometerMenuEvent::movedTop() const
+{
+  return _top;
+}
+
+bool AccelometerMenuEvent::movedDown() const
+{
+  return _down;
+}
+
+std::weak_ptr<devices::Accelometer> AccelometerMenuEvent::getDevice() const
+{
+  return _device;
+}
+/////////////////////////////////////////////////
+//AccelInGame
+
+AccelometerGetPositionEvent::AccelometerGetPositionEvent(ptm::axisXY xy, std::weak_ptr<devices::Accelometer> device) :
+		Event(EventType::EVENT_ACC_IN_GAME, device.lock().get()), _xy(xy), _device(device)
 {
 
 }
 
-ptm::Moved AccelometerMenuEvents::isMoved() const
+AccelometerGetPositionEvent::~AccelometerGetPositionEvent()
 {
-  return _moved;
+
+}
+ptm::axisXY AccelometerGetPositionEvent::getPosition() const
+{
+  return _xy;
 }
 
-std::weak_ptr<devices::Accelometer> AccelometerMenuEvents::getDevice() const
+
+
+std::weak_ptr<devices::Accelometer> AccelometerGetPositionEvent::getDevice() const
 {
   return _device;
 }
 
-//// In Game events
-AccelometerInGameEvents::AccelometerInGameEvents(bool moved, std::weak_ptr<devices::Accelometer> device) :
-    Event(EventType::EVENT_EXTI0_IRQn, device.lock().get()), _moved(moved), _device(device)
-{
-
-}
-
-AccelometerInGameEvents::~AccelometerInGameEvents()
-{
-
-}
-
-bool AccelometerInGameEvents::isMoved() const
-{
-  return _moved;
-}
-
-std::weak_ptr<devices::Accelometer>AccelometerInGameEvents::getDevice() const
-{
-  return _device;
-}
-
-} // namespace events
-
+} // event namespace
 
 } // ptm namespace

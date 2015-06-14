@@ -13,13 +13,19 @@
 namespace ptm
 {
 
+struct axisXY
+{
+	int8_t x;
+	int8_t y;
+};
 
 enum Moved
 {
 	movedFront = 1,
 	movedBack = 2,
 	movedLeft = 3,
-	movedRight = 4
+	movedRight = 4,
+	none = 5
 };
 
 
@@ -141,15 +147,32 @@ class Accelometer : public IDevice {
 			__IO uint32_t  LIS302DLTimeout = LIS302DL_FLAG_TIMEOUT;
 
 			struct Axis {
-				uint8_t ACCX;
-				uint8_t ACCY;
-				uint8_t ACCZ;
+				int8_t ACCX;
+				int8_t ACCY;
+				int8_t ACCZ;
 			} axis;
 
-			Pin _cs;
-			SPI_TypeDef* _spi;
+			Moved accelDirection;
+			void setAccDirection(Moved a);
 
-			ptm::Moved getAccelometerAxis();
+			void checkForMenuEvents();
+			void resetAllifEvent();
+
+			bool isMovedTop();
+			bool isMovedDown();
+			bool isMovedRight();
+			bool isMovedLeft();
+
+
+			system::SystemTimer _timer;
+			SPI_TypeDef* _spi;
+			PinAFMapping _sck;
+			PinAFMapping _miso;
+			PinAFMapping _mosi;
+			Pin _cs;
+			Pin _int1;
+			Pin _int2;
+
 			void updateAccelometerAxis();
 			bool ifAccelometerMoved();
 
@@ -157,7 +180,7 @@ class Accelometer : public IDevice {
 			inline void LIS302DL_CS_LOW();
 			void LIS302DL_Init(LIS302DL_InitTypeDef *LIS302DL_InitStruct);
 			void LIS302DL_Write(uint8_t* pBuffer, uint8_t WriteAddr, uint16_t NumByteToWrite);
-			static uint8_t LIS302DL_SendByte(Accelometer *a, uint8_t byte);
+			uint8_t LIS302DL_SendByte(uint8_t byte);
 			void LIS302DL_InterruptConfig(LIS302DL_InterruptConfigTypeDef *LIS302DL_IntConfigStruct);
 			void LIS302DL_Read(uint8_t* pBuffer, uint8_t ReadAddr, uint16_t NumByteToRead);
 			uint32_t LIS302DL_TIMEOUT_UserCallback(void);
@@ -175,52 +198,45 @@ class Accelometer : public IDevice {
 
 		  protected:
 		  private:
-			system::SystemTimer _timer;
-			PinAFMapping _sck;
-			PinAFMapping _miso;
-			PinAFMapping _mosi;
-			Pin _int1;
-			Pin _int2;
+
+
+
+
 
 
 };
 } // namespace devices
 
 
-
-
 namespace events
 {
+class AccelometerMenuEvent : public Event
+{
+ public:
+   AccelometerMenuEvent(bool top, bool down, std::weak_ptr<devices::Accelometer> device);
+   ~AccelometerMenuEvent();
 
-	class AccelometerMenuEvents : public Event
-	{
-	  public:
+   bool movedTop() const;
+   bool movedDown() const;
+   std::weak_ptr<devices::Accelometer> getDevice() const;
+ protected:
+   std::weak_ptr<devices::Accelometer> _device;
+   bool _top;
+   bool _down;
+};
 
-		AccelometerMenuEvents(Moved moved, std::weak_ptr<devices::Accelometer> _device);
-		~AccelometerMenuEvents();
+class AccelometerGetPositionEvent : public Event
+{
+ public:
+	AccelometerGetPositionEvent(axisXY xy, std::weak_ptr<devices::Accelometer> device);
+   ~AccelometerGetPositionEvent();
 
-		ptm::Moved isMoved() const;
-
-		std::weak_ptr<devices::Accelometer> getDevice() const;
-	  protected:
-		Moved _moved;
-		std::weak_ptr<devices::Accelometer> _device;
-	};
-
-
-	class AccelometerInGameEvents : public Event
-	{
-	  public:
-		AccelometerInGameEvents(bool moved, std::weak_ptr<devices::Accelometer> _device);
-		~AccelometerInGameEvents();
-
-		bool isMoved() const;
-
-		std::weak_ptr<devices::Accelometer> getDevice() const;
-	  protected:
-		bool _moved;
-		std::weak_ptr<devices::Accelometer> _device;
-	};
+   axisXY getPosition() const;
+   std::weak_ptr<devices::Accelometer> getDevice() const;
+ protected:
+   std::weak_ptr<devices::Accelometer> _device;
+   axisXY _xy;
+};
 
 } // namespace events
 

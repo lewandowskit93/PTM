@@ -77,9 +77,7 @@ class APB2PeriphClock: public IDevice
 };
 
 
-/*
- * APB2PeriphClocks controller.
- */
+
 class APB1PeriphClock : public IDevice
 {
   public:

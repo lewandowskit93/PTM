@@ -105,9 +105,9 @@
     <File name="Interrupts/Interrupts.cpp" path="Interrupts/Interrupts.cpp" type="1"/>
     <File name="Applications" path="" type="2"/>
     <File name="Devices/IDevice.hpp" path="Devices/IDevice.hpp" type="1"/>
-    <File name="cmsis_lib/source/misc.c" path="cmsis_lib/source/misc.c" type="1"/>
     <File name="System/DeviceManager.hpp" path="System/DeviceManager.hpp" type="1"/>
     <File name="Devices/LED.hpp" path="Devices/LED.hpp" type="1"/>
+    <File name="cmsis_lib/source/misc.c" path="cmsis_lib/source/misc.c" type="1"/>
     <File name="System/System.hpp" path="System/System.hpp" type="1"/>
     <File name="syscalls/syscalls.c" path="syscalls/syscalls.c" type="1"/>
     <File name="cmsis_lib/source" path="" type="2"/>
