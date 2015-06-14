@@ -413,6 +413,8 @@ class GameContext : public system::ApplicationContext
     virtual void onStop();
     void onBgTimer();
     void onPteroAnim();
+    void onGravity();
+    void onButton(std::shared_ptr<events::Event> event);
   protected:
   private:
     FlappyPteroGame *_game;
@@ -421,6 +423,14 @@ class GameContext : public system::ApplicationContext
     system::ManagedTimer _bg_timer;
     Ptero _ptero;
     system::ManagedTimer _ptero_anim_timer;
+    system::ManagedTimer _gravity_timer;
+    double _current_y_speed;
+    double _ptero_current_y;
+    bool _playing;
+    double _gravity;
+    double _pixels_per_meter;
+    double _flap_force_meters;
+    double _max_speed;
 };
 
 class FlappyPteroGame : public system::Application
