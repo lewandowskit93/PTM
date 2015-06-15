@@ -177,7 +177,7 @@ void PCD8544::initDevice()
   powerOn();
   extendedInstructions();
   setBiasSystem(0x04);
-  setContrast(0x3f);
+  setContrast(0x42);
   setTemperatureMode(temperature_modes::COEF_2);
   basicInstructions();
   horizontalAddressing();
