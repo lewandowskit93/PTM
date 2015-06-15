@@ -8,7 +8,13 @@ namespace flappy_ptero
 {
 
 Ptero::Ptero(uint32_t x, uint32_t y) :
-    gui::Component(x, y, 10, 7), _current_frame(0), _reverse(false)
+    Ptero(x,y,false)
+{
+
+}
+
+Ptero::Ptero(uint32_t x, uint32_t y, bool flip_x) :
+    gui::Component(x, y, 10, 7), _current_frame(0), _reverse(false), _flip_x(flip_x)
 {
 
 }
@@ -58,12 +64,26 @@ void Ptero::paintFrame(uint8_t frame, gui::Canvas *canvas)
   frame %= 6;
   if (canvas)
   {
-    for (uint32_t i = 0; i < getWidth(); ++i)
+    if(_flip_x)
     {
-      for (uint32_t j = 0; j < getHeight(); ++j)
+      for (uint32_t i = 1; i <= getWidth(); ++i)
       {
-        if (_ptero[i][j + frame * getHeight()])
-          canvas->drawPixel(i, j);
+        for (uint32_t j = 0; j < getHeight(); ++j)
+        {
+          if (_ptero[getWidth()-i][j + frame * getHeight()])
+            canvas->drawPixel(i, j);
+        }
+      }
+    }
+    else
+    {
+      for (uint32_t i = 0; i < getWidth(); ++i)
+      {
+        for (uint32_t j = 0; j < getHeight(); ++j)
+        {
+          if (_ptero[i][j + frame * getHeight()])
+            canvas->drawPixel(i, j);
+        }
       }
     }
   }
@@ -99,6 +119,77 @@ void GameBackground::paintOn(gui::Canvas *canvas)
   }
 }
 
+MenuContext::MenuContext(FlappyPteroGame *game)
+: ApplicationContext(), _game(game), _ptero1(37,14,false), _ptero2(37,34,true), _ptero_anim_timer(&_timer_manager,80,std::bind(&MenuContext::onPteroAnim,this),true), _menu_panel(0,0,84,48)
+{
+  _event_listener.registerEventHandler(events::EventMapping(events::EVENT_BUTTON,std::bind(&MenuContext::onButton,this,std::placeholders::_1)));
+}
+
+MenuContext::~MenuContext()
+{
+
+}
+
+void MenuContext::onUpdate()
+{
+
+}
+
+void MenuContext::onStart()
+{
+  _menu_panel.addChild(&_ptero1);
+  _menu_panel.addChild(&_ptero2);
+  _ptero2.setAnimFrame(5);
+  if (_game)
+    _game->_main_panel.addChild(&_menu_panel);
+  _ptero_anim_timer.start();
+}
+
+void MenuContext::onPause()
+{
+
+  if (_game)
+  {
+    _game->_main_panel.removeChild(&_menu_panel);
+  }
+  _ptero_anim_timer.pause();
+}
+
+void MenuContext::onResume()
+{
+  if (_game)
+  {
+    _game->_main_panel.addChild(&_menu_panel);
+  }
+  _ptero_anim_timer.resume();
+}
+
+void MenuContext::onStop()
+{
+  if (_game)
+  {
+    _game->_main_panel.removeChild(&_menu_panel);
+  }
+  _ptero_anim_timer.pause();
+}
+
+void MenuContext::onPteroAnim()
+{
+  _ptero1.nextAnimFrame();
+  _ptero2.nextAnimFrame();
+  _ptero_anim_timer.start();
+}
+
+void MenuContext::onButton(std::shared_ptr<events::Event> event)
+{
+  std::shared_ptr<events::ButtonEvent> b_event = std::static_pointer_cast<events::ButtonEvent>(event);
+  if(!b_event->isPressed())
+  {
+    if(_game)_game->switchContext(&_game->_game_context);
+  }
+}
+
+
 GameContext::GameContext(FlappyPteroGame *game) :
     ApplicationContext(), _game(game), _game_panel(0, 0, 84, 48), _game_bg(0, 0,
         84, 48), _bg_timer(&_timer_manager, 120,
@@ -117,7 +208,12 @@ GameContext::~GameContext()
 }
 void GameContext::onUpdate()
 {
+  if(_ptero_current_y>=84)
+  {
+    gameOver();
+  }
 }
+
 void GameContext::onStart()
 {
   _playing = false;
@@ -193,6 +289,15 @@ void GameContext::onGravity()
   _gravity_timer.start();
 }
 
+void GameContext::gameOver()
+{
+  if(_game)
+  {
+    _game->switchContext(&_game->_menu_context);
+    this->stop();
+  }
+}
+
 void GameContext::onButton(std::shared_ptr<events::Event> event)
 {
   std::shared_ptr<events::ButtonEvent> b_event = std::static_pointer_cast
@@ -205,7 +310,7 @@ void GameContext::onButton(std::shared_ptr<events::Event> event)
 }
 
 FlappyPteroGame::FlappyPteroGame() :
-    Application(), _main_panel(0, 0, 84, 48), _game_context(this), _canvas(84,
+    Application(), _main_panel(0, 0, 84, 48), _game_context(this), _menu_context(this), _canvas(84,
         48), _display(
         system::System::getInstance()->_device_manager.getDevice<
             devices::displays::IDisplay>()), _screen_timer(&_timer_manager, 40,
@@ -227,7 +332,7 @@ void FlappyPteroGame::onUpdate()
 void FlappyPteroGame::onStart()
 {
   _canvas.clear();
-  switchContext(&_game_context);
+  switchContext(&_menu_context);
   _screen_timer.start();
 }
 
