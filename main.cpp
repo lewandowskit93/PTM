@@ -19,6 +19,7 @@
 #include "GUI/Canvas.hpp"
 #include "GUI/Panel.hpp"
 #include "GUI/Component.hpp"
+#include "Devices/Accelometer.hpp"
 
 using namespace ptm::system;
 using namespace ptm::events;
@@ -476,7 +477,234 @@ class InitApp : public Application
     Panel _panel;
     Panel _inner_panel;
 };
+/////////////////////////////////////////TESTS
+class Accel: public Application
+{
+  public:
 
+    class AccelContext : public ApplicationContext
+    {
+      public:
+        AccelContext() :
+            ApplicationContext(), _timer(
+                ManagedTimer(&_timer_manager, 300, false))
+        {
+          _event_listener.registerEventHandler(
+              EventMapping(EVENT_ACC_IN_MENU,
+                  std::bind(&AccelContext::handleButton, this,
+                      std::placeholders::_1)));
+        }
+
+        void handleButton(std::shared_ptr<Event> event)
+        {
+          static int i = 0;
+          auto leds = System::getInstance()->_device_manager.getDevices<LED>();
+          auto button_event = std::static_pointer_cast < AccelometerMenuEvent > (event);
+          if (button_event->movedTop())
+          {
+        	  leds[3].lock()->toggle();
+          }
+          if (button_event->movedDown())
+          {
+        	  leds[2].lock()->toggle();
+          }
+        }
+
+        void onUpdate()
+        {
+          if (_timer.hasFinished())
+          {
+            _timer.start();
+          }
+        }
+
+        void onStart()
+        {
+          _timer.start();
+        }
+
+        void onPause()
+        {
+        }
+        void onResume()
+        {
+        }
+
+        void onStop()
+        {
+        }
+
+        bool _led_two_state;
+        bool _led_three_state;
+        ManagedTimer _timer;
+    };
+
+    Accel() :
+        Application(), _timer(ManagedTimer(&_timer_manager, 300, false)), _x(0), _y(
+            0)
+    {
+    }
+
+    void onStart()
+    {
+      auto leds = System::getInstance()->_device_manager.getDevices<LED>();
+      leds[0].lock()->off();
+      _x = 0;
+      _y = 0;
+      switchContext(&_context);
+      _timer.start();
+    }
+
+    void onUpdate()
+    {
+      System::getInstance()->sleep(80);
+    }
+
+    void onPause()
+    {
+
+    }
+
+    void onResume()
+    {
+      auto leds = System::getInstance()->_device_manager.getDevices<LED>();
+      if (_led_zero_state)
+      {
+        leds[0].lock()->on();
+      }
+      else
+      {
+        leds[0].lock()->off();
+      }
+    }
+
+    void onStop()
+    {
+      auto leds = System::getInstance()->_device_manager.getDevices<LED>();
+      leds[0].lock()->off();
+    }
+
+    bool _led_zero_state;
+    AccelContext _context;
+    ManagedTimer _timer;
+    uint32_t _x;
+    uint32_t _y;
+};
+///////////////////////////////////////////////////
+////////////////////////////////////////////////
+////Accel in game event
+class AccelInGame: public Application
+{
+  public:
+
+    class AccelContext : public ApplicationContext
+    {
+      public:
+        AccelContext() :
+            ApplicationContext(), _timer(
+                ManagedTimer(&_timer_manager, 300, false))
+        {
+          _event_listener.registerEventHandler(
+              EventMapping(EVENT_ACC_IN_GAME,
+                  std::bind(&AccelContext::handleButton, this,
+                      std::placeholders::_1)));
+        }
+
+        void handleButton(std::shared_ptr<Event> event)
+        {
+          static int i = 0;
+          auto leds = System::getInstance()->_device_manager.getDevices<LED>();
+          auto button_event = std::static_pointer_cast < AccelometerGetPositionEvent > (event);
+          ptm::axisXY xy = button_event->getPosition();
+          if (xy.x > 30)
+        	  leds[3].lock()->toggle();
+          if (xy.y > 30)
+        	  leds[2].lock()->toggle();
+          //debugging xy
+        }
+
+        void onUpdate()
+        {
+          if (_timer.hasFinished())
+          {
+            _timer.start();
+          }
+        }
+
+        void onStart()
+        {
+          _timer.start();
+        }
+
+        void onPause()
+        {
+        }
+        void onResume()
+        {
+        }
+
+        void onStop()
+        {
+        }
+
+        bool _led_two_state;
+        bool _led_three_state;
+        ManagedTimer _timer;
+    };
+
+    AccelInGame() :
+        Application(), _timer(ManagedTimer(&_timer_manager, 300, false)), _x(0), _y(
+            0)
+    {
+    }
+
+    void onStart()
+    {
+      auto leds = System::getInstance()->_device_manager.getDevices<LED>();
+      leds[0].lock()->off();
+      _x = 0;
+      _y = 0;
+      switchContext(&_context);
+      _timer.start();
+    }
+
+    void onUpdate()
+    {
+      System::getInstance()->sleep(80);
+    }
+
+    void onPause()
+    {
+
+    }
+
+    void onResume()
+    {
+      auto leds = System::getInstance()->_device_manager.getDevices<LED>();
+      if (_led_zero_state)
+      {
+        leds[0].lock()->on();
+      }
+      else
+      {
+        leds[0].lock()->off();
+      }
+    }
+
+    void onStop()
+    {
+      auto leds = System::getInstance()->_device_manager.getDevices<LED>();
+      leds[0].lock()->off();
+    }
+
+    bool _led_zero_state;
+    AccelContext _context;
+    ManagedTimer _timer;
+    uint32_t _x;
+    uint32_t _y;
+};
+
+////////////////////////////////////////////////
 int main(void)
 {
   SystemInit();
@@ -509,6 +737,27 @@ int main(void)
       PinAFMapping(Pin(GPIOB, GPIO_Pin_10), GPIO_PinSource10, GPIO_AF_SPI2), //sclk
       Pin(GPIOC, GPIO_Pin_14), Pin(GPIOC, GPIO_Pin_13), //dc, ce
       Pin(GPIOC, GPIO_Pin_15)); //rst
+
+  ////Accelometer
+  //Pins used: 5 6 7: A ; 3, 0, 1: E
+  System::getInstance()->_device_manager.mountDevice<APB2PeriphClock>(
+		  RCC_APB2Periph_SPI1);
+  System::getInstance()->_device_manager.mountDevice<AHB1PeriphClock>(
+ 		  RCC_AHB1Periph_GPIOE);
+
+  std::weak_ptr<Accelometer> acc =
+		  System::getInstance()->_device_manager.mountDevice<Accelometer>(
+			  SPI1,
+			  PinAFMapping(Pin(GPIOA, GPIO_Pin_5), GPIO_PinSource5, GPIO_AF_SPI1),
+			  PinAFMapping(Pin(GPIOA, GPIO_Pin_6), GPIO_PinSource6, GPIO_AF_SPI1),
+			  PinAFMapping(Pin(GPIOA, GPIO_Pin_7), GPIO_PinSource7, GPIO_AF_SPI1),
+			  Pin(GPIOE, GPIO_Pin_3),
+			  Pin(GPIOE, GPIO_Pin_0),
+			  Pin(GPIOE, GPIO_Pin_1));
+
+
+  //
+  ////
   System::getInstance()->_interrupt_manager.addInterrupt<ButtonInterrupt>(
       but_w);
   System::getInstance()->_device_manager.getDevices<LED>();

@@ -16,7 +16,7 @@ namespace events
  */
 enum EventType
 {
-  EVENT_NONE = 0, EVENT_EXTI0_IRQn = 1, EVENT_BUTTON = 2
+  EVENT_NONE = 0, EVENT_EXTI0_IRQn = 1, EVENT_BUTTON = 2, EVENT_ACC_IN_MENU = 3, EVENT_ACC_IN_GAME = 4
 };
 
 /*
