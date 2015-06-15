@@ -89,7 +89,7 @@ void ApplicationContext::resume()
 void ApplicationContext::stop()
 {
   if (_app_state == ApplicationLifeState::RUNNING
-      || _app_state == ApplicationLifeState::RUNNABLE)
+      || _app_state == ApplicationLifeState::RUNNABLE || _app_state == ApplicationLifeState::PAUSED)
   {
     _event_listener.deactivate();
     onStop();
@@ -195,7 +195,7 @@ void Application::resume()
 void Application::stop()
 {
   if (_app_state == ApplicationLifeState::RUNNING
-      || _app_state == ApplicationLifeState::RUNNABLE)
+      || _app_state == ApplicationLifeState::RUNNABLE || _app_state == ApplicationLifeState::PAUSED)
   {
     _event_listener.deactivate();
     onStop();
