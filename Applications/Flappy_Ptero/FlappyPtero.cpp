@@ -8,13 +8,14 @@ namespace flappy_ptero
 {
 
 Ptero::Ptero(uint32_t x, uint32_t y) :
-    Ptero(x,y,false)
+    Ptero(x, y, false)
 {
 
 }
 
 Ptero::Ptero(uint32_t x, uint32_t y, bool flip_x) :
-    gui::Component(x, y, 10, 7), _current_frame(0), _reverse(false), _flip_x(flip_x)
+    gui::Component(x, y, 10, 7), _current_frame(0), _reverse(false), _flip_x(
+        flip_x)
 {
 
 }
@@ -64,13 +65,13 @@ void Ptero::paintFrame(uint8_t frame, gui::Canvas *canvas)
   frame %= 6;
   if (canvas)
   {
-    if(_flip_x)
+    if (_flip_x)
     {
       for (uint32_t i = 1; i <= getWidth(); ++i)
       {
         for (uint32_t j = 0; j < getHeight(); ++j)
         {
-          if (_ptero[getWidth()-i][j + frame * getHeight()])
+          if (_ptero[getWidth() - i][j + frame * getHeight()])
             canvas->drawPixel(i, j);
         }
       }
@@ -87,6 +88,52 @@ void Ptero::paintFrame(uint8_t frame, gui::Canvas *canvas)
       }
     }
   }
+}
+
+Wall::Wall(uint32_t x, uint32_t y, uint32_t width, uint32_t height, uint32_t gap_size, uint32_t gap_y)
+ : gui::Component(x,y,width,height), _gap_size(gap_size), _gap_y(gap_y)
+{
+
+}
+
+Wall::~Wall()
+{
+
+}
+
+void Wall::paintOn(gui::Canvas * canvas)
+{
+  if(!canvas)return;
+  for(uint32_t i=0;i<getWidth();++i)
+  {
+    for(uint32_t j=0;j<getHeight();++j)
+    {
+      if(j<_gap_y || j>=(_gap_y+_gap_size))
+      {
+        canvas->drawPixel(i,j);
+      }
+    }
+  }
+}
+
+uint32_t Wall::getGapSize()
+{
+  return _gap_size;
+}
+
+void Wall::setGapSize(uint32_t gap_size)
+{
+  _gap_size=gap_size;
+}
+
+uint32_t Wall::getGapY()
+{
+  return _gap_y;
+}
+
+void Wall::setGapY(uint32_t gap_y)
+{
+  _gap_y=gap_y;
 }
 
 GameBackground::GameBackground(uint32_t x, uint32_t y, uint32_t width,
@@ -119,10 +166,15 @@ void GameBackground::paintOn(gui::Canvas *canvas)
   }
 }
 
-MenuContext::MenuContext(FlappyPteroGame *game)
-: ApplicationContext(), _game(game), _ptero1(37,14,false), _ptero2(37,34,true), _ptero_anim_timer(&_timer_manager,80,std::bind(&MenuContext::onPteroAnim,this),true), _menu_panel(0,0,84,48)
+MenuContext::MenuContext(FlappyPteroGame *game) :
+    ApplicationContext(), _game(game), _ptero1(37, 14, false), _ptero2(37, 34,
+        true), _ptero_anim_timer(&_timer_manager, 80,
+        std::bind(&MenuContext::onPteroAnim, this), true), _menu_panel(0, 0, 84,
+        48),_bg(0,0,84,48), _bg_timer(&_timer_manager, 20,std::bind(&MenuContext::onBgTimer, this),true)
 {
-  _event_listener.registerEventHandler(events::EventMapping(events::EVENT_BUTTON,std::bind(&MenuContext::onButton,this,std::placeholders::_1)));
+  _event_listener.registerEventHandler(
+      events::EventMapping(events::EVENT_BUTTON,
+          std::bind(&MenuContext::onButton, this, std::placeholders::_1)));
 }
 
 MenuContext::~MenuContext()
@@ -137,12 +189,14 @@ void MenuContext::onUpdate()
 
 void MenuContext::onStart()
 {
+  _menu_panel.addChild(&_bg);
   _menu_panel.addChild(&_ptero1);
   _menu_panel.addChild(&_ptero2);
   _ptero2.setAnimFrame(5);
   if (_game)
     _game->_main_panel.addChild(&_menu_panel);
   _ptero_anim_timer.start();
+  _bg_timer.start();
 }
 
 void MenuContext::onPause()
@@ -153,6 +207,7 @@ void MenuContext::onPause()
     _game->_main_panel.removeChild(&_menu_panel);
   }
   _ptero_anim_timer.pause();
+  _bg_timer.pause();
 }
 
 void MenuContext::onResume()
@@ -162,6 +217,7 @@ void MenuContext::onResume()
     _game->_main_panel.addChild(&_menu_panel);
   }
   _ptero_anim_timer.resume();
+  _bg_timer.resume();
 }
 
 void MenuContext::onStop()
@@ -170,7 +226,8 @@ void MenuContext::onStop()
   {
     _game->_main_panel.removeChild(&_menu_panel);
   }
-  _ptero_anim_timer.pause();
+  _ptero_anim_timer.stop();
+  _bg_timer.stop();
 }
 
 void MenuContext::onPteroAnim()
@@ -180,15 +237,23 @@ void MenuContext::onPteroAnim()
   _ptero_anim_timer.start();
 }
 
-void MenuContext::onButton(std::shared_ptr<events::Event> event)
+void MenuContext::onBgTimer()
 {
-  std::shared_ptr<events::ButtonEvent> b_event = std::static_pointer_cast<events::ButtonEvent>(event);
-  if(!b_event->isPressed())
-  {
-    if(_game)_game->switchContext(&_game->_game_context);
-  }
+  _bg._bgx++;
+  _bg._bgy++;
+  _bg_timer.start();
 }
 
+void MenuContext::onButton(std::shared_ptr<events::Event> event)
+{
+  std::shared_ptr<events::ButtonEvent> b_event = std::static_pointer_cast
+      < events::ButtonEvent > (event);
+  if (!b_event->isPressed())
+  {
+    if (_game)
+      _game->switchContext(&_game->_game_context);
+  }
+}
 
 GameContext::GameContext(FlappyPteroGame *game) :
     ApplicationContext(), _game(game), _game_panel(0, 0, 84, 48), _game_bg(0, 0,
@@ -196,7 +261,8 @@ GameContext::GameContext(FlappyPteroGame *game) :
         std::bind(&GameContext::onBgTimer, this), true), _ptero(15, 20), _ptero_anim_timer(
         &_timer_manager, 80, std::bind(&GameContext::onPteroAnim, this), true), _gravity_timer(
         &_timer_manager, 10, std::bind(&GameContext::onGravity, this), true), _current_y_speed(
-        0), _ptero_current_y(20), _playing(false), _gravity(100), _pixels_per_meter(10), _flap_force_meters(12), _max_speed(10)
+        0), _ptero_current_y(20), _game_state(GameState::PAUSED), _gravity(100), _pixels_per_meter(
+        10), _flap_force_meters(12), _max_speed(10)
 {
   _event_listener.registerEventHandler(
       events::EventMapping(events::EVENT_BUTTON,
@@ -208,7 +274,7 @@ GameContext::~GameContext()
 }
 void GameContext::onUpdate()
 {
-  if(_ptero_current_y>=84)
+  if (_ptero_current_y >= 48)
   {
     gameOver();
   }
@@ -216,7 +282,7 @@ void GameContext::onUpdate()
 
 void GameContext::onStart()
 {
-  _playing = false;
+  _game_state = GameState::PAUSED;
   _game_bg._bgx = 0;
   _game_bg._bgy = 0;
   _current_y_speed = 0;
@@ -262,40 +328,44 @@ void GameContext::onStop()
   _bg_timer.stop();
   _ptero_anim_timer.stop();
   _gravity_timer.stop();
-  _playing = false;
+  _game_state = GameState::PAUSED;
 }
 
 void GameContext::onBgTimer()
 {
-  _game_bg._bgx++;
-  _bg_timer.start();
+  if (_game_state != GameState::GAME_OVER)
+  {
+    _game_bg._bgx++;
+    _bg_timer.start();
+  }
 }
 
 void GameContext::onPteroAnim()
 {
-  _ptero.nextAnimFrame();
-  _ptero_anim_timer.start();
+  if (_game_state != GameState::GAME_OVER)
+  {
+    _ptero.nextAnimFrame();
+    _ptero_anim_timer.start();
+  }
 }
 
 void GameContext::onGravity()
 {
-  if(_playing)
+  if (_game_state == GameState::PLAYING)
   {
-    _ptero_current_y += _current_y_speed / (1000.0/_gravity_timer.getDuration());
+    _ptero_current_y += _current_y_speed
+        / (1000.0 / _gravity_timer.getDuration());
     _ptero.setY((int32_t) _ptero_current_y);
-    if (_current_y_speed < (_max_speed*_pixels_per_meter))
-      _current_y_speed += _gravity/(1000.0/_gravity_timer.getDuration()) * _pixels_per_meter;
+    if (_current_y_speed < (_max_speed * _pixels_per_meter))
+      _current_y_speed += _gravity / (1000.0 / _gravity_timer.getDuration())
+          * _pixels_per_meter;
   }
   _gravity_timer.start();
 }
 
 void GameContext::gameOver()
 {
-  if(_game)
-  {
-    _game->switchContext(&_game->_menu_context);
-    this->stop();
-  }
+  _game_state = GameState::GAME_OVER;
 }
 
 void GameContext::onButton(std::shared_ptr<events::Event> event)
@@ -304,14 +374,33 @@ void GameContext::onButton(std::shared_ptr<events::Event> event)
       < events::ButtonEvent > (event);
   if (!b_event->isPressed())
   {
-    if(!_playing)_playing=true;
-    _current_y_speed = -_flap_force_meters*_pixels_per_meter;
+    switch(_game_state)
+    {
+      case GameState::PAUSED:
+      {
+        _game_state = GameState::PLAYING;
+      }
+      case GameState::PLAYING:
+      {
+        _current_y_speed = -_flap_force_meters * _pixels_per_meter;
+        break;
+      }
+      case GameState::GAME_OVER:
+      default:
+      {
+        if (_game)
+        {
+          _game->switchContext(&_game->_menu_context);
+          this->stop();
+        }
+      }
+    }
   }
 }
 
 FlappyPteroGame::FlappyPteroGame() :
-    Application(), _main_panel(0, 0, 84, 48), _game_context(this), _menu_context(this), _canvas(84,
-        48), _display(
+    Application(), _main_panel(0, 0, 84, 48), _game_context(this), _menu_context(
+        this), _canvas(84, 48), _display(
         system::System::getInstance()->_device_manager.getDevice<
             devices::displays::IDisplay>()), _screen_timer(&_timer_manager, 40,
         std::bind(&FlappyPteroGame::onScreenUpdate, this), true)

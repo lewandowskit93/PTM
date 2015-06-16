@@ -20,7 +20,7 @@ namespace flappy_ptero
 class FlappyPteroGame;
 class GameContext;
 class Ptero;
-//class Wall;
+class Wall;
 class GameBackground;
 
 class Ptero : public gui::Component
@@ -60,6 +60,23 @@ class Ptero : public gui::Component
         0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0 },
     { 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1,
         0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0 } };
+};
+
+class Wall : public gui::Component
+{
+  public:
+    Wall(uint32_t x, uint32_t y, uint32_t width, uint32_t height, uint32_t gap_size, uint32_t gap_y);
+    virtual ~Wall();
+    virtual void paintOn(gui::Canvas * canvas);
+    uint32_t getGapSize();
+    void setGapSize(uint32_t gap_size);
+    uint32_t getGapY();
+    void setGapY(uint32_t gap_y);
+
+    uint32_t _gap_size;
+    uint32_t _gap_y;
+  protected:
+  private:
 };
 
 class GameBackground : public gui::Component
@@ -423,6 +440,7 @@ class MenuContext : public system::ApplicationContext
     virtual void onResume();
     virtual void onStop();
     void onPteroAnim();
+    void onBgTimer();
     void onButton(std::shared_ptr<events::Event> event);
   protected:
   private:
@@ -431,11 +449,19 @@ class MenuContext : public system::ApplicationContext
     Ptero _ptero2;
     system::ManagedTimer _ptero_anim_timer;
     gui::Panel _menu_panel;
+    GameBackground _bg;
+    system::ManagedTimer _bg_timer;
 };
 
 class GameContext : public system::ApplicationContext
 {
   public:
+
+    enum GameState
+    {
+      PAUSED = 0, PLAYING = 1, GAME_OVER = 2
+    };
+
     GameContext(FlappyPteroGame *game);
     virtual ~GameContext();
     virtual void onUpdate();
@@ -459,7 +485,7 @@ class GameContext : public system::ApplicationContext
     system::ManagedTimer _gravity_timer;
     double _current_y_speed;
     double _ptero_current_y;
-    bool _playing;
+    GameState _game_state;
     double _gravity;
     double _pixels_per_meter;
     double _flap_force_meters;

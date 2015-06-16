@@ -19,6 +19,7 @@
 #include "GUI/Canvas.hpp"
 #include "GUI/Panel.hpp"
 #include "GUI/Component.hpp"
+#include "Applications/Flappy_Ptero/FlappyPtero.hpp"
 
 using namespace ptm::system;
 using namespace ptm::events;
@@ -512,7 +513,7 @@ int main(void)
   System::getInstance()->_interrupt_manager.addInterrupt<ButtonInterrupt>(
       but_w);
   System::getInstance()->_device_manager.getDevices<LED>();
-  System::getInstance()->runApplication<InitApp>();
+  System::getInstance()->runApplication<ptm::applications::flappy_ptero::FlappyPteroGame>();
   System::getInstance()->run();
   while (true)
   {
