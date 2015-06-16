@@ -38,7 +38,7 @@
           <Memory name="IROM2" type="ReadOnly" size="" startValue=""/>
           <Memory name="IRAM2" type="ReadWrite" size="0x00010000" startValue="0x10000000"/>
         </MemoryAreas>
-        <LocateLinkFile path="d:/windows8/coocox/coide/configuration/programdata/ptm/arm-gcc-link.ld" type="0"/>
+        <LocateLinkFile path="f:/programy/coocox/coide/configuration/programdata/ptm/arm-gcc-link.ld" type="0"/>
       </Link>
       <Output>
         <Option name="OutputFileType" value="0"/>
@@ -81,6 +81,7 @@
     <Component id="504" name="GPIO" path="" type="2"/>
     <Component id="505" name="EXTI" path="" type="2"/>
     <Component id="509" name="SPI" path="" type="2"/>
+    <Component id="513" name="TIM" path="" type="2"/>
     <Component id="524" name="MISC" path="" type="2"/>
     <Component id="526" name="SYSCFG" path="" type="2"/>
   </Components>
@@ -93,8 +94,8 @@
     <File name="cmsis_lib/include/stm32f4xx_syscfg.h" path="cmsis_lib/include/stm32f4xx_syscfg.h" type="1"/>
     <File name="System/DeviceManager.cpp" path="System/DeviceManager.cpp" type="1"/>
     <File name="Devices/RCC.hpp" path="Devices/RCC.hpp" type="1"/>
-    <File name="cmsis_boot/stm32f4xx.h" path="cmsis_boot/stm32f4xx.h" type="1"/>
     <File name="cmsis_boot/startup" path="" type="2"/>
+    <File name="cmsis_boot/stm32f4xx.h" path="cmsis_boot/stm32f4xx.h" type="1"/>
     <File name="cmsis/core_cm4_simd.h" path="cmsis/core_cm4_simd.h" type="1"/>
     <File name="cmsis_lib/source/stm32f4xx_spi.c" path="cmsis_lib/source/stm32f4xx_spi.c" type="1"/>
     <File name="cmsis/core_cmFunc.h" path="cmsis/core_cmFunc.h" type="1"/>
@@ -108,10 +109,11 @@
     <File name="System/System.hpp" path="System/System.hpp" type="1"/>
     <File name="Devices/LED.hpp" path="Devices/LED.hpp" type="1"/>
     <File name="cmsis_lib/source/misc.c" path="cmsis_lib/source/misc.c" type="1"/>
+    <File name="cmsis_lib/include/stm32f4xx_tim.h" path="cmsis_lib/include/stm32f4xx_tim.h" type="1"/>
     <File name="syscalls/syscalls.c" path="syscalls/syscalls.c" type="1"/>
     <File name="cmsis_lib/source" path="" type="2"/>
-    <File name="System/Application.hpp" path="System/Application.hpp" type="1"/>
     <File name="System/Application.cpp" path="System/Application.cpp" type="1"/>
+    <File name="System/Application.hpp" path="System/Application.hpp" type="1"/>
     <File name="System/EventManager.hpp" path="System/EventManager.hpp" type="1"/>
     <File name="Interrupts/Interrupts.hpp" path="Interrupts/Interrupts.hpp" type="1"/>
     <File name="Events/Events.cpp" path="Events/Events.cpp" type="1"/>
@@ -121,41 +123,46 @@
     <File name="cmsis_boot/system_stm32f4xx.h" path="cmsis_boot/system_stm32f4xx.h" type="1"/>
     <File name="System/ManagedTimer.cpp" path="System/ManagedTimer.cpp" type="1"/>
     <File name="cmsis_lib/include/stm32f4xx_rcc.h" path="cmsis_lib/include/stm32f4xx_rcc.h" type="1"/>
+    <File name="Devices/TimClk.hpp" path="Devices/TimClk.hpp" type="1"/>
     <File name="System/EventManager.cpp" path="System/EventManager.cpp" type="1"/>
-    <File name="GUI/Panel.hpp" path="gui/Panel.hpp" type="1"/>
-    <File name="Utilities/Color.hpp" path="utilities/Color.hpp" type="1"/>
     <File name="cmsis_lib/source/stm32f4xx_syscfg.c" path="cmsis_lib/source/stm32f4xx_syscfg.c" type="1"/>
+    <File name="Utilities/Color.hpp" path="utilities/Color.hpp" type="1"/>
+    <File name="GUI/Panel.hpp" path="gui/Panel.hpp" type="1"/>
     <File name="Devices/Button.hpp" path="Devices/Button.hpp" type="1"/>
+    <File name="Devices/TimClk.cpp" path="Devices/TimClk.cpp" type="1"/>
     <File name="cmsis_boot/startup/startup_stm32f4xx.c" path="cmsis_boot/startup/startup_stm32f4xx.c" type="1"/>
     <File name="cmsis_lib/source/stm32f4xx_rcc.c" path="cmsis_lib/source/stm32f4xx_rcc.c" type="1"/>
     <File name="GUI/Component.cpp" path="gui/Component.cpp" type="1"/>
     <File name="cmsis/core_cmInstr.h" path="cmsis/core_cmInstr.h" type="1"/>
     <File name="GUI/Container.cpp" path="gui/Container.cpp" type="1"/>
-    <File name="Interrupts/Interrupt.hpp" path="Interrupts/Interrupt.hpp" type="1"/>
     <File name="Interrupts/Interrupt.cpp" path="Interrupts/Interrupt.cpp" type="1"/>
+    <File name="Interrupts/Interrupt.hpp" path="Interrupts/Interrupt.hpp" type="1"/>
     <File name="GUI/Panel.cpp" path="gui/Panel.cpp" type="1"/>
     <File name="System/InterruptManager.cpp" path="System/InterruptManager.cpp" type="1"/>
     <File name="System/Timer.cpp" path="System/Timer.cpp" type="1"/>
     <File name="Utilities/Color.cpp" path="utilities/Color.cpp" type="1"/>
-    <File name="cmsis_lib/source/stm32f4xx_exti.c" path="cmsis_lib/source/stm32f4xx_exti.c" type="1"/>
     <File name="cmsis_lib/include/stm32f4xx_exti.h" path="cmsis_lib/include/stm32f4xx_exti.h" type="1"/>
+    <File name="cmsis_lib/source/stm32f4xx_exti.c" path="cmsis_lib/source/stm32f4xx_exti.c" type="1"/>
     <File name="cmsis_boot/system_stm32f4xx.c" path="cmsis_boot/system_stm32f4xx.c" type="1"/>
     <File name="System/ManagedTimer.hpp" path="System/ManagedTimer.hpp" type="1"/>
-    <File name="Utilities" path="" type="2"/>
     <File name="cmsis_lib/include/stm32f4xx_spi.h" path="cmsis_lib/include/stm32f4xx_spi.h" type="1"/>
+    <File name="Utilities" path="" type="2"/>
     <File name="System/InterruptManager.hpp" path="System/InterruptManager.hpp" type="1"/>
     <File name="Interrupts" path="" type="2"/>
     <File name="cmsis" path="" type="2"/>
+    <File name="Devices/Dht11.hpp" path="Devices/dht11.hpp" type="1"/>
     <File name="cmsis_lib" path="" type="2"/>
     <File name="GUI/Component.hpp" path="gui/Component.hpp" type="1"/>
     <File name="Devices/Button.cpp" path="Devices/Button.cpp" type="1"/>
     <File name="main.cpp" path="main.cpp" type="1"/>
+    <File name="Devices/Dht11.cpp" path="Devices/dht11.cpp" type="1"/>
+    <File name="cmsis_lib/source/stm32f4xx_tim.c" path="cmsis_lib/source/stm32f4xx_tim.c" type="1"/>
     <File name="cmsis_lib/include/stm32f4xx_gpio.h" path="cmsis_lib/include/stm32f4xx_gpio.h" type="1"/>
     <File name="syscalls" path="" type="2"/>
     <File name="Devices/RCC.cpp" path="Devices/RCC.cpp" type="1"/>
     <File name="cmsis_lib/include/misc.h" path="cmsis_lib/include/misc.h" type="1"/>
-    <File name="System/System.cpp" path="System/System.cpp" type="1"/>
     <File name="GUI/Canvas.hpp" path="gui/Canvas.hpp" type="1"/>
+    <File name="System/System.cpp" path="System/System.cpp" type="1"/>
     <File name="GUI/Container.hpp" path="gui/Container.hpp" type="1"/>
     <File name="cmsis_lib/include" path="" type="2"/>
     <File name="GUI/Canvas.cpp" path="gui/Canvas.cpp" type="1"/>

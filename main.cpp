@@ -19,6 +19,8 @@
 #include "GUI/Canvas.hpp"
 #include "GUI/Panel.hpp"
 #include "GUI/Component.hpp"
+#include "Devices/Dht11.hpp"
+#include "Devices/TimClk.hpp"
 
 using namespace ptm::system;
 using namespace ptm::events;
@@ -492,6 +494,10 @@ int main(void)
       RCC_AHB1Periph_GPIOC);
   System::getInstance()->_device_manager.mountDevice<APB1PeriphClock>(
       RCC_APB1Periph_SPI2);
+  System::getInstance()->_device_manager.mountDevice<APB1PeriphClock>(
+		  RCC_APB1Periph_TIM5);//fisza
+  System::getInstance()->_device_manager.mountDevice<ptm::devices::Timer>(
+		  84000000,84,TIM5); //fisza
   System::getInstance()->_device_manager.mountDevice<LED>(
       Pin(GPIOD, GPIO_Pin_12));
   System::getInstance()->_device_manager.mountDevice<LED>(
@@ -503,6 +509,9 @@ int main(void)
   std::weak_ptr<Button> but_w =
       System::getInstance()->_device_manager.mountDevice<Button>(
           Pin(GPIOA, GPIO_Pin_0));
+  System::getInstance()->_device_manager.mountDevice<DHT>(
+		  Pin(GPIOD, GPIO_Pin_1),TIM5);//fisza
+
   System::getInstance()->_device_manager.mountDevice<
       displays::monochromatic::PCD8544::PCD8544>(SPI2,
       PinAFMapping(Pin(GPIOC, GPIO_Pin_3), GPIO_PinSource3, GPIO_AF_SPI2), //mosi
@@ -514,8 +523,11 @@ int main(void)
   System::getInstance()->_device_manager.getDevices<LED>();
   System::getInstance()->runApplication<InitApp>();
   System::getInstance()->run();
+
+
   while (true)
   {
+
 
   }
 }
