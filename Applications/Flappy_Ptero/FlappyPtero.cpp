@@ -1,4 +1,5 @@
 #include "FlappyPtero.hpp"
+#include <stdlib.h>
 
 namespace ptm
 {
@@ -60,6 +61,46 @@ void Ptero::setAnimFrame(uint8_t i)
   _current_frame = i;
 }
 
+bool Ptero::collidesWith(Wall *wall)
+{
+  if (!wall)
+    return false;
+  if (_flip_x)
+  {
+    for (uint32_t i = 1; i <= getWidth(); ++i)
+    {
+      for (uint32_t j = 0; j < getHeight(); ++j)
+      {
+        uint32_t x = getX() + i;
+        uint32_t y = getY() + j;
+        uint32_t k = j + _current_frame * getHeight();
+        if (_ptero[getWidth() - i][k] && x >= wall->getX()
+            && x < (wall->getX() + wall->getWidth())
+            && ((y < wall->getGapY())
+                || (y >= (wall->getGapY() + wall->getGapSize()))))
+          return true;
+      }
+    }
+  }
+  else
+  {
+    for (uint32_t i = 0; i < getWidth(); ++i)
+    {
+      for (uint32_t j = 0; j < getHeight(); ++j)
+      {
+        uint32_t x = getX() + i;
+        uint32_t y = getY() + j;
+        if (_ptero[i][j + _current_frame * getHeight()] && x >= wall->getX()
+            && x < (wall->getX() + wall->getWidth())
+            && ((y < wall->getGapY())
+                || (y >= (wall->getGapY() + wall->getGapSize()))))
+          return true;
+      }
+    }
+  }
+  return false;
+}
+
 void Ptero::paintFrame(uint8_t frame, gui::Canvas *canvas)
 {
   frame %= 6;
@@ -90,8 +131,9 @@ void Ptero::paintFrame(uint8_t frame, gui::Canvas *canvas)
   }
 }
 
-Wall::Wall(uint32_t x, uint32_t y, uint32_t width, uint32_t height, uint32_t gap_size, uint32_t gap_y)
- : gui::Component(x,y,width,height), _gap_size(gap_size), _gap_y(gap_y)
+Wall::Wall(uint32_t x, uint32_t y, uint32_t width, uint32_t height,
+    uint32_t gap_size, uint32_t gap_y) :
+    gui::Component(x, y, width, height), _gap_size(gap_size), _gap_y(gap_y)
 {
 
 }
@@ -103,14 +145,15 @@ Wall::~Wall()
 
 void Wall::paintOn(gui::Canvas * canvas)
 {
-  if(!canvas)return;
-  for(uint32_t i=0;i<getWidth();++i)
+  if (!canvas)
+    return;
+  for (uint32_t i = 0; i < getWidth(); ++i)
   {
-    for(uint32_t j=0;j<getHeight();++j)
+    for (uint32_t j = 0; j < getHeight(); ++j)
     {
-      if(j<_gap_y || j>=(_gap_y+_gap_size))
+      if (j < _gap_y || j >= (_gap_y + _gap_size))
       {
-        canvas->drawPixel(i,j);
+        canvas->drawPixel(i, j);
       }
     }
   }
@@ -123,7 +166,7 @@ uint32_t Wall::getGapSize()
 
 void Wall::setGapSize(uint32_t gap_size)
 {
-  _gap_size=gap_size;
+  _gap_size = gap_size;
 }
 
 uint32_t Wall::getGapY()
@@ -133,7 +176,7 @@ uint32_t Wall::getGapY()
 
 void Wall::setGapY(uint32_t gap_y)
 {
-  _gap_y=gap_y;
+  _gap_y = gap_y;
 }
 
 GameBackground::GameBackground(uint32_t x, uint32_t y, uint32_t width,
@@ -170,7 +213,8 @@ MenuContext::MenuContext(FlappyPteroGame *game) :
     ApplicationContext(), _game(game), _ptero1(37, 14, false), _ptero2(37, 34,
         true), _ptero_anim_timer(&_timer_manager, 80,
         std::bind(&MenuContext::onPteroAnim, this), true), _menu_panel(0, 0, 84,
-        48),_bg(0,0,84,48), _bg_timer(&_timer_manager, 20,std::bind(&MenuContext::onBgTimer, this),true)
+        48), _bg(0, 0, 84, 48), _bg_timer(&_timer_manager, 20,
+        std::bind(&MenuContext::onBgTimer, this), true)
 {
   _event_listener.registerEventHandler(
       events::EventMapping(events::EVENT_BUTTON,
@@ -261,8 +305,10 @@ GameContext::GameContext(FlappyPteroGame *game) :
         std::bind(&GameContext::onBgTimer, this), true), _ptero(15, 20), _ptero_anim_timer(
         &_timer_manager, 80, std::bind(&GameContext::onPteroAnim, this), true), _gravity_timer(
         &_timer_manager, 10, std::bind(&GameContext::onGravity, this), true), _current_y_speed(
-        0), _ptero_current_y(20), _game_state(GameState::PAUSED), _gravity(100), _pixels_per_meter(
-        10), _flap_force_meters(12), _max_speed(10)
+        0), _current_x_speed(2), _ptero_current_y(20), _ptero_current_x(0), _game_state(
+        GameState::PAUSED), _gravity(100), _pixels_per_meter(10), _flap_force_meters(
+        12), _max_speed(10), _ptero_x_timer(&_timer_manager, 1,
+        std::bind(&GameContext::onPteroX, this), true), _walls_distance(25)
 {
   _event_listener.registerEventHandler(
       events::EventMapping(events::EVENT_BUTTON,
@@ -277,6 +323,16 @@ void GameContext::onUpdate()
   if (_ptero_current_y >= 48)
   {
     gameOver();
+  }
+  else
+  {
+    for (auto wall : _walls)
+    {
+      if (_ptero.collidesWith(wall))
+      {
+        gameOver();
+      }
+    }
   }
 }
 
@@ -296,6 +352,14 @@ void GameContext::onStart()
   _bg_timer.start();
   _ptero_anim_timer.start();
   _gravity_timer.start();
+  _ptero_x_timer.start();
+  for (auto wall : _walls)
+  {
+    if (wall->getParent())
+      wall->getParent()->removeChild(wall);
+    delete wall;
+  }
+  _walls.clear();
 }
 void GameContext::onPause()
 {
@@ -306,6 +370,7 @@ void GameContext::onPause()
   _bg_timer.pause();
   _ptero_anim_timer.pause();
   _gravity_timer.pause();
+  _ptero_x_timer.pause();
 }
 
 void GameContext::onResume()
@@ -317,6 +382,7 @@ void GameContext::onResume()
   _bg_timer.resume();
   _ptero_anim_timer.resume();
   _gravity_timer.resume();
+  _ptero_x_timer.resume();
 }
 
 void GameContext::onStop()
@@ -328,6 +394,14 @@ void GameContext::onStop()
   _bg_timer.stop();
   _ptero_anim_timer.stop();
   _gravity_timer.stop();
+  _ptero_x_timer.stop();
+  for (auto wall : _walls)
+  {
+    if (wall->getParent())
+      wall->getParent()->removeChild(wall);
+    delete wall;
+  }
+  _walls.clear();
   _game_state = GameState::PAUSED;
 }
 
@@ -363,6 +437,56 @@ void GameContext::onGravity()
   _gravity_timer.start();
 }
 
+void GameContext::onPteroX()
+{
+  if (_game_state == GameState::PLAYING)
+  {
+    uint32_t ptero_last_x = _ptero_current_x;
+    _ptero_current_x += _current_x_speed
+        * (_ptero_x_timer.getDuration() / 1000.0) * _pixels_per_meter;
+
+    if ((uint32_t)(_ptero_current_x) > ptero_last_x)
+    {
+
+      uint32_t moved_by = (uint32_t)(_ptero_current_x) - ptero_last_x;
+      std::list<Wall*> walls_to_delete;
+
+      for (auto wall : _walls)
+      {
+        if (wall->getX() >= moved_by)
+        {
+          wall->setX(wall->getX() - moved_by);
+        }
+        else
+        {
+          walls_to_delete.push_back(wall);
+        }
+      }
+
+      for (auto wall : walls_to_delete)
+      {
+        if (wall->getParent())
+          wall->getParent()->removeChild(wall);
+        _walls.remove(wall);
+        delete wall;
+      }
+
+      uint32_t distance = _walls_distance;
+      if (!_walls.empty())
+        distance += _walls.back()->getWidth();
+
+      if ((((uint32_t)(_ptero_current_x)) % (distance)) == 0)
+      {
+        Wall *w = new Wall(84, 0, 3, 48, 20, rand() % (18) + 5);
+        _game_panel.addChild(w);
+        _walls.push_back(w);
+        _ptero_current_x = 0;
+      }
+    }
+  }
+  _ptero_x_timer.start();
+}
+
 void GameContext::gameOver()
 {
   _game_state = GameState::GAME_OVER;
@@ -374,7 +498,7 @@ void GameContext::onButton(std::shared_ptr<events::Event> event)
       < events::ButtonEvent > (event);
   if (!b_event->isPressed())
   {
-    switch(_game_state)
+    switch (_game_state)
     {
       case GameState::PAUSED:
       {

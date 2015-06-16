@@ -9,6 +9,7 @@
 #include "../../System/System.hpp"
 #include "../../System/DeviceManager.hpp"
 #include "../../Devices/Display.hpp"
+#include <c++/4.9.3/list>
 
 namespace ptm
 {
@@ -32,6 +33,7 @@ class Ptero : public gui::Component
     virtual void paintOn(gui::Canvas *canvas);
     void nextAnimFrame();
     void setAnimFrame(uint8_t i);
+    bool collidesWith(Wall *wall);
     void paintFrame(uint8_t frame, gui::Canvas *canvas);
   protected:
   private:
@@ -472,6 +474,7 @@ class GameContext : public system::ApplicationContext
     void onBgTimer();
     void onPteroAnim();
     void onGravity();
+    void onPteroX();
     void gameOver();
     void onButton(std::shared_ptr<events::Event> event);
   protected:
@@ -484,12 +487,17 @@ class GameContext : public system::ApplicationContext
     system::ManagedTimer _ptero_anim_timer;
     system::ManagedTimer _gravity_timer;
     double _current_y_speed;
+    double _current_x_speed;
     double _ptero_current_y;
+    double _ptero_current_x;
     GameState _game_state;
     double _gravity;
     double _pixels_per_meter;
     double _flap_force_meters;
     double _max_speed;
+    std::list<Wall*> _walls;
+    system::ManagedTimer _ptero_x_timer;
+    uint32_t _walls_distance;
 };
 
 class FlappyPteroGame : public system::Application
