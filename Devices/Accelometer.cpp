@@ -18,7 +18,7 @@ inline void Accelometer::LIS302DL_CS_HIGH()
 
 Accelometer::Accelometer(SPI_TypeDef* spi, PinAFMapping sck, PinAFMapping miso, PinAFMapping mosi,
 		Pin cs, Pin int1, Pin int2) :
-		 IDevice(), _timer(500,std::bind(&Accelometer::updateAccelometerAxis,this), true),
+		 IDevice(), _timer(200,std::bind(&Accelometer::updateAccelometerAxis,this), true),
 	    _spi(spi),  _sck(sck), _miso(miso),
 	    _mosi(mosi), _cs(cs), _int1(int1), _int2(int2)
 

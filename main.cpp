@@ -704,7 +704,7 @@ class AccelInGame: public Application
     uint32_t _y;
 };
 
-////////////////////////////////////////////////
+
 int main(void)
 {
   SystemInit();

@@ -91,7 +91,7 @@ void GameBackground::paintOn(gui::Canvas *canvas)
       {
         canvas->setBgColor(
             utilities::colors::RGBA(
-                _bg[(_bgx + i) % 1000][(_bgy + j) % 48] == 0 ?
+                _bg[(_bgx + i) % 800][(_bgy + j) % 48] == 0 ?
                     0x00000000 : 0xFFFFFFFF));
         canvas->drawBgPixel(i, j);
       }
@@ -110,11 +110,11 @@ GameContext::GameContext(SpaceshipGame *game) :
       events::EventMapping(events::EVENT_BUTTON,
           std::bind(&GameContext::onButton, this, std::placeholders::_1)));
 
-  /*
+
   _event_listener.registerEventHandler(
         events::EventMapping(events::EVENT_ACC_IN_GAME,
             std::bind(&GameContext::getAccelometerAxis, this, std::placeholders::_1)));
-	*/
+
 }
 GameContext::~GameContext()
 {
@@ -182,6 +182,36 @@ void GameContext::onSpaceshipAnim()
   _spaceship_anim_timer.start();
 }
 
+void GameContext::getAccelometerAxis(std::shared_ptr<events::Event> event)
+{
+	std::shared_ptr<events::AccelometerGetPositionEvent> a_event = std::static_pointer_cast
+	      < events::AccelometerGetPositionEvent > (event);
+	ptm::axisXY xy = a_event->getPosition();
+
+	_spaceship_current_y = xy.y;
+	_spaceship.setY((int32_t) _spaceship_current_y);
+
+	checkSpaceshipCollision();
+
+}
+
+void GameContext::checkSpaceshipCollision()
+{
+	uint32_t x = _spaceship.getX();
+	uint32_t y = _spaceship.getY();
+	for (int i = 0; i < _spaceship.getWidth(); i++)
+	{
+		for (int j = 0; j < _spaceship.getHeight() ; j++)
+		{
+			if ((_spaceship._spaceship[i][j + _spaceship._current_frame * _spaceship.getHeight()] ==
+					_game_bg._bg[(_game_bg._bgx+i+x)%750][(_game_bg._bgy+j+y)%48]) && _spaceship._spaceship[i][j + _spaceship._current_frame * _spaceship.getHeight()] != 0 )
+			{
+				_game->stop();
+			}
+		}
+	}
+}
+
 /*void GameContext::onGravity()
 {
   if(_playing)
@@ -198,8 +228,11 @@ void GameContext::onButton(std::shared_ptr<events::Event> event)
       < events::ButtonEvent > (event);
   if (!b_event->isPressed())
   {
-    if(!_playing)_playing=true;
-    //_current_y_speed = ;
+   if (_game)
+   {
+	   _game->stop();
+   }
+
   }
 }
 
