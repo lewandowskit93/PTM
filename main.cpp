@@ -19,7 +19,7 @@
 #include "GUI/Canvas.hpp"
 #include "GUI/Panel.hpp"
 #include "GUI/Component.hpp"
-
+#include "Applications/Sun_space_mission/SunSpaceGame.hpp"
 using namespace ptm::system;
 using namespace ptm::events;
 using namespace ptm::devices;
@@ -512,7 +512,7 @@ int main(void)
   System::getInstance()->_interrupt_manager.addInterrupt<ButtonInterrupt>(
       but_w);
   System::getInstance()->_device_manager.getDevices<LED>();
-  System::getInstance()->runApplication<InitApp>();
+  System::getInstance()->runApplication<ptm::applications::spacegame::SpaceshipGame>();
   System::getInstance()->run();
   while (true)
   {

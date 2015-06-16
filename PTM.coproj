@@ -38,7 +38,7 @@
           <Memory name="IROM2" type="ReadOnly" size="" startValue=""/>
           <Memory name="IRAM2" type="ReadWrite" size="0x00010000" startValue="0x10000000"/>
         </MemoryAreas>
-        <LocateLinkFile path="d:/windows8/coocox/coide/configuration/programdata/ptm/arm-gcc-link.ld" type="0"/>
+        <LocateLinkFile path="../../../../../coocox/coide/configuration/programdata/ptm/arm-gcc-link.ld" type="0"/>
       </Link>
       <Output>
         <Option name="OutputFileType" value="0"/>
@@ -99,20 +99,21 @@
     <File name="cmsis/core_cm4_simd.h" path="cmsis/core_cm4_simd.h" type="1"/>
     <File name="cmsis_lib/source/stm32f4xx_spi.c" path="cmsis_lib/source/stm32f4xx_spi.c" type="1"/>
     <File name="cmsis/core_cmFunc.h" path="cmsis/core_cmFunc.h" type="1"/>
-    <File name="cmsis/core_cm4.h" path="cmsis/core_cm4.h" type="1"/>
     <File name="Devices/Display.hpp" path="Devices/Display.hpp" type="1"/>
+    <File name="cmsis/core_cm4.h" path="cmsis/core_cm4.h" type="1"/>
     <File name="Devices/IDevice.cpp" path="Devices/IDevice.cpp" type="1"/>
     <File name="Interrupts/Interrupts.cpp" path="Interrupts/Interrupts.cpp" type="1"/>
     <File name="Applications" path="" type="2"/>
     <File name="Devices/IDevice.hpp" path="Devices/IDevice.hpp" type="1"/>
+    <File name="System/DeviceManager.hpp" path="System/DeviceManager.hpp" type="1"/>
     <File name="cmsis_lib/source/misc.c" path="cmsis_lib/source/misc.c" type="1"/>
     <File name="System/System.hpp" path="System/System.hpp" type="1"/>
-    <File name="System/DeviceManager.hpp" path="System/DeviceManager.hpp" type="1"/>
     <File name="Devices/LED.hpp" path="Devices/LED.hpp" type="1"/>
     <File name="syscalls/syscalls.c" path="syscalls/syscalls.c" type="1"/>
     <File name="cmsis_lib/source" path="" type="2"/>
-    <File name="System/Application.hpp" path="System/Application.hpp" type="1"/>
+    <File name="Applications/Sun_space_mission/SunSpaceGame.hpp" path="Applications/Sun_space_mission/SunSpaceGame.hpp" type="1"/>
     <File name="System/Application.cpp" path="System/Application.cpp" type="1"/>
+    <File name="System/Application.hpp" path="System/Application.hpp" type="1"/>
     <File name="System/EventManager.hpp" path="System/EventManager.hpp" type="1"/>
     <File name="Interrupts/Interrupts.hpp" path="Interrupts/Interrupts.hpp" type="1"/>
     <File name="Events/Events.cpp" path="Events/Events.cpp" type="1"/>
@@ -132,8 +133,8 @@
     <File name="GUI/Component.cpp" path="gui/Component.cpp" type="1"/>
     <File name="GUI/Container.cpp" path="gui/Container.cpp" type="1"/>
     <File name="cmsis/core_cmInstr.h" path="cmsis/core_cmInstr.h" type="1"/>
-    <File name="GUI/Panel.cpp" path="gui/Panel.cpp" type="1"/>
     <File name="Interrupts/Interrupt.cpp" path="Interrupts/Interrupt.cpp" type="1"/>
+    <File name="GUI/Panel.cpp" path="gui/Panel.cpp" type="1"/>
     <File name="Interrupts/Interrupt.hpp" path="Interrupts/Interrupt.hpp" type="1"/>
     <File name="System/InterruptManager.cpp" path="System/InterruptManager.cpp" type="1"/>
     <File name="Applications/Flappy_Ptero/FlappyPtero.cpp" path="Applications/Flappy_Ptero/FlappyPtero.cpp" type="1"/>
@@ -150,11 +151,13 @@
     <File name="cmsis" path="" type="2"/>
     <File name="GUI/Component.hpp" path="gui/Component.hpp" type="1"/>
     <File name="cmsis_lib" path="" type="2"/>
+    <File name="Applications/Sun_space_mission" path="" type="2"/>
     <File name="Devices/Button.cpp" path="Devices/Button.cpp" type="1"/>
     <File name="main.cpp" path="main.cpp" type="1"/>
     <File name="cmsis_lib/include/stm32f4xx_gpio.h" path="cmsis_lib/include/stm32f4xx_gpio.h" type="1"/>
     <File name="syscalls" path="" type="2"/>
     <File name="Devices/RCC.cpp" path="Devices/RCC.cpp" type="1"/>
+    <File name="Applications/Sun_space_mission/SunSpaceGame.cpp" path="Applications/Sun_space_mission/SunSpaceGame.cpp" type="1"/>
     <File name="cmsis_lib/include/misc.h" path="cmsis_lib/include/misc.h" type="1"/>
     <File name="System/System.cpp" path="System/System.cpp" type="1"/>
     <File name="GUI/Canvas.hpp" path="gui/Canvas.hpp" type="1"/>
