@@ -102,6 +102,7 @@
     <File name="Devices/Display.hpp" path="Devices/Display.hpp" type="1"/>
     <File name="cmsis/core_cm4.h" path="cmsis/core_cm4.h" type="1"/>
     <File name="Devices/IDevice.cpp" path="Devices/IDevice.cpp" type="1"/>
+    <File name="Devices/Accelometer.cpp" path="Devices/Accelometer.cpp" type="1"/>
     <File name="Interrupts/Interrupts.cpp" path="Interrupts/Interrupts.cpp" type="1"/>
     <File name="Applications" path="" type="2"/>
     <File name="Devices/IDevice.hpp" path="Devices/IDevice.hpp" type="1"/>
@@ -127,6 +128,7 @@
     <File name="Utilities/Color.hpp" path="utilities/Color.hpp" type="1"/>
     <File name="GUI/Panel.hpp" path="gui/Panel.hpp" type="1"/>
     <File name="cmsis_lib/source/stm32f4xx_syscfg.c" path="cmsis_lib/source/stm32f4xx_syscfg.c" type="1"/>
+    <File name="Devices/Accelometer.hpp" path="Devices/Accelometer.hpp" type="1"/>
     <File name="Devices/Button.hpp" path="Devices/Button.hpp" type="1"/>
     <File name="cmsis_boot/startup/startup_stm32f4xx.c" path="cmsis_boot/startup/startup_stm32f4xx.c" type="1"/>
     <File name="cmsis_lib/source/stm32f4xx_rcc.c" path="cmsis_lib/source/stm32f4xx_rcc.c" type="1"/>
