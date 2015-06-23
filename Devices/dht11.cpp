@@ -18,15 +18,7 @@ DHT::DHT(Pin pin, TIM_TypeDef* TIMx) :
 	GPIO_Init(pin.port, &GPIO_InitStructure); //GPIO_Init(GPIOD,&GPIO_InitStructure);
 
 
-	 //dhtTim5Init();
-//test
-	 while(1)
-	 {
-	 dhtRead(); //fisza
-	 dhtDelay(5000000); //fisza
-	 }
 }
-
 DHT::~DHT()
 {
 

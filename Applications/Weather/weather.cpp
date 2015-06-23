@@ -10,8 +10,8 @@ Signs::Signs(uint32_t x, uint32_t y) :
 }
 
 Signs::Signs(uint32_t x, uint32_t y, bool flip_x) :
-		gui::Component(x, y, 10, 7), _current_frame(0), _reverse(false), _flip_x(
-				flip_x) {
+		gui::Component(0, 0, 84, 48),  _reverse(false), _flip_x(flip_x)
+{
 
 }
 
@@ -23,12 +23,14 @@ u8 Signs::hundreds(u16 x) {
 	return ((x) / 100);
 }
 
+
 u8 Signs::tens(u16 x) {
 	int temp = x;
 	temp = temp % 100;
 	temp = temp / 10;
 	return temp;
 }
+
 u8 Signs::unity(u16 x) {
 	int temp = x;
 	temp = temp % 100;
@@ -37,80 +39,64 @@ u8 Signs::unity(u16 x) {
 	return temp;
 }
 
-void Signs::paintUnity(u16 x)
+void Signs::paintDigitLoop(bool digit_array[8][12], uint32_t x, uint32_t y, gui::Canvas *canvas)
 {
-	switch (unity(x))
+	for (int i = 0 ; i < 8 ; i++)
+	{
+		for (int j = 0 ; j < 12 ; j++)
 		{
-		case 0:
-			break;
-		case 1:
-			break;
-		case 2:
-			break;
-		case 3:
-			break;
-		case 4:
-			break;
-		case 5:
-			break;
-		case 7:
-			break;
-		case 8:
-			break;
-		case 9:
-			break;
+			if (digit_array[i][j] == true)
+			{
+				canvas->drawPixel(i+x, j+y);
+			}
 		}
-}
-    void Signs::paintTens(u16 x)
-    {
-    	switch (tens(x))
-    			{
-    			case 0:
-    				break;
-    			case 1:
-    				break;
-    			case 2:
-    				break;
-    			case 3:
-    				break;
-    			case 4:
-    				break;
-    			case 5:
-    				break;
-    			case 7:
-    				break;
 
-    			case 8:
-    				break;
-    			case 9:
-    				break;
-    			}
-    }
-    void Signs::paintHundreds(u16 x)
-    {
-    	switch (hundreds(x)) //
-    				{
-    				case 0:
-    					break;
-    				case 1:
-    					break;
-    				case 2:
-    					break;
-    				case 3:
-    					break;
-    				case 4:
-    					break;
-    				case 5:
-    					break;
-    				case 7:
-    					break;
-    				case 8:
-    					break;
-    				case 9:
-    					break;
-    				}
-    }
-void Signs::paintTemp(u16 x) {
+	}
+
+}
+
+void Signs::paintDigit(u8 digit, uint32_t x, uint32_t y, gui::Canvas *canvas)
+{
+	switch (digit)
+	{
+	case 0:
+		paintDigitLoop(_zero, x, y, canvas);
+			break;
+	case 1:
+		paintDigitLoop(_one, x, y, canvas);
+			break;
+	case 2:
+		paintDigitLoop(_two, x, y, canvas);
+			break;
+	case 3:
+		paintDigitLoop(_three, x, y, canvas);
+			break;
+	case 4:
+		paintDigitLoop(_four, x, y, canvas);
+			break;
+	case 5:
+		paintDigitLoop(_five, x, y, canvas);
+			break;
+	case 6:
+		paintDigitLoop(_six, x, y, canvas);
+			break;
+	case 7:
+		paintDigitLoop(_seven, x, y, canvas);
+			break;
+	case 8:
+		paintDigitLoop(_eight, x, y, canvas);
+			break;
+	case 9:
+		paintDigitLoop(_nine, x, y, canvas);
+			break;
+
+
+
+	}
+}
+
+void Signs::paintTemp(uint32_t x, uint32_t y, gui::Canvas *canvas)
+{
 	auto Temp_w = ptm::system::System::getInstance()->_device_manager.getDevice<ptm::devices::DHT>();
 	auto Temp = Temp_w.lock();
 	u16 temp = 0;
@@ -119,14 +105,29 @@ void Signs::paintTemp(u16 x) {
 		temp=Temp->getTemperature();
 	}
 
+
 	//narysowanie napisu temp
-	paintTens(temp);
-	paintUnity(temp);
+	for (int i = 0 ; i < 45 ; i ++)
+	{
+		for (int j = 0 ; j < 15 ; j ++)
+		{
+			if (_temp[i][j] == true) canvas->drawPixel(x+i, y+j);
+		}
+
+	}
+	x = x + 50;
+	paintDigit(tens(temp), x, y, canvas);
+	paintDigit(unity(temp), x+10, y, canvas);
+
+
+	//paintTens(temp);
+	//paintUnity(temp);
 
 
 }
 
-void Signs::paintRh(u16 x) {
+void Signs::paintRh(uint32_t x, uint32_t y, gui::Canvas *canvas)
+{
 	auto Rh_w = ptm::system::System::getInstance()->_device_manager.getDevice<ptm::devices::DHT>();
 	auto Rh = Rh_w.lock();
 	u16 rh=0;
@@ -136,9 +137,30 @@ void Signs::paintRh(u16 x) {
 	}
 
 	//narysowanie napisu rh
-	paintHundreds(rh);
-	paintTens(rh);
-	paintUnity(rh);
+	for (int i = 0 ; i < 22 ; i ++)
+		{
+			for (int j = 0 ; j < 12 ; j ++)
+			{
+				if (_rh[i][j] == true) canvas->drawPixel(x+i, y+j);
+			}
+
+		}
+
+	x = x + 27;
+	paintDigit(hundreds(rh), x, y, canvas);
+	x+=10;
+	paintDigit(tens(rh), x, y, canvas);
+	x+=10;
+	paintDigit(unity(rh), x,y, canvas);
+	x+=10;
+
+	for (int i = 0 ; i < 13 ; i ++)
+	{
+		for (int j = 0 ; j < 12 ; j++)
+		{
+			if (_percent[i][j]) canvas -> drawPixel(x+i, y+j);
+		}
+	}
 
 //narysowane %
 
@@ -148,25 +170,101 @@ void Signs::paintOn(gui::Canvas *canvas) {
 
 	if (!canvas)
 	    return;
-	  for (uint32_t i = 0; i < getWidth(); ++i)
-	  {
-	    for (uint32_t j = 0; j < getHeight(); ++j)
-	    {
-	    	 canvas->drawPixel(i, j);
-	    }
-	  }
+	  paintRh(0,0, canvas);
+	  paintTemp(0,24, canvas);
 }
 
 
 
 
 
+
+
+WeatherContext::WeatherContext(Weather *app) :
+    ApplicationContext(), _weather(app), _app_panel(0, 0, 84, 48), _bg_timer(&_timer_manager, 120,
+        std::bind(&WeatherContext::onBgTimer, this), true), _signs(0,0), _playing(false)
+{
+  _event_listener.registerEventHandler(
+      events::EventMapping(events::EVENT_BUTTON,
+          std::bind(&WeatherContext::onButton, this, std::placeholders::_1)));
+
+
+}
+
+WeatherContext::~WeatherContext()
+{
+
+}
+
+void WeatherContext::onUpdate()
+{
+}
+
+void WeatherContext::onStart()
+{
+  _playing = false;
+  _app_panel.addChild(&_signs);
+  if (_weather)
+	  _weather->_main_panel.addChild(&_app_panel);
+  _bg_timer.start();
+}
+
+void WeatherContext::onPause()
+{
+  if (_weather)
+  {
+    _weather->_main_panel.removeChild(&_app_panel);
+  }
+  _bg_timer.pause();
+}
+
+void WeatherContext::onResume()
+{
+  if (_weather)
+  {
+    _weather->_main_panel.addChild(&_app_panel);
+  }
+  _bg_timer.resume();
+}
+
+void WeatherContext::onStop()
+{
+  if (_weather)
+  {
+    _weather->_main_panel.removeChild(&_app_panel);
+  }
+  _bg_timer.stop();
+  _playing = false;
+}
+
+void WeatherContext::onBgTimer()
+{
+  _bg_timer.start();
+}
+
+
+void WeatherContext::onButton(std::shared_ptr<events::Event> event)
+{
+  std::shared_ptr<events::ButtonEvent> b_event = std::static_pointer_cast
+      < events::ButtonEvent > (event);
+  if (!b_event->isPressed())
+  {
+   if (_weather)
+   {
+	   _weather->stop();
+   }
+
+  }
+}
+
+
+
 Weather::Weather() :
-		Application(), _main_panel(0, 0, 84, 48), _canvas(84, 48), _display(
+		Application(), _main_panel(0, 0, 84, 48), _weather_context(this), _canvas(84, 48), _display(
 				system::System::getInstance()->_device_manager.getDevice<
 						devices::displays::IDisplay>()), _screen_timer(
-				&_timer_manager, 40, std::bind(&Weather::onScreenUpdate, this),
-				true) {
+				&_timer_manager, 40, std::bind(&Weather::onScreenUpdate, this),true)
+{
 
 }
 
@@ -179,8 +277,8 @@ void Weather::onUpdate() {
 }
 
 void Weather::onStart() {
-	//? _main_panel.addChild(&_signs);
 	_canvas.clear();
+	switchContext(&_weather_context);
 	_screen_timer.start();
 }
 

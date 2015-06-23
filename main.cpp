@@ -21,7 +21,7 @@
 #include "GUI/Component.hpp"
 #include "Devices/Dht11.hpp"
 #include "Devices/TimClk.hpp"
-
+#include "Applications/Weather/weather.hpp"
 
 
 using namespace ptm::system;
@@ -523,7 +523,7 @@ int main(void)
   System::getInstance()->_interrupt_manager.addInterrupt<ButtonInterrupt>(
       but_w);
   System::getInstance()->_device_manager.getDevices<LED>();
-  System::getInstance()->runApplication<InitApp>();
+  System::getInstance()->runApplication<ptm::applications::weather::Weather>();
   System::getInstance()->run();
 
 
