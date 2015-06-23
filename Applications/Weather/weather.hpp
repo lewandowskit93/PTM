@@ -272,6 +272,7 @@ class Weather : public system::Application
     std::weak_ptr<devices::displays::IDisplay> _display;
     system::ManagedTimer _screen_timer;
   private:
+    //Signs _signs;
 };
 
 }

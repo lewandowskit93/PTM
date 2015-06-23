@@ -30,7 +30,7 @@
 <attrib name="org.eclipse.cdt.debug.core.address" value="0x0000000008000eee"/>
 <attrib name="org.eclipse.debug.core.id" value="org.eclipse.cdt.debug.core"/>
 <attrib name="workingset_name" value=""/>
-<attrib name="org.eclipse.cdt.debug.core.installCount" value="0"/>
+<attrib name="org.eclipse.cdt.debug.core.installCount" value="1"/>
 <attrib name="type" value="org.eclipse.cdt.debug.core.cAddressBreakpointMarker"/>
 <attrib name="persistant" value="true"/>
 <attrib name="org.eclipse.cdt.debug.core.breakpointType" value="0"/>
@@ -51,7 +51,7 @@
 <attrib name="org.eclipse.cdt.debug.core.condition" value=""/>
 <attrib name="org.eclipse.debug.core.id" value="org.eclipse.cdt.debug.core"/>
 <attrib name="workingset_name" value=""/>
-<attrib name="org.eclipse.cdt.debug.core.installCount" value="0"/>
+<attrib name="org.eclipse.cdt.debug.core.installCount" value="1"/>
 <attrib name="type" value="org.eclipse.cdt.debug.core.cLineBreakpointMarker"/>
 <attrib name="persistant" value="true"/>
 <attrib name="org.eclipse.cdt.debug.core.breakpointType" value="0"/>

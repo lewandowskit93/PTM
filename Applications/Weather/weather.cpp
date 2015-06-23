@@ -179,6 +179,7 @@ void Weather::onUpdate() {
 }
 
 void Weather::onStart() {
+	//? _main_panel.addChild(&_signs);
 	_canvas.clear();
 	_screen_timer.start();
 }
