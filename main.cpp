@@ -20,6 +20,7 @@
 #include "GUI/Panel.hpp"
 #include "GUI/Component.hpp"
 #include "Applications/Sun_space_mission/SunSpaceGame.hpp"
+#include "Applications/Czujka/czujnik.hpp"
 #include "Devices/Accelometer.hpp"
 using namespace ptm::system;
 using namespace ptm::events;
@@ -497,7 +498,6 @@ class Accel: public Application
 
         void handleButton(std::shared_ptr<Event> event)
         {
-          static int i = 0;
           auto leds = System::getInstance()->_device_manager.getDevices<LED>();
           auto button_event = std::static_pointer_cast < AccelometerMenuEvent > (event);
           if (button_event->movedTop())
@@ -761,7 +761,7 @@ int main(void)
   System::getInstance()->_interrupt_manager.addInterrupt<ButtonInterrupt>(
       but_w);
   System::getInstance()->_device_manager.getDevices<LED>();
-  System::getInstance()->runApplication<ptm::applications::spacegame::SpaceshipGame>();
+  System::getInstance()->runApplication<ptm::applications::czujka::CzujkaApp>();
   System::getInstance()->run();
   while (true)
   {

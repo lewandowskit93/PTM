@@ -8,7 +8,7 @@
 <attrib name="org.eclipse.cdt.debug.core.address" value="0x0000000008000eee"/>
 <attrib name="org.eclipse.debug.core.id" value="org.eclipse.cdt.debug.core"/>
 <attrib name="workingset_name" value=""/>
-<attrib name="org.eclipse.cdt.debug.core.installCount" value="1"/>
+<attrib name="org.eclipse.cdt.debug.core.installCount" value="0"/>
 <attrib name="type" value="org.eclipse.cdt.debug.core.cAddressBreakpointMarker"/>
 <attrib name="persistant" value="true"/>
 <attrib name="org.eclipse.cdt.debug.core.breakpointType" value="0"/>
@@ -18,8 +18,8 @@
 <attrib name="charStart" value="-1"/>
 <attrib name="path" value="/"/>
 <attrib name="charEnd" value="-1"/>
-<attrib name="org.eclipse.debug.core.enabled" value="false"/>
 <attrib name="org.eclipse.cdt.debug.core.ignoreCount" value="0"/>
+<attrib name="org.eclipse.debug.core.enabled" value="false"/>
 </marker>
 </breakpoint>
 <breakpoint enabled="true" persistant="true" registered="true">
@@ -38,26 +38,6 @@
 <attrib name="registered" value="true"/>
 <attrib name="path" value="/PTM/cmsis_boot/startup/startup_stm32f4xx.c"/>
 <attrib name="org.eclipse.cdt.debug.core.sourceHandle" value="E:\Projekty\PTM\PTM\cmsis_boot\startup\startup_stm32f4xx.c"/>
-<attrib name="org.eclipse.cdt.debug.core.ignoreCount" value="0"/>
-<attrib name="org.eclipse.debug.core.enabled" value="true"/>
-</marker>
-</breakpoint>
-<breakpoint enabled="true" persistant="true" registered="true">
-<resource path="/PTM" type="4"/>
-<marker lineNumber="430" type="org.eclipse.cdt.debug.core.cLineBreakpointMarker">
-<attrib name="enabled" value="true"/>
-<attrib name="org.eclipse.cdt.debug.core.condition" value=""/>
-<attrib name="org.eclipse.debug.core.id" value="org.eclipse.cdt.debug.core"/>
-<attrib name="workingset_name" value=""/>
-<attrib name="org.eclipse.cdt.debug.core.installCount" value="1"/>
-<attrib name="type" value="org.eclipse.cdt.debug.core.cLineBreakpointMarker"/>
-<attrib name="persistant" value="true"/>
-<attrib name="org.eclipse.cdt.debug.core.breakpointType" value="0"/>
-<attrib name="workingset_id" value="org.eclipse.debug.ui.breakpointWorkingSet"/>
-<attrib name="message" value="Line breakpoint: startup_stm32f4xx.c [line: 430]"/>
-<attrib name="registered" value="true"/>
-<attrib name="path" value="/PTM"/>
-<attrib name="org.eclipse.cdt.debug.core.sourceHandle" value="E:/Projekty/PTM/PTM/cmsis_boot/startup/startup_stm32f4xx.c"/>
 <attrib name="org.eclipse.debug.core.enabled" value="true"/>
 <attrib name="org.eclipse.cdt.debug.core.ignoreCount" value="0"/>
 </marker>
@@ -69,487 +49,7 @@
 <attrib name="org.eclipse.cdt.debug.core.condition" value=""/>
 <attrib name="org.eclipse.debug.core.id" value="org.eclipse.cdt.debug.core"/>
 <attrib name="workingset_name" value=""/>
-<attrib name="org.eclipse.cdt.debug.core.installCount" value="1"/>
-<attrib name="type" value="org.eclipse.cdt.debug.core.cLineBreakpointMarker"/>
-<attrib name="persistant" value="true"/>
-<attrib name="org.eclipse.cdt.debug.core.breakpointType" value="0"/>
-<attrib name="workingset_id" value="org.eclipse.debug.ui.breakpointWorkingSet"/>
-<attrib name="message" value="Line breakpoint: startup_stm32f4xx.c [line: 430]"/>
-<attrib name="registered" value="true"/>
-<attrib name="path" value="/PTM"/>
-<attrib name="org.eclipse.cdt.debug.core.sourceHandle" value="E:/Projekty/PTM/PTM/cmsis_boot/startup/startup_stm32f4xx.c"/>
-<attrib name="org.eclipse.debug.core.enabled" value="true"/>
-<attrib name="org.eclipse.cdt.debug.core.ignoreCount" value="0"/>
-</marker>
-</breakpoint>
-<breakpoint enabled="true" persistant="true" registered="true">
-<resource path="/PTM" type="4"/>
-<marker lineNumber="430" type="org.eclipse.cdt.debug.core.cLineBreakpointMarker">
-<attrib name="enabled" value="true"/>
-<attrib name="org.eclipse.cdt.debug.core.condition" value=""/>
-<attrib name="org.eclipse.debug.core.id" value="org.eclipse.cdt.debug.core"/>
-<attrib name="workingset_name" value=""/>
-<attrib name="org.eclipse.cdt.debug.core.installCount" value="1"/>
-<attrib name="type" value="org.eclipse.cdt.debug.core.cLineBreakpointMarker"/>
-<attrib name="persistant" value="true"/>
-<attrib name="org.eclipse.cdt.debug.core.breakpointType" value="0"/>
-<attrib name="workingset_id" value="org.eclipse.debug.ui.breakpointWorkingSet"/>
-<attrib name="message" value="Line breakpoint: startup_stm32f4xx.c [line: 430]"/>
-<attrib name="registered" value="true"/>
-<attrib name="path" value="/PTM"/>
-<attrib name="org.eclipse.cdt.debug.core.sourceHandle" value="E:/Projekty/PTM/PTM/cmsis_boot/startup/startup_stm32f4xx.c"/>
-<attrib name="org.eclipse.debug.core.enabled" value="true"/>
-<attrib name="org.eclipse.cdt.debug.core.ignoreCount" value="0"/>
-</marker>
-</breakpoint>
-<breakpoint enabled="true" persistant="true" registered="true">
-<resource path="/PTM" type="4"/>
-<marker lineNumber="430" type="org.eclipse.cdt.debug.core.cLineBreakpointMarker">
-<attrib name="enabled" value="true"/>
-<attrib name="org.eclipse.cdt.debug.core.condition" value=""/>
-<attrib name="org.eclipse.debug.core.id" value="org.eclipse.cdt.debug.core"/>
-<attrib name="workingset_name" value=""/>
-<attrib name="org.eclipse.cdt.debug.core.installCount" value="1"/>
-<attrib name="type" value="org.eclipse.cdt.debug.core.cLineBreakpointMarker"/>
-<attrib name="persistant" value="true"/>
-<attrib name="org.eclipse.cdt.debug.core.breakpointType" value="0"/>
-<attrib name="workingset_id" value="org.eclipse.debug.ui.breakpointWorkingSet"/>
-<attrib name="message" value="Line breakpoint: startup_stm32f4xx.c [line: 430]"/>
-<attrib name="registered" value="true"/>
-<attrib name="path" value="/PTM"/>
-<attrib name="org.eclipse.cdt.debug.core.sourceHandle" value="E:/Projekty/PTM/PTM/cmsis_boot/startup/startup_stm32f4xx.c"/>
-<attrib name="org.eclipse.debug.core.enabled" value="true"/>
-<attrib name="org.eclipse.cdt.debug.core.ignoreCount" value="0"/>
-</marker>
-</breakpoint>
-<breakpoint enabled="true" persistant="true" registered="true">
-<resource path="/PTM" type="4"/>
-<marker lineNumber="430" type="org.eclipse.cdt.debug.core.cLineBreakpointMarker">
-<attrib name="enabled" value="true"/>
-<attrib name="org.eclipse.cdt.debug.core.condition" value=""/>
-<attrib name="org.eclipse.debug.core.id" value="org.eclipse.cdt.debug.core"/>
-<attrib name="workingset_name" value=""/>
-<attrib name="org.eclipse.cdt.debug.core.installCount" value="1"/>
-<attrib name="type" value="org.eclipse.cdt.debug.core.cLineBreakpointMarker"/>
-<attrib name="persistant" value="true"/>
-<attrib name="org.eclipse.cdt.debug.core.breakpointType" value="0"/>
-<attrib name="workingset_id" value="org.eclipse.debug.ui.breakpointWorkingSet"/>
-<attrib name="message" value="Line breakpoint: startup_stm32f4xx.c [line: 430]"/>
-<attrib name="registered" value="true"/>
-<attrib name="path" value="/PTM"/>
-<attrib name="org.eclipse.cdt.debug.core.sourceHandle" value="E:/Projekty/PTM/PTM/cmsis_boot/startup/startup_stm32f4xx.c"/>
-<attrib name="org.eclipse.debug.core.enabled" value="true"/>
-<attrib name="org.eclipse.cdt.debug.core.ignoreCount" value="0"/>
-</marker>
-</breakpoint>
-<breakpoint enabled="true" persistant="true" registered="true">
-<resource path="/PTM" type="4"/>
-<marker lineNumber="430" type="org.eclipse.cdt.debug.core.cLineBreakpointMarker">
-<attrib name="enabled" value="true"/>
-<attrib name="org.eclipse.cdt.debug.core.condition" value=""/>
-<attrib name="org.eclipse.debug.core.id" value="org.eclipse.cdt.debug.core"/>
-<attrib name="workingset_name" value=""/>
-<attrib name="org.eclipse.cdt.debug.core.installCount" value="1"/>
-<attrib name="type" value="org.eclipse.cdt.debug.core.cLineBreakpointMarker"/>
-<attrib name="persistant" value="true"/>
-<attrib name="org.eclipse.cdt.debug.core.breakpointType" value="0"/>
-<attrib name="workingset_id" value="org.eclipse.debug.ui.breakpointWorkingSet"/>
-<attrib name="message" value="Line breakpoint: startup_stm32f4xx.c [line: 430]"/>
-<attrib name="registered" value="true"/>
-<attrib name="path" value="/PTM"/>
-<attrib name="org.eclipse.cdt.debug.core.sourceHandle" value="E:/Projekty/PTM/PTM/cmsis_boot/startup/startup_stm32f4xx.c"/>
-<attrib name="org.eclipse.debug.core.enabled" value="true"/>
-<attrib name="org.eclipse.cdt.debug.core.ignoreCount" value="0"/>
-</marker>
-</breakpoint>
-<breakpoint enabled="true" persistant="true" registered="true">
-<resource path="/PTM" type="4"/>
-<marker lineNumber="430" type="org.eclipse.cdt.debug.core.cLineBreakpointMarker">
-<attrib name="enabled" value="true"/>
-<attrib name="org.eclipse.cdt.debug.core.condition" value=""/>
-<attrib name="org.eclipse.debug.core.id" value="org.eclipse.cdt.debug.core"/>
-<attrib name="workingset_name" value=""/>
-<attrib name="org.eclipse.cdt.debug.core.installCount" value="1"/>
-<attrib name="type" value="org.eclipse.cdt.debug.core.cLineBreakpointMarker"/>
-<attrib name="persistant" value="true"/>
-<attrib name="org.eclipse.cdt.debug.core.breakpointType" value="0"/>
-<attrib name="workingset_id" value="org.eclipse.debug.ui.breakpointWorkingSet"/>
-<attrib name="message" value="Line breakpoint: startup_stm32f4xx.c [line: 430]"/>
-<attrib name="registered" value="true"/>
-<attrib name="path" value="/PTM"/>
-<attrib name="org.eclipse.cdt.debug.core.sourceHandle" value="E:/Projekty/PTM/PTM/cmsis_boot/startup/startup_stm32f4xx.c"/>
-<attrib name="org.eclipse.debug.core.enabled" value="true"/>
-<attrib name="org.eclipse.cdt.debug.core.ignoreCount" value="0"/>
-</marker>
-</breakpoint>
-<breakpoint enabled="true" persistant="true" registered="true">
-<resource path="/PTM" type="4"/>
-<marker lineNumber="430" type="org.eclipse.cdt.debug.core.cLineBreakpointMarker">
-<attrib name="enabled" value="true"/>
-<attrib name="org.eclipse.cdt.debug.core.condition" value=""/>
-<attrib name="org.eclipse.debug.core.id" value="org.eclipse.cdt.debug.core"/>
-<attrib name="workingset_name" value=""/>
-<attrib name="org.eclipse.cdt.debug.core.installCount" value="1"/>
-<attrib name="type" value="org.eclipse.cdt.debug.core.cLineBreakpointMarker"/>
-<attrib name="persistant" value="true"/>
-<attrib name="org.eclipse.cdt.debug.core.breakpointType" value="0"/>
-<attrib name="workingset_id" value="org.eclipse.debug.ui.breakpointWorkingSet"/>
-<attrib name="message" value="Line breakpoint: startup_stm32f4xx.c [line: 430]"/>
-<attrib name="registered" value="true"/>
-<attrib name="path" value="/PTM"/>
-<attrib name="org.eclipse.cdt.debug.core.sourceHandle" value="E:/Projekty/PTM/PTM/cmsis_boot/startup/startup_stm32f4xx.c"/>
-<attrib name="org.eclipse.debug.core.enabled" value="true"/>
-<attrib name="org.eclipse.cdt.debug.core.ignoreCount" value="0"/>
-</marker>
-</breakpoint>
-<breakpoint enabled="true" persistant="true" registered="true">
-<resource path="/PTM" type="4"/>
-<marker lineNumber="430" type="org.eclipse.cdt.debug.core.cLineBreakpointMarker">
-<attrib name="enabled" value="true"/>
-<attrib name="org.eclipse.cdt.debug.core.condition" value=""/>
-<attrib name="org.eclipse.debug.core.id" value="org.eclipse.cdt.debug.core"/>
-<attrib name="workingset_name" value=""/>
-<attrib name="org.eclipse.cdt.debug.core.installCount" value="1"/>
-<attrib name="type" value="org.eclipse.cdt.debug.core.cLineBreakpointMarker"/>
-<attrib name="persistant" value="true"/>
-<attrib name="org.eclipse.cdt.debug.core.breakpointType" value="0"/>
-<attrib name="workingset_id" value="org.eclipse.debug.ui.breakpointWorkingSet"/>
-<attrib name="message" value="Line breakpoint: startup_stm32f4xx.c [line: 430]"/>
-<attrib name="registered" value="true"/>
-<attrib name="path" value="/PTM"/>
-<attrib name="org.eclipse.cdt.debug.core.sourceHandle" value="E:/Projekty/PTM/PTM/cmsis_boot/startup/startup_stm32f4xx.c"/>
-<attrib name="org.eclipse.debug.core.enabled" value="true"/>
-<attrib name="org.eclipse.cdt.debug.core.ignoreCount" value="0"/>
-</marker>
-</breakpoint>
-<breakpoint enabled="true" persistant="true" registered="true">
-<resource path="/PTM" type="4"/>
-<marker lineNumber="430" type="org.eclipse.cdt.debug.core.cLineBreakpointMarker">
-<attrib name="enabled" value="true"/>
-<attrib name="org.eclipse.cdt.debug.core.condition" value=""/>
-<attrib name="org.eclipse.debug.core.id" value="org.eclipse.cdt.debug.core"/>
-<attrib name="workingset_name" value=""/>
-<attrib name="org.eclipse.cdt.debug.core.installCount" value="1"/>
-<attrib name="type" value="org.eclipse.cdt.debug.core.cLineBreakpointMarker"/>
-<attrib name="persistant" value="true"/>
-<attrib name="org.eclipse.cdt.debug.core.breakpointType" value="0"/>
-<attrib name="workingset_id" value="org.eclipse.debug.ui.breakpointWorkingSet"/>
-<attrib name="message" value="Line breakpoint: startup_stm32f4xx.c [line: 430]"/>
-<attrib name="registered" value="true"/>
-<attrib name="path" value="/PTM"/>
-<attrib name="org.eclipse.cdt.debug.core.sourceHandle" value="E:/Projekty/PTM/PTM/cmsis_boot/startup/startup_stm32f4xx.c"/>
-<attrib name="org.eclipse.debug.core.enabled" value="true"/>
-<attrib name="org.eclipse.cdt.debug.core.ignoreCount" value="0"/>
-</marker>
-</breakpoint>
-<breakpoint enabled="true" persistant="true" registered="true">
-<resource path="/PTM" type="4"/>
-<marker lineNumber="430" type="org.eclipse.cdt.debug.core.cLineBreakpointMarker">
-<attrib name="enabled" value="true"/>
-<attrib name="org.eclipse.cdt.debug.core.condition" value=""/>
-<attrib name="org.eclipse.debug.core.id" value="org.eclipse.cdt.debug.core"/>
-<attrib name="workingset_name" value=""/>
-<attrib name="org.eclipse.cdt.debug.core.installCount" value="1"/>
-<attrib name="type" value="org.eclipse.cdt.debug.core.cLineBreakpointMarker"/>
-<attrib name="persistant" value="true"/>
-<attrib name="org.eclipse.cdt.debug.core.breakpointType" value="0"/>
-<attrib name="workingset_id" value="org.eclipse.debug.ui.breakpointWorkingSet"/>
-<attrib name="message" value="Line breakpoint: startup_stm32f4xx.c [line: 430]"/>
-<attrib name="registered" value="true"/>
-<attrib name="path" value="/PTM"/>
-<attrib name="org.eclipse.cdt.debug.core.sourceHandle" value="E:/Projekty/PTM/PTM/cmsis_boot/startup/startup_stm32f4xx.c"/>
-<attrib name="org.eclipse.debug.core.enabled" value="true"/>
-<attrib name="org.eclipse.cdt.debug.core.ignoreCount" value="0"/>
-</marker>
-</breakpoint>
-<breakpoint enabled="true" persistant="true" registered="true">
-<resource path="/PTM" type="4"/>
-<marker lineNumber="430" type="org.eclipse.cdt.debug.core.cLineBreakpointMarker">
-<attrib name="enabled" value="true"/>
-<attrib name="org.eclipse.cdt.debug.core.condition" value=""/>
-<attrib name="org.eclipse.debug.core.id" value="org.eclipse.cdt.debug.core"/>
-<attrib name="workingset_name" value=""/>
-<attrib name="org.eclipse.cdt.debug.core.installCount" value="1"/>
-<attrib name="type" value="org.eclipse.cdt.debug.core.cLineBreakpointMarker"/>
-<attrib name="persistant" value="true"/>
-<attrib name="org.eclipse.cdt.debug.core.breakpointType" value="0"/>
-<attrib name="workingset_id" value="org.eclipse.debug.ui.breakpointWorkingSet"/>
-<attrib name="message" value="Line breakpoint: startup_stm32f4xx.c [line: 430]"/>
-<attrib name="registered" value="true"/>
-<attrib name="path" value="/PTM"/>
-<attrib name="org.eclipse.cdt.debug.core.sourceHandle" value="E:/Projekty/PTM/PTM/cmsis_boot/startup/startup_stm32f4xx.c"/>
-<attrib name="org.eclipse.debug.core.enabled" value="true"/>
-<attrib name="org.eclipse.cdt.debug.core.ignoreCount" value="0"/>
-</marker>
-</breakpoint>
-<breakpoint enabled="true" persistant="true" registered="true">
-<resource path="/PTM" type="4"/>
-<marker lineNumber="430" type="org.eclipse.cdt.debug.core.cLineBreakpointMarker">
-<attrib name="enabled" value="true"/>
-<attrib name="org.eclipse.cdt.debug.core.condition" value=""/>
-<attrib name="org.eclipse.debug.core.id" value="org.eclipse.cdt.debug.core"/>
-<attrib name="workingset_name" value=""/>
-<attrib name="org.eclipse.cdt.debug.core.installCount" value="1"/>
-<attrib name="type" value="org.eclipse.cdt.debug.core.cLineBreakpointMarker"/>
-<attrib name="persistant" value="true"/>
-<attrib name="org.eclipse.cdt.debug.core.breakpointType" value="0"/>
-<attrib name="workingset_id" value="org.eclipse.debug.ui.breakpointWorkingSet"/>
-<attrib name="message" value="Line breakpoint: startup_stm32f4xx.c [line: 430]"/>
-<attrib name="registered" value="true"/>
-<attrib name="path" value="/PTM"/>
-<attrib name="org.eclipse.cdt.debug.core.sourceHandle" value="E:/Projekty/PTM/PTM/cmsis_boot/startup/startup_stm32f4xx.c"/>
-<attrib name="org.eclipse.debug.core.enabled" value="true"/>
-<attrib name="org.eclipse.cdt.debug.core.ignoreCount" value="0"/>
-</marker>
-</breakpoint>
-<breakpoint enabled="true" persistant="true" registered="true">
-<resource path="/PTM" type="4"/>
-<marker lineNumber="430" type="org.eclipse.cdt.debug.core.cLineBreakpointMarker">
-<attrib name="enabled" value="true"/>
-<attrib name="org.eclipse.cdt.debug.core.condition" value=""/>
-<attrib name="org.eclipse.debug.core.id" value="org.eclipse.cdt.debug.core"/>
-<attrib name="workingset_name" value=""/>
-<attrib name="org.eclipse.cdt.debug.core.installCount" value="1"/>
-<attrib name="type" value="org.eclipse.cdt.debug.core.cLineBreakpointMarker"/>
-<attrib name="persistant" value="true"/>
-<attrib name="org.eclipse.cdt.debug.core.breakpointType" value="0"/>
-<attrib name="workingset_id" value="org.eclipse.debug.ui.breakpointWorkingSet"/>
-<attrib name="message" value="Line breakpoint: startup_stm32f4xx.c [line: 430]"/>
-<attrib name="registered" value="true"/>
-<attrib name="path" value="/PTM"/>
-<attrib name="org.eclipse.cdt.debug.core.sourceHandle" value="E:/Projekty/PTM/PTM/cmsis_boot/startup/startup_stm32f4xx.c"/>
-<attrib name="org.eclipse.debug.core.enabled" value="true"/>
-<attrib name="org.eclipse.cdt.debug.core.ignoreCount" value="0"/>
-</marker>
-</breakpoint>
-<breakpoint enabled="true" persistant="true" registered="true">
-<resource path="/PTM" type="4"/>
-<marker lineNumber="430" type="org.eclipse.cdt.debug.core.cLineBreakpointMarker">
-<attrib name="enabled" value="true"/>
-<attrib name="org.eclipse.cdt.debug.core.condition" value=""/>
-<attrib name="org.eclipse.debug.core.id" value="org.eclipse.cdt.debug.core"/>
-<attrib name="workingset_name" value=""/>
-<attrib name="org.eclipse.cdt.debug.core.installCount" value="1"/>
-<attrib name="type" value="org.eclipse.cdt.debug.core.cLineBreakpointMarker"/>
-<attrib name="persistant" value="true"/>
-<attrib name="org.eclipse.cdt.debug.core.breakpointType" value="0"/>
-<attrib name="workingset_id" value="org.eclipse.debug.ui.breakpointWorkingSet"/>
-<attrib name="message" value="Line breakpoint: startup_stm32f4xx.c [line: 430]"/>
-<attrib name="registered" value="true"/>
-<attrib name="path" value="/PTM"/>
-<attrib name="org.eclipse.cdt.debug.core.sourceHandle" value="E:/Projekty/PTM/PTM/cmsis_boot/startup/startup_stm32f4xx.c"/>
-<attrib name="org.eclipse.debug.core.enabled" value="true"/>
-<attrib name="org.eclipse.cdt.debug.core.ignoreCount" value="0"/>
-</marker>
-</breakpoint>
-<breakpoint enabled="true" persistant="true" registered="true">
-<resource path="/PTM" type="4"/>
-<marker lineNumber="430" type="org.eclipse.cdt.debug.core.cLineBreakpointMarker">
-<attrib name="enabled" value="true"/>
-<attrib name="org.eclipse.cdt.debug.core.condition" value=""/>
-<attrib name="org.eclipse.debug.core.id" value="org.eclipse.cdt.debug.core"/>
-<attrib name="workingset_name" value=""/>
-<attrib name="org.eclipse.cdt.debug.core.installCount" value="1"/>
-<attrib name="type" value="org.eclipse.cdt.debug.core.cLineBreakpointMarker"/>
-<attrib name="persistant" value="true"/>
-<attrib name="org.eclipse.cdt.debug.core.breakpointType" value="0"/>
-<attrib name="workingset_id" value="org.eclipse.debug.ui.breakpointWorkingSet"/>
-<attrib name="message" value="Line breakpoint: startup_stm32f4xx.c [line: 430]"/>
-<attrib name="registered" value="true"/>
-<attrib name="path" value="/PTM"/>
-<attrib name="org.eclipse.cdt.debug.core.sourceHandle" value="E:/Projekty/PTM/PTM/cmsis_boot/startup/startup_stm32f4xx.c"/>
-<attrib name="org.eclipse.debug.core.enabled" value="true"/>
-<attrib name="org.eclipse.cdt.debug.core.ignoreCount" value="0"/>
-</marker>
-</breakpoint>
-<breakpoint enabled="true" persistant="true" registered="true">
-<resource path="/PTM" type="4"/>
-<marker lineNumber="430" type="org.eclipse.cdt.debug.core.cLineBreakpointMarker">
-<attrib name="enabled" value="true"/>
-<attrib name="org.eclipse.cdt.debug.core.condition" value=""/>
-<attrib name="org.eclipse.debug.core.id" value="org.eclipse.cdt.debug.core"/>
-<attrib name="workingset_name" value=""/>
-<attrib name="org.eclipse.cdt.debug.core.installCount" value="1"/>
-<attrib name="type" value="org.eclipse.cdt.debug.core.cLineBreakpointMarker"/>
-<attrib name="persistant" value="true"/>
-<attrib name="org.eclipse.cdt.debug.core.breakpointType" value="0"/>
-<attrib name="workingset_id" value="org.eclipse.debug.ui.breakpointWorkingSet"/>
-<attrib name="message" value="Line breakpoint: startup_stm32f4xx.c [line: 430]"/>
-<attrib name="registered" value="true"/>
-<attrib name="path" value="/PTM"/>
-<attrib name="org.eclipse.cdt.debug.core.sourceHandle" value="E:/Projekty/PTM/PTM/cmsis_boot/startup/startup_stm32f4xx.c"/>
-<attrib name="org.eclipse.debug.core.enabled" value="true"/>
-<attrib name="org.eclipse.cdt.debug.core.ignoreCount" value="0"/>
-</marker>
-</breakpoint>
-<breakpoint enabled="true" persistant="true" registered="true">
-<resource path="/PTM" type="4"/>
-<marker lineNumber="430" type="org.eclipse.cdt.debug.core.cLineBreakpointMarker">
-<attrib name="enabled" value="true"/>
-<attrib name="org.eclipse.cdt.debug.core.condition" value=""/>
-<attrib name="org.eclipse.debug.core.id" value="org.eclipse.cdt.debug.core"/>
-<attrib name="workingset_name" value=""/>
-<attrib name="org.eclipse.cdt.debug.core.installCount" value="1"/>
-<attrib name="type" value="org.eclipse.cdt.debug.core.cLineBreakpointMarker"/>
-<attrib name="persistant" value="true"/>
-<attrib name="org.eclipse.cdt.debug.core.breakpointType" value="0"/>
-<attrib name="workingset_id" value="org.eclipse.debug.ui.breakpointWorkingSet"/>
-<attrib name="message" value="Line breakpoint: startup_stm32f4xx.c [line: 430]"/>
-<attrib name="registered" value="true"/>
-<attrib name="path" value="/PTM"/>
-<attrib name="org.eclipse.cdt.debug.core.sourceHandle" value="E:/Projekty/PTM/PTM/cmsis_boot/startup/startup_stm32f4xx.c"/>
-<attrib name="org.eclipse.debug.core.enabled" value="true"/>
-<attrib name="org.eclipse.cdt.debug.core.ignoreCount" value="0"/>
-</marker>
-</breakpoint>
-<breakpoint enabled="true" persistant="true" registered="true">
-<resource path="/PTM" type="4"/>
-<marker lineNumber="430" type="org.eclipse.cdt.debug.core.cLineBreakpointMarker">
-<attrib name="enabled" value="true"/>
-<attrib name="org.eclipse.cdt.debug.core.condition" value=""/>
-<attrib name="org.eclipse.debug.core.id" value="org.eclipse.cdt.debug.core"/>
-<attrib name="workingset_name" value=""/>
-<attrib name="org.eclipse.cdt.debug.core.installCount" value="1"/>
-<attrib name="type" value="org.eclipse.cdt.debug.core.cLineBreakpointMarker"/>
-<attrib name="persistant" value="true"/>
-<attrib name="org.eclipse.cdt.debug.core.breakpointType" value="0"/>
-<attrib name="workingset_id" value="org.eclipse.debug.ui.breakpointWorkingSet"/>
-<attrib name="message" value="Line breakpoint: startup_stm32f4xx.c [line: 430]"/>
-<attrib name="registered" value="true"/>
-<attrib name="path" value="/PTM"/>
-<attrib name="org.eclipse.cdt.debug.core.sourceHandle" value="E:/Projekty/PTM/PTM/cmsis_boot/startup/startup_stm32f4xx.c"/>
-<attrib name="org.eclipse.debug.core.enabled" value="true"/>
-<attrib name="org.eclipse.cdt.debug.core.ignoreCount" value="0"/>
-</marker>
-</breakpoint>
-<breakpoint enabled="true" persistant="true" registered="true">
-<resource path="/PTM" type="4"/>
-<marker lineNumber="430" type="org.eclipse.cdt.debug.core.cLineBreakpointMarker">
-<attrib name="enabled" value="true"/>
-<attrib name="org.eclipse.cdt.debug.core.condition" value=""/>
-<attrib name="org.eclipse.debug.core.id" value="org.eclipse.cdt.debug.core"/>
-<attrib name="workingset_name" value=""/>
-<attrib name="org.eclipse.cdt.debug.core.installCount" value="1"/>
-<attrib name="type" value="org.eclipse.cdt.debug.core.cLineBreakpointMarker"/>
-<attrib name="persistant" value="true"/>
-<attrib name="org.eclipse.cdt.debug.core.breakpointType" value="0"/>
-<attrib name="workingset_id" value="org.eclipse.debug.ui.breakpointWorkingSet"/>
-<attrib name="message" value="Line breakpoint: startup_stm32f4xx.c [line: 430]"/>
-<attrib name="registered" value="true"/>
-<attrib name="path" value="/PTM"/>
-<attrib name="org.eclipse.cdt.debug.core.sourceHandle" value="E:/Projekty/PTM/PTM/cmsis_boot/startup/startup_stm32f4xx.c"/>
-<attrib name="org.eclipse.debug.core.enabled" value="true"/>
-<attrib name="org.eclipse.cdt.debug.core.ignoreCount" value="0"/>
-</marker>
-</breakpoint>
-<breakpoint enabled="true" persistant="true" registered="true">
-<resource path="/PTM" type="4"/>
-<marker lineNumber="430" type="org.eclipse.cdt.debug.core.cLineBreakpointMarker">
-<attrib name="enabled" value="true"/>
-<attrib name="org.eclipse.cdt.debug.core.condition" value=""/>
-<attrib name="org.eclipse.debug.core.id" value="org.eclipse.cdt.debug.core"/>
-<attrib name="workingset_name" value=""/>
-<attrib name="org.eclipse.cdt.debug.core.installCount" value="1"/>
-<attrib name="type" value="org.eclipse.cdt.debug.core.cLineBreakpointMarker"/>
-<attrib name="persistant" value="true"/>
-<attrib name="org.eclipse.cdt.debug.core.breakpointType" value="0"/>
-<attrib name="workingset_id" value="org.eclipse.debug.ui.breakpointWorkingSet"/>
-<attrib name="message" value="Line breakpoint: startup_stm32f4xx.c [line: 430]"/>
-<attrib name="registered" value="true"/>
-<attrib name="path" value="/PTM"/>
-<attrib name="org.eclipse.cdt.debug.core.sourceHandle" value="E:/Projekty/PTM/PTM/cmsis_boot/startup/startup_stm32f4xx.c"/>
-<attrib name="org.eclipse.debug.core.enabled" value="true"/>
-<attrib name="org.eclipse.cdt.debug.core.ignoreCount" value="0"/>
-</marker>
-</breakpoint>
-<breakpoint enabled="true" persistant="true" registered="true">
-<resource path="/PTM" type="4"/>
-<marker lineNumber="430" type="org.eclipse.cdt.debug.core.cLineBreakpointMarker">
-<attrib name="enabled" value="true"/>
-<attrib name="org.eclipse.cdt.debug.core.condition" value=""/>
-<attrib name="org.eclipse.debug.core.id" value="org.eclipse.cdt.debug.core"/>
-<attrib name="workingset_name" value=""/>
-<attrib name="org.eclipse.cdt.debug.core.installCount" value="1"/>
-<attrib name="type" value="org.eclipse.cdt.debug.core.cLineBreakpointMarker"/>
-<attrib name="persistant" value="true"/>
-<attrib name="org.eclipse.cdt.debug.core.breakpointType" value="0"/>
-<attrib name="workingset_id" value="org.eclipse.debug.ui.breakpointWorkingSet"/>
-<attrib name="message" value="Line breakpoint: startup_stm32f4xx.c [line: 430]"/>
-<attrib name="registered" value="true"/>
-<attrib name="path" value="/PTM"/>
-<attrib name="org.eclipse.cdt.debug.core.sourceHandle" value="E:/Projekty/PTM/PTM/cmsis_boot/startup/startup_stm32f4xx.c"/>
-<attrib name="org.eclipse.debug.core.enabled" value="true"/>
-<attrib name="org.eclipse.cdt.debug.core.ignoreCount" value="0"/>
-</marker>
-</breakpoint>
-<breakpoint enabled="true" persistant="true" registered="true">
-<resource path="/PTM" type="4"/>
-<marker lineNumber="430" type="org.eclipse.cdt.debug.core.cLineBreakpointMarker">
-<attrib name="enabled" value="true"/>
-<attrib name="org.eclipse.cdt.debug.core.condition" value=""/>
-<attrib name="org.eclipse.debug.core.id" value="org.eclipse.cdt.debug.core"/>
-<attrib name="workingset_name" value=""/>
-<attrib name="org.eclipse.cdt.debug.core.installCount" value="1"/>
-<attrib name="type" value="org.eclipse.cdt.debug.core.cLineBreakpointMarker"/>
-<attrib name="persistant" value="true"/>
-<attrib name="org.eclipse.cdt.debug.core.breakpointType" value="0"/>
-<attrib name="workingset_id" value="org.eclipse.debug.ui.breakpointWorkingSet"/>
-<attrib name="message" value="Line breakpoint: startup_stm32f4xx.c [line: 430]"/>
-<attrib name="registered" value="true"/>
-<attrib name="path" value="/PTM"/>
-<attrib name="org.eclipse.cdt.debug.core.sourceHandle" value="E:/Projekty/PTM/PTM/cmsis_boot/startup/startup_stm32f4xx.c"/>
-<attrib name="org.eclipse.debug.core.enabled" value="true"/>
-<attrib name="org.eclipse.cdt.debug.core.ignoreCount" value="0"/>
-</marker>
-</breakpoint>
-<breakpoint enabled="true" persistant="true" registered="true">
-<resource path="/PTM" type="4"/>
-<marker lineNumber="430" type="org.eclipse.cdt.debug.core.cLineBreakpointMarker">
-<attrib name="enabled" value="true"/>
-<attrib name="org.eclipse.cdt.debug.core.condition" value=""/>
-<attrib name="org.eclipse.debug.core.id" value="org.eclipse.cdt.debug.core"/>
-<attrib name="workingset_name" value=""/>
-<attrib name="org.eclipse.cdt.debug.core.installCount" value="1"/>
-<attrib name="type" value="org.eclipse.cdt.debug.core.cLineBreakpointMarker"/>
-<attrib name="persistant" value="true"/>
-<attrib name="org.eclipse.cdt.debug.core.breakpointType" value="0"/>
-<attrib name="workingset_id" value="org.eclipse.debug.ui.breakpointWorkingSet"/>
-<attrib name="message" value="Line breakpoint: startup_stm32f4xx.c [line: 430]"/>
-<attrib name="registered" value="true"/>
-<attrib name="path" value="/PTM"/>
-<attrib name="org.eclipse.cdt.debug.core.sourceHandle" value="E:/Projekty/PTM/PTM/cmsis_boot/startup/startup_stm32f4xx.c"/>
-<attrib name="org.eclipse.debug.core.enabled" value="true"/>
-<attrib name="org.eclipse.cdt.debug.core.ignoreCount" value="0"/>
-</marker>
-</breakpoint>
-<breakpoint enabled="true" persistant="true" registered="true">
-<resource path="/PTM" type="4"/>
-<marker lineNumber="430" type="org.eclipse.cdt.debug.core.cLineBreakpointMarker">
-<attrib name="enabled" value="true"/>
-<attrib name="org.eclipse.cdt.debug.core.condition" value=""/>
-<attrib name="org.eclipse.debug.core.id" value="org.eclipse.cdt.debug.core"/>
-<attrib name="workingset_name" value=""/>
-<attrib name="org.eclipse.cdt.debug.core.installCount" value="1"/>
-<attrib name="type" value="org.eclipse.cdt.debug.core.cLineBreakpointMarker"/>
-<attrib name="persistant" value="true"/>
-<attrib name="org.eclipse.cdt.debug.core.breakpointType" value="0"/>
-<attrib name="workingset_id" value="org.eclipse.debug.ui.breakpointWorkingSet"/>
-<attrib name="message" value="Line breakpoint: startup_stm32f4xx.c [line: 430]"/>
-<attrib name="registered" value="true"/>
-<attrib name="path" value="/PTM"/>
-<attrib name="org.eclipse.cdt.debug.core.sourceHandle" value="E:/Projekty/PTM/PTM/cmsis_boot/startup/startup_stm32f4xx.c"/>
-<attrib name="org.eclipse.debug.core.enabled" value="true"/>
-<attrib name="org.eclipse.cdt.debug.core.ignoreCount" value="0"/>
-</marker>
-</breakpoint>
-<breakpoint enabled="true" persistant="true" registered="true">
-<resource path="/PTM" type="4"/>
-<marker lineNumber="430" type="org.eclipse.cdt.debug.core.cLineBreakpointMarker">
-<attrib name="enabled" value="true"/>
-<attrib name="org.eclipse.cdt.debug.core.condition" value=""/>
-<attrib name="org.eclipse.debug.core.id" value="org.eclipse.cdt.debug.core"/>
-<attrib name="workingset_name" value=""/>
-<attrib name="org.eclipse.cdt.debug.core.installCount" value="1"/>
+<attrib name="org.eclipse.cdt.debug.core.installCount" value="0"/>
 <attrib name="type" value="org.eclipse.cdt.debug.core.cLineBreakpointMarker"/>
 <attrib name="persistant" value="true"/>
 <attrib name="org.eclipse.cdt.debug.core.breakpointType" value="0"/>
@@ -569,7 +69,7 @@
 <attrib name="org.eclipse.cdt.debug.core.condition" value=""/>
 <attrib name="org.eclipse.debug.core.id" value="org.eclipse.cdt.debug.core"/>
 <attrib name="workingset_name" value=""/>
-<attrib name="org.eclipse.cdt.debug.core.installCount" value="1"/>
+<attrib name="org.eclipse.cdt.debug.core.installCount" value="0"/>
 <attrib name="type" value="org.eclipse.cdt.debug.core.cLineBreakpointMarker"/>
 <attrib name="persistant" value="true"/>
 <attrib name="org.eclipse.cdt.debug.core.breakpointType" value="0"/>
@@ -589,7 +89,7 @@
 <attrib name="org.eclipse.cdt.debug.core.condition" value=""/>
 <attrib name="org.eclipse.debug.core.id" value="org.eclipse.cdt.debug.core"/>
 <attrib name="workingset_name" value=""/>
-<attrib name="org.eclipse.cdt.debug.core.installCount" value="1"/>
+<attrib name="org.eclipse.cdt.debug.core.installCount" value="0"/>
 <attrib name="type" value="org.eclipse.cdt.debug.core.cLineBreakpointMarker"/>
 <attrib name="persistant" value="true"/>
 <attrib name="org.eclipse.cdt.debug.core.breakpointType" value="0"/>
@@ -609,7 +109,7 @@
 <attrib name="org.eclipse.cdt.debug.core.condition" value=""/>
 <attrib name="org.eclipse.debug.core.id" value="org.eclipse.cdt.debug.core"/>
 <attrib name="workingset_name" value=""/>
-<attrib name="org.eclipse.cdt.debug.core.installCount" value="1"/>
+<attrib name="org.eclipse.cdt.debug.core.installCount" value="0"/>
 <attrib name="type" value="org.eclipse.cdt.debug.core.cLineBreakpointMarker"/>
 <attrib name="persistant" value="true"/>
 <attrib name="org.eclipse.cdt.debug.core.breakpointType" value="0"/>
@@ -629,7 +129,7 @@
 <attrib name="org.eclipse.cdt.debug.core.condition" value=""/>
 <attrib name="org.eclipse.debug.core.id" value="org.eclipse.cdt.debug.core"/>
 <attrib name="workingset_name" value=""/>
-<attrib name="org.eclipse.cdt.debug.core.installCount" value="1"/>
+<attrib name="org.eclipse.cdt.debug.core.installCount" value="0"/>
 <attrib name="type" value="org.eclipse.cdt.debug.core.cLineBreakpointMarker"/>
 <attrib name="persistant" value="true"/>
 <attrib name="org.eclipse.cdt.debug.core.breakpointType" value="0"/>
@@ -649,7 +149,7 @@
 <attrib name="org.eclipse.cdt.debug.core.condition" value=""/>
 <attrib name="org.eclipse.debug.core.id" value="org.eclipse.cdt.debug.core"/>
 <attrib name="workingset_name" value=""/>
-<attrib name="org.eclipse.cdt.debug.core.installCount" value="1"/>
+<attrib name="org.eclipse.cdt.debug.core.installCount" value="0"/>
 <attrib name="type" value="org.eclipse.cdt.debug.core.cLineBreakpointMarker"/>
 <attrib name="persistant" value="true"/>
 <attrib name="org.eclipse.cdt.debug.core.breakpointType" value="0"/>
@@ -669,7 +169,7 @@
 <attrib name="org.eclipse.cdt.debug.core.condition" value=""/>
 <attrib name="org.eclipse.debug.core.id" value="org.eclipse.cdt.debug.core"/>
 <attrib name="workingset_name" value=""/>
-<attrib name="org.eclipse.cdt.debug.core.installCount" value="1"/>
+<attrib name="org.eclipse.cdt.debug.core.installCount" value="0"/>
 <attrib name="type" value="org.eclipse.cdt.debug.core.cLineBreakpointMarker"/>
 <attrib name="persistant" value="true"/>
 <attrib name="org.eclipse.cdt.debug.core.breakpointType" value="0"/>
@@ -689,7 +189,7 @@
 <attrib name="org.eclipse.cdt.debug.core.condition" value=""/>
 <attrib name="org.eclipse.debug.core.id" value="org.eclipse.cdt.debug.core"/>
 <attrib name="workingset_name" value=""/>
-<attrib name="org.eclipse.cdt.debug.core.installCount" value="1"/>
+<attrib name="org.eclipse.cdt.debug.core.installCount" value="0"/>
 <attrib name="type" value="org.eclipse.cdt.debug.core.cLineBreakpointMarker"/>
 <attrib name="persistant" value="true"/>
 <attrib name="org.eclipse.cdt.debug.core.breakpointType" value="0"/>
@@ -709,167 +209,7 @@
 <attrib name="org.eclipse.cdt.debug.core.condition" value=""/>
 <attrib name="org.eclipse.debug.core.id" value="org.eclipse.cdt.debug.core"/>
 <attrib name="workingset_name" value=""/>
-<attrib name="org.eclipse.cdt.debug.core.installCount" value="1"/>
-<attrib name="type" value="org.eclipse.cdt.debug.core.cLineBreakpointMarker"/>
-<attrib name="persistant" value="true"/>
-<attrib name="org.eclipse.cdt.debug.core.breakpointType" value="0"/>
-<attrib name="workingset_id" value="org.eclipse.debug.ui.breakpointWorkingSet"/>
-<attrib name="message" value="Line breakpoint: startup_stm32f4xx.c [line: 430]"/>
-<attrib name="registered" value="true"/>
-<attrib name="path" value="/PTM"/>
-<attrib name="org.eclipse.cdt.debug.core.sourceHandle" value="E:/Projekty/PTM/PTM/cmsis_boot/startup/startup_stm32f4xx.c"/>
-<attrib name="org.eclipse.debug.core.enabled" value="true"/>
-<attrib name="org.eclipse.cdt.debug.core.ignoreCount" value="0"/>
-</marker>
-</breakpoint>
-<breakpoint enabled="true" persistant="true" registered="true">
-<resource path="/PTM" type="4"/>
-<marker lineNumber="430" type="org.eclipse.cdt.debug.core.cLineBreakpointMarker">
-<attrib name="enabled" value="true"/>
-<attrib name="org.eclipse.cdt.debug.core.condition" value=""/>
-<attrib name="org.eclipse.debug.core.id" value="org.eclipse.cdt.debug.core"/>
-<attrib name="workingset_name" value=""/>
-<attrib name="org.eclipse.cdt.debug.core.installCount" value="1"/>
-<attrib name="type" value="org.eclipse.cdt.debug.core.cLineBreakpointMarker"/>
-<attrib name="persistant" value="true"/>
-<attrib name="org.eclipse.cdt.debug.core.breakpointType" value="0"/>
-<attrib name="workingset_id" value="org.eclipse.debug.ui.breakpointWorkingSet"/>
-<attrib name="message" value="Line breakpoint: startup_stm32f4xx.c [line: 430]"/>
-<attrib name="registered" value="true"/>
-<attrib name="path" value="/PTM"/>
-<attrib name="org.eclipse.cdt.debug.core.sourceHandle" value="E:/Projekty/PTM/PTM/cmsis_boot/startup/startup_stm32f4xx.c"/>
-<attrib name="org.eclipse.debug.core.enabled" value="true"/>
-<attrib name="org.eclipse.cdt.debug.core.ignoreCount" value="0"/>
-</marker>
-</breakpoint>
-<breakpoint enabled="true" persistant="true" registered="true">
-<resource path="/PTM" type="4"/>
-<marker lineNumber="430" type="org.eclipse.cdt.debug.core.cLineBreakpointMarker">
-<attrib name="enabled" value="true"/>
-<attrib name="org.eclipse.cdt.debug.core.condition" value=""/>
-<attrib name="org.eclipse.debug.core.id" value="org.eclipse.cdt.debug.core"/>
-<attrib name="workingset_name" value=""/>
-<attrib name="org.eclipse.cdt.debug.core.installCount" value="1"/>
-<attrib name="type" value="org.eclipse.cdt.debug.core.cLineBreakpointMarker"/>
-<attrib name="persistant" value="true"/>
-<attrib name="org.eclipse.cdt.debug.core.breakpointType" value="0"/>
-<attrib name="workingset_id" value="org.eclipse.debug.ui.breakpointWorkingSet"/>
-<attrib name="message" value="Line breakpoint: startup_stm32f4xx.c [line: 430]"/>
-<attrib name="registered" value="true"/>
-<attrib name="path" value="/PTM"/>
-<attrib name="org.eclipse.cdt.debug.core.sourceHandle" value="E:/Projekty/PTM/PTM/cmsis_boot/startup/startup_stm32f4xx.c"/>
-<attrib name="org.eclipse.debug.core.enabled" value="true"/>
-<attrib name="org.eclipse.cdt.debug.core.ignoreCount" value="0"/>
-</marker>
-</breakpoint>
-<breakpoint enabled="true" persistant="true" registered="true">
-<resource path="/PTM" type="4"/>
-<marker lineNumber="430" type="org.eclipse.cdt.debug.core.cLineBreakpointMarker">
-<attrib name="enabled" value="true"/>
-<attrib name="org.eclipse.cdt.debug.core.condition" value=""/>
-<attrib name="org.eclipse.debug.core.id" value="org.eclipse.cdt.debug.core"/>
-<attrib name="workingset_name" value=""/>
-<attrib name="org.eclipse.cdt.debug.core.installCount" value="1"/>
-<attrib name="type" value="org.eclipse.cdt.debug.core.cLineBreakpointMarker"/>
-<attrib name="persistant" value="true"/>
-<attrib name="org.eclipse.cdt.debug.core.breakpointType" value="0"/>
-<attrib name="workingset_id" value="org.eclipse.debug.ui.breakpointWorkingSet"/>
-<attrib name="message" value="Line breakpoint: startup_stm32f4xx.c [line: 430]"/>
-<attrib name="registered" value="true"/>
-<attrib name="path" value="/PTM"/>
-<attrib name="org.eclipse.cdt.debug.core.sourceHandle" value="E:/Projekty/PTM/PTM/cmsis_boot/startup/startup_stm32f4xx.c"/>
-<attrib name="org.eclipse.debug.core.enabled" value="true"/>
-<attrib name="org.eclipse.cdt.debug.core.ignoreCount" value="0"/>
-</marker>
-</breakpoint>
-<breakpoint enabled="true" persistant="true" registered="true">
-<resource path="/PTM" type="4"/>
-<marker lineNumber="430" type="org.eclipse.cdt.debug.core.cLineBreakpointMarker">
-<attrib name="enabled" value="true"/>
-<attrib name="org.eclipse.cdt.debug.core.condition" value=""/>
-<attrib name="org.eclipse.debug.core.id" value="org.eclipse.cdt.debug.core"/>
-<attrib name="workingset_name" value=""/>
-<attrib name="org.eclipse.cdt.debug.core.installCount" value="1"/>
-<attrib name="type" value="org.eclipse.cdt.debug.core.cLineBreakpointMarker"/>
-<attrib name="persistant" value="true"/>
-<attrib name="org.eclipse.cdt.debug.core.breakpointType" value="0"/>
-<attrib name="workingset_id" value="org.eclipse.debug.ui.breakpointWorkingSet"/>
-<attrib name="message" value="Line breakpoint: startup_stm32f4xx.c [line: 430]"/>
-<attrib name="registered" value="true"/>
-<attrib name="path" value="/PTM"/>
-<attrib name="org.eclipse.cdt.debug.core.sourceHandle" value="E:/Projekty/PTM/PTM/cmsis_boot/startup/startup_stm32f4xx.c"/>
-<attrib name="org.eclipse.debug.core.enabled" value="true"/>
-<attrib name="org.eclipse.cdt.debug.core.ignoreCount" value="0"/>
-</marker>
-</breakpoint>
-<breakpoint enabled="true" persistant="true" registered="true">
-<resource path="/PTM" type="4"/>
-<marker lineNumber="430" type="org.eclipse.cdt.debug.core.cLineBreakpointMarker">
-<attrib name="enabled" value="true"/>
-<attrib name="org.eclipse.cdt.debug.core.condition" value=""/>
-<attrib name="org.eclipse.debug.core.id" value="org.eclipse.cdt.debug.core"/>
-<attrib name="workingset_name" value=""/>
-<attrib name="org.eclipse.cdt.debug.core.installCount" value="1"/>
-<attrib name="type" value="org.eclipse.cdt.debug.core.cLineBreakpointMarker"/>
-<attrib name="persistant" value="true"/>
-<attrib name="org.eclipse.cdt.debug.core.breakpointType" value="0"/>
-<attrib name="workingset_id" value="org.eclipse.debug.ui.breakpointWorkingSet"/>
-<attrib name="message" value="Line breakpoint: startup_stm32f4xx.c [line: 430]"/>
-<attrib name="registered" value="true"/>
-<attrib name="path" value="/PTM"/>
-<attrib name="org.eclipse.cdt.debug.core.sourceHandle" value="E:/Projekty/PTM/PTM/cmsis_boot/startup/startup_stm32f4xx.c"/>
-<attrib name="org.eclipse.debug.core.enabled" value="true"/>
-<attrib name="org.eclipse.cdt.debug.core.ignoreCount" value="0"/>
-</marker>
-</breakpoint>
-<breakpoint enabled="true" persistant="true" registered="true">
-<resource path="/PTM" type="4"/>
-<marker lineNumber="430" type="org.eclipse.cdt.debug.core.cLineBreakpointMarker">
-<attrib name="enabled" value="true"/>
-<attrib name="org.eclipse.cdt.debug.core.condition" value=""/>
-<attrib name="org.eclipse.debug.core.id" value="org.eclipse.cdt.debug.core"/>
-<attrib name="workingset_name" value=""/>
-<attrib name="org.eclipse.cdt.debug.core.installCount" value="1"/>
-<attrib name="type" value="org.eclipse.cdt.debug.core.cLineBreakpointMarker"/>
-<attrib name="persistant" value="true"/>
-<attrib name="org.eclipse.cdt.debug.core.breakpointType" value="0"/>
-<attrib name="workingset_id" value="org.eclipse.debug.ui.breakpointWorkingSet"/>
-<attrib name="message" value="Line breakpoint: startup_stm32f4xx.c [line: 430]"/>
-<attrib name="registered" value="true"/>
-<attrib name="path" value="/PTM"/>
-<attrib name="org.eclipse.cdt.debug.core.sourceHandle" value="E:/Projekty/PTM/PTM/cmsis_boot/startup/startup_stm32f4xx.c"/>
-<attrib name="org.eclipse.debug.core.enabled" value="true"/>
-<attrib name="org.eclipse.cdt.debug.core.ignoreCount" value="0"/>
-</marker>
-</breakpoint>
-<breakpoint enabled="true" persistant="true" registered="true">
-<resource path="/PTM" type="4"/>
-<marker lineNumber="430" type="org.eclipse.cdt.debug.core.cLineBreakpointMarker">
-<attrib name="enabled" value="true"/>
-<attrib name="org.eclipse.cdt.debug.core.condition" value=""/>
-<attrib name="org.eclipse.debug.core.id" value="org.eclipse.cdt.debug.core"/>
-<attrib name="workingset_name" value=""/>
-<attrib name="org.eclipse.cdt.debug.core.installCount" value="1"/>
-<attrib name="type" value="org.eclipse.cdt.debug.core.cLineBreakpointMarker"/>
-<attrib name="persistant" value="true"/>
-<attrib name="org.eclipse.cdt.debug.core.breakpointType" value="0"/>
-<attrib name="workingset_id" value="org.eclipse.debug.ui.breakpointWorkingSet"/>
-<attrib name="message" value="Line breakpoint: startup_stm32f4xx.c [line: 430]"/>
-<attrib name="registered" value="true"/>
-<attrib name="path" value="/PTM"/>
-<attrib name="org.eclipse.cdt.debug.core.sourceHandle" value="E:/Projekty/PTM/PTM/cmsis_boot/startup/startup_stm32f4xx.c"/>
-<attrib name="org.eclipse.debug.core.enabled" value="true"/>
-<attrib name="org.eclipse.cdt.debug.core.ignoreCount" value="0"/>
-</marker>
-</breakpoint>
-<breakpoint enabled="true" persistant="true" registered="true">
-<resource path="/PTM" type="4"/>
-<marker lineNumber="430" type="org.eclipse.cdt.debug.core.cLineBreakpointMarker">
-<attrib name="enabled" value="true"/>
-<attrib name="org.eclipse.cdt.debug.core.condition" value=""/>
-<attrib name="org.eclipse.debug.core.id" value="org.eclipse.cdt.debug.core"/>
-<attrib name="workingset_name" value=""/>
-<attrib name="org.eclipse.cdt.debug.core.installCount" value="1"/>
+<attrib name="org.eclipse.cdt.debug.core.installCount" value="0"/>
 <attrib name="type" value="org.eclipse.cdt.debug.core.cLineBreakpointMarker"/>
 <attrib name="persistant" value="true"/>
 <attrib name="org.eclipse.cdt.debug.core.breakpointType" value="0"/>
@@ -889,7 +229,7 @@
 <attrib name="org.eclipse.cdt.debug.core.condition" value=""/>
 <attrib name="org.eclipse.debug.core.id" value="org.eclipse.cdt.debug.core"/>
 <attrib name="workingset_name" value=""/>
-<attrib name="org.eclipse.cdt.debug.core.installCount" value="1"/>
+<attrib name="org.eclipse.cdt.debug.core.installCount" value="0"/>
 <attrib name="type" value="org.eclipse.cdt.debug.core.cLineBreakpointMarker"/>
 <attrib name="persistant" value="true"/>
 <attrib name="org.eclipse.cdt.debug.core.breakpointType" value="0"/>
@@ -909,7 +249,7 @@
 <attrib name="org.eclipse.cdt.debug.core.condition" value=""/>
 <attrib name="org.eclipse.debug.core.id" value="org.eclipse.cdt.debug.core"/>
 <attrib name="workingset_name" value=""/>
-<attrib name="org.eclipse.cdt.debug.core.installCount" value="1"/>
+<attrib name="org.eclipse.cdt.debug.core.installCount" value="0"/>
 <attrib name="type" value="org.eclipse.cdt.debug.core.cLineBreakpointMarker"/>
 <attrib name="persistant" value="true"/>
 <attrib name="org.eclipse.cdt.debug.core.breakpointType" value="0"/>
@@ -929,7 +269,7 @@
 <attrib name="org.eclipse.cdt.debug.core.condition" value=""/>
 <attrib name="org.eclipse.debug.core.id" value="org.eclipse.cdt.debug.core"/>
 <attrib name="workingset_name" value=""/>
-<attrib name="org.eclipse.cdt.debug.core.installCount" value="1"/>
+<attrib name="org.eclipse.cdt.debug.core.installCount" value="0"/>
 <attrib name="type" value="org.eclipse.cdt.debug.core.cLineBreakpointMarker"/>
 <attrib name="persistant" value="true"/>
 <attrib name="org.eclipse.cdt.debug.core.breakpointType" value="0"/>
@@ -949,7 +289,7 @@
 <attrib name="org.eclipse.cdt.debug.core.condition" value=""/>
 <attrib name="org.eclipse.debug.core.id" value="org.eclipse.cdt.debug.core"/>
 <attrib name="workingset_name" value=""/>
-<attrib name="org.eclipse.cdt.debug.core.installCount" value="1"/>
+<attrib name="org.eclipse.cdt.debug.core.installCount" value="0"/>
 <attrib name="type" value="org.eclipse.cdt.debug.core.cLineBreakpointMarker"/>
 <attrib name="persistant" value="true"/>
 <attrib name="org.eclipse.cdt.debug.core.breakpointType" value="0"/>
@@ -969,7 +309,7 @@
 <attrib name="org.eclipse.cdt.debug.core.condition" value=""/>
 <attrib name="org.eclipse.debug.core.id" value="org.eclipse.cdt.debug.core"/>
 <attrib name="workingset_name" value=""/>
-<attrib name="org.eclipse.cdt.debug.core.installCount" value="1"/>
+<attrib name="org.eclipse.cdt.debug.core.installCount" value="0"/>
 <attrib name="type" value="org.eclipse.cdt.debug.core.cLineBreakpointMarker"/>
 <attrib name="persistant" value="true"/>
 <attrib name="org.eclipse.cdt.debug.core.breakpointType" value="0"/>
@@ -989,7 +329,7 @@
 <attrib name="org.eclipse.cdt.debug.core.condition" value=""/>
 <attrib name="org.eclipse.debug.core.id" value="org.eclipse.cdt.debug.core"/>
 <attrib name="workingset_name" value=""/>
-<attrib name="org.eclipse.cdt.debug.core.installCount" value="1"/>
+<attrib name="org.eclipse.cdt.debug.core.installCount" value="0"/>
 <attrib name="type" value="org.eclipse.cdt.debug.core.cLineBreakpointMarker"/>
 <attrib name="persistant" value="true"/>
 <attrib name="org.eclipse.cdt.debug.core.breakpointType" value="0"/>
@@ -1009,7 +349,7 @@
 <attrib name="org.eclipse.cdt.debug.core.condition" value=""/>
 <attrib name="org.eclipse.debug.core.id" value="org.eclipse.cdt.debug.core"/>
 <attrib name="workingset_name" value=""/>
-<attrib name="org.eclipse.cdt.debug.core.installCount" value="1"/>
+<attrib name="org.eclipse.cdt.debug.core.installCount" value="0"/>
 <attrib name="type" value="org.eclipse.cdt.debug.core.cLineBreakpointMarker"/>
 <attrib name="persistant" value="true"/>
 <attrib name="org.eclipse.cdt.debug.core.breakpointType" value="0"/>
@@ -1020,6 +360,666 @@
 <attrib name="org.eclipse.cdt.debug.core.sourceHandle" value="E:/Projekty/PTM/PTM/cmsis_boot/startup/startup_stm32f4xx.c"/>
 <attrib name="org.eclipse.cdt.debug.core.ignoreCount" value="0"/>
 <attrib name="org.eclipse.debug.core.enabled" value="true"/>
+</marker>
+</breakpoint>
+<breakpoint enabled="true" persistant="true" registered="true">
+<resource path="/PTM" type="4"/>
+<marker lineNumber="430" type="org.eclipse.cdt.debug.core.cLineBreakpointMarker">
+<attrib name="enabled" value="true"/>
+<attrib name="org.eclipse.cdt.debug.core.condition" value=""/>
+<attrib name="org.eclipse.debug.core.id" value="org.eclipse.cdt.debug.core"/>
+<attrib name="workingset_name" value=""/>
+<attrib name="org.eclipse.cdt.debug.core.installCount" value="0"/>
+<attrib name="type" value="org.eclipse.cdt.debug.core.cLineBreakpointMarker"/>
+<attrib name="persistant" value="true"/>
+<attrib name="org.eclipse.cdt.debug.core.breakpointType" value="0"/>
+<attrib name="workingset_id" value="org.eclipse.debug.ui.breakpointWorkingSet"/>
+<attrib name="message" value="Line breakpoint: startup_stm32f4xx.c [line: 430]"/>
+<attrib name="registered" value="true"/>
+<attrib name="path" value="/PTM"/>
+<attrib name="org.eclipse.cdt.debug.core.sourceHandle" value="E:/Projekty/PTM/PTM/cmsis_boot/startup/startup_stm32f4xx.c"/>
+<attrib name="org.eclipse.cdt.debug.core.ignoreCount" value="0"/>
+<attrib name="org.eclipse.debug.core.enabled" value="true"/>
+</marker>
+</breakpoint>
+<breakpoint enabled="true" persistant="true" registered="true">
+<resource path="/PTM" type="4"/>
+<marker lineNumber="430" type="org.eclipse.cdt.debug.core.cLineBreakpointMarker">
+<attrib name="enabled" value="true"/>
+<attrib name="org.eclipse.cdt.debug.core.condition" value=""/>
+<attrib name="org.eclipse.debug.core.id" value="org.eclipse.cdt.debug.core"/>
+<attrib name="workingset_name" value=""/>
+<attrib name="org.eclipse.cdt.debug.core.installCount" value="0"/>
+<attrib name="type" value="org.eclipse.cdt.debug.core.cLineBreakpointMarker"/>
+<attrib name="persistant" value="true"/>
+<attrib name="org.eclipse.cdt.debug.core.breakpointType" value="0"/>
+<attrib name="workingset_id" value="org.eclipse.debug.ui.breakpointWorkingSet"/>
+<attrib name="message" value="Line breakpoint: startup_stm32f4xx.c [line: 430]"/>
+<attrib name="registered" value="true"/>
+<attrib name="path" value="/PTM"/>
+<attrib name="org.eclipse.cdt.debug.core.sourceHandle" value="E:/Projekty/PTM/PTM/cmsis_boot/startup/startup_stm32f4xx.c"/>
+<attrib name="org.eclipse.cdt.debug.core.ignoreCount" value="0"/>
+<attrib name="org.eclipse.debug.core.enabled" value="true"/>
+</marker>
+</breakpoint>
+<breakpoint enabled="true" persistant="true" registered="true">
+<resource path="/PTM" type="4"/>
+<marker lineNumber="430" type="org.eclipse.cdt.debug.core.cLineBreakpointMarker">
+<attrib name="enabled" value="true"/>
+<attrib name="org.eclipse.cdt.debug.core.condition" value=""/>
+<attrib name="org.eclipse.debug.core.id" value="org.eclipse.cdt.debug.core"/>
+<attrib name="workingset_name" value=""/>
+<attrib name="org.eclipse.cdt.debug.core.installCount" value="0"/>
+<attrib name="type" value="org.eclipse.cdt.debug.core.cLineBreakpointMarker"/>
+<attrib name="persistant" value="true"/>
+<attrib name="org.eclipse.cdt.debug.core.breakpointType" value="0"/>
+<attrib name="workingset_id" value="org.eclipse.debug.ui.breakpointWorkingSet"/>
+<attrib name="message" value="Line breakpoint: startup_stm32f4xx.c [line: 430]"/>
+<attrib name="registered" value="true"/>
+<attrib name="path" value="/PTM"/>
+<attrib name="org.eclipse.cdt.debug.core.sourceHandle" value="E:/Projekty/PTM/PTM/cmsis_boot/startup/startup_stm32f4xx.c"/>
+<attrib name="org.eclipse.cdt.debug.core.ignoreCount" value="0"/>
+<attrib name="org.eclipse.debug.core.enabled" value="true"/>
+</marker>
+</breakpoint>
+<breakpoint enabled="true" persistant="true" registered="true">
+<resource path="/PTM" type="4"/>
+<marker lineNumber="430" type="org.eclipse.cdt.debug.core.cLineBreakpointMarker">
+<attrib name="enabled" value="true"/>
+<attrib name="org.eclipse.cdt.debug.core.condition" value=""/>
+<attrib name="org.eclipse.debug.core.id" value="org.eclipse.cdt.debug.core"/>
+<attrib name="workingset_name" value=""/>
+<attrib name="org.eclipse.cdt.debug.core.installCount" value="0"/>
+<attrib name="type" value="org.eclipse.cdt.debug.core.cLineBreakpointMarker"/>
+<attrib name="persistant" value="true"/>
+<attrib name="org.eclipse.cdt.debug.core.breakpointType" value="0"/>
+<attrib name="workingset_id" value="org.eclipse.debug.ui.breakpointWorkingSet"/>
+<attrib name="message" value="Line breakpoint: startup_stm32f4xx.c [line: 430]"/>
+<attrib name="registered" value="true"/>
+<attrib name="path" value="/PTM"/>
+<attrib name="org.eclipse.cdt.debug.core.sourceHandle" value="E:/Projekty/PTM/PTM/cmsis_boot/startup/startup_stm32f4xx.c"/>
+<attrib name="org.eclipse.cdt.debug.core.ignoreCount" value="0"/>
+<attrib name="org.eclipse.debug.core.enabled" value="true"/>
+</marker>
+</breakpoint>
+<breakpoint enabled="true" persistant="true" registered="true">
+<resource path="/PTM" type="4"/>
+<marker lineNumber="430" type="org.eclipse.cdt.debug.core.cLineBreakpointMarker">
+<attrib name="enabled" value="true"/>
+<attrib name="org.eclipse.cdt.debug.core.condition" value=""/>
+<attrib name="org.eclipse.debug.core.id" value="org.eclipse.cdt.debug.core"/>
+<attrib name="workingset_name" value=""/>
+<attrib name="org.eclipse.cdt.debug.core.installCount" value="0"/>
+<attrib name="type" value="org.eclipse.cdt.debug.core.cLineBreakpointMarker"/>
+<attrib name="persistant" value="true"/>
+<attrib name="org.eclipse.cdt.debug.core.breakpointType" value="0"/>
+<attrib name="workingset_id" value="org.eclipse.debug.ui.breakpointWorkingSet"/>
+<attrib name="message" value="Line breakpoint: startup_stm32f4xx.c [line: 430]"/>
+<attrib name="registered" value="true"/>
+<attrib name="path" value="/PTM"/>
+<attrib name="org.eclipse.cdt.debug.core.sourceHandle" value="E:/Projekty/PTM/PTM/cmsis_boot/startup/startup_stm32f4xx.c"/>
+<attrib name="org.eclipse.cdt.debug.core.ignoreCount" value="0"/>
+<attrib name="org.eclipse.debug.core.enabled" value="true"/>
+</marker>
+</breakpoint>
+<breakpoint enabled="true" persistant="true" registered="true">
+<resource path="/PTM" type="4"/>
+<marker lineNumber="430" type="org.eclipse.cdt.debug.core.cLineBreakpointMarker">
+<attrib name="enabled" value="true"/>
+<attrib name="org.eclipse.cdt.debug.core.condition" value=""/>
+<attrib name="org.eclipse.debug.core.id" value="org.eclipse.cdt.debug.core"/>
+<attrib name="workingset_name" value=""/>
+<attrib name="org.eclipse.cdt.debug.core.installCount" value="0"/>
+<attrib name="type" value="org.eclipse.cdt.debug.core.cLineBreakpointMarker"/>
+<attrib name="persistant" value="true"/>
+<attrib name="org.eclipse.cdt.debug.core.breakpointType" value="0"/>
+<attrib name="workingset_id" value="org.eclipse.debug.ui.breakpointWorkingSet"/>
+<attrib name="message" value="Line breakpoint: startup_stm32f4xx.c [line: 430]"/>
+<attrib name="registered" value="true"/>
+<attrib name="path" value="/PTM"/>
+<attrib name="org.eclipse.cdt.debug.core.sourceHandle" value="E:/Projekty/PTM/PTM/cmsis_boot/startup/startup_stm32f4xx.c"/>
+<attrib name="org.eclipse.cdt.debug.core.ignoreCount" value="0"/>
+<attrib name="org.eclipse.debug.core.enabled" value="true"/>
+</marker>
+</breakpoint>
+<breakpoint enabled="true" persistant="true" registered="true">
+<resource path="/PTM" type="4"/>
+<marker lineNumber="430" type="org.eclipse.cdt.debug.core.cLineBreakpointMarker">
+<attrib name="enabled" value="true"/>
+<attrib name="org.eclipse.cdt.debug.core.condition" value=""/>
+<attrib name="org.eclipse.debug.core.id" value="org.eclipse.cdt.debug.core"/>
+<attrib name="workingset_name" value=""/>
+<attrib name="org.eclipse.cdt.debug.core.installCount" value="0"/>
+<attrib name="type" value="org.eclipse.cdt.debug.core.cLineBreakpointMarker"/>
+<attrib name="persistant" value="true"/>
+<attrib name="org.eclipse.cdt.debug.core.breakpointType" value="0"/>
+<attrib name="workingset_id" value="org.eclipse.debug.ui.breakpointWorkingSet"/>
+<attrib name="message" value="Line breakpoint: startup_stm32f4xx.c [line: 430]"/>
+<attrib name="registered" value="true"/>
+<attrib name="path" value="/PTM"/>
+<attrib name="org.eclipse.cdt.debug.core.sourceHandle" value="E:/Projekty/PTM/PTM/cmsis_boot/startup/startup_stm32f4xx.c"/>
+<attrib name="org.eclipse.cdt.debug.core.ignoreCount" value="0"/>
+<attrib name="org.eclipse.debug.core.enabled" value="true"/>
+</marker>
+</breakpoint>
+<breakpoint enabled="true" persistant="true" registered="true">
+<resource path="/PTM" type="4"/>
+<marker lineNumber="430" type="org.eclipse.cdt.debug.core.cLineBreakpointMarker">
+<attrib name="enabled" value="true"/>
+<attrib name="org.eclipse.cdt.debug.core.condition" value=""/>
+<attrib name="org.eclipse.debug.core.id" value="org.eclipse.cdt.debug.core"/>
+<attrib name="workingset_name" value=""/>
+<attrib name="org.eclipse.cdt.debug.core.installCount" value="0"/>
+<attrib name="type" value="org.eclipse.cdt.debug.core.cLineBreakpointMarker"/>
+<attrib name="persistant" value="true"/>
+<attrib name="org.eclipse.cdt.debug.core.breakpointType" value="0"/>
+<attrib name="workingset_id" value="org.eclipse.debug.ui.breakpointWorkingSet"/>
+<attrib name="message" value="Line breakpoint: startup_stm32f4xx.c [line: 430]"/>
+<attrib name="registered" value="true"/>
+<attrib name="path" value="/PTM"/>
+<attrib name="org.eclipse.cdt.debug.core.sourceHandle" value="E:/Projekty/PTM/PTM/cmsis_boot/startup/startup_stm32f4xx.c"/>
+<attrib name="org.eclipse.cdt.debug.core.ignoreCount" value="0"/>
+<attrib name="org.eclipse.debug.core.enabled" value="true"/>
+</marker>
+</breakpoint>
+<breakpoint enabled="true" persistant="true" registered="true">
+<resource path="/PTM" type="4"/>
+<marker lineNumber="430" type="org.eclipse.cdt.debug.core.cLineBreakpointMarker">
+<attrib name="enabled" value="true"/>
+<attrib name="org.eclipse.cdt.debug.core.condition" value=""/>
+<attrib name="org.eclipse.debug.core.id" value="org.eclipse.cdt.debug.core"/>
+<attrib name="workingset_name" value=""/>
+<attrib name="org.eclipse.cdt.debug.core.installCount" value="0"/>
+<attrib name="type" value="org.eclipse.cdt.debug.core.cLineBreakpointMarker"/>
+<attrib name="persistant" value="true"/>
+<attrib name="org.eclipse.cdt.debug.core.breakpointType" value="0"/>
+<attrib name="workingset_id" value="org.eclipse.debug.ui.breakpointWorkingSet"/>
+<attrib name="message" value="Line breakpoint: startup_stm32f4xx.c [line: 430]"/>
+<attrib name="registered" value="true"/>
+<attrib name="path" value="/PTM"/>
+<attrib name="org.eclipse.cdt.debug.core.sourceHandle" value="E:/Projekty/PTM/PTM/cmsis_boot/startup/startup_stm32f4xx.c"/>
+<attrib name="org.eclipse.cdt.debug.core.ignoreCount" value="0"/>
+<attrib name="org.eclipse.debug.core.enabled" value="true"/>
+</marker>
+</breakpoint>
+<breakpoint enabled="true" persistant="true" registered="true">
+<resource path="/PTM" type="4"/>
+<marker lineNumber="430" type="org.eclipse.cdt.debug.core.cLineBreakpointMarker">
+<attrib name="enabled" value="true"/>
+<attrib name="org.eclipse.cdt.debug.core.condition" value=""/>
+<attrib name="org.eclipse.debug.core.id" value="org.eclipse.cdt.debug.core"/>
+<attrib name="workingset_name" value=""/>
+<attrib name="org.eclipse.cdt.debug.core.installCount" value="0"/>
+<attrib name="type" value="org.eclipse.cdt.debug.core.cLineBreakpointMarker"/>
+<attrib name="persistant" value="true"/>
+<attrib name="org.eclipse.cdt.debug.core.breakpointType" value="0"/>
+<attrib name="workingset_id" value="org.eclipse.debug.ui.breakpointWorkingSet"/>
+<attrib name="message" value="Line breakpoint: startup_stm32f4xx.c [line: 430]"/>
+<attrib name="registered" value="true"/>
+<attrib name="path" value="/PTM"/>
+<attrib name="org.eclipse.cdt.debug.core.sourceHandle" value="E:/Projekty/PTM/PTM/cmsis_boot/startup/startup_stm32f4xx.c"/>
+<attrib name="org.eclipse.debug.core.enabled" value="true"/>
+<attrib name="org.eclipse.cdt.debug.core.ignoreCount" value="0"/>
+</marker>
+</breakpoint>
+<breakpoint enabled="true" persistant="true" registered="true">
+<resource path="/PTM" type="4"/>
+<marker lineNumber="430" type="org.eclipse.cdt.debug.core.cLineBreakpointMarker">
+<attrib name="enabled" value="true"/>
+<attrib name="org.eclipse.cdt.debug.core.condition" value=""/>
+<attrib name="org.eclipse.debug.core.id" value="org.eclipse.cdt.debug.core"/>
+<attrib name="workingset_name" value=""/>
+<attrib name="org.eclipse.cdt.debug.core.installCount" value="0"/>
+<attrib name="type" value="org.eclipse.cdt.debug.core.cLineBreakpointMarker"/>
+<attrib name="persistant" value="true"/>
+<attrib name="org.eclipse.cdt.debug.core.breakpointType" value="0"/>
+<attrib name="workingset_id" value="org.eclipse.debug.ui.breakpointWorkingSet"/>
+<attrib name="message" value="Line breakpoint: startup_stm32f4xx.c [line: 430]"/>
+<attrib name="registered" value="true"/>
+<attrib name="path" value="/PTM"/>
+<attrib name="org.eclipse.cdt.debug.core.sourceHandle" value="E:/Projekty/PTM/PTM/cmsis_boot/startup/startup_stm32f4xx.c"/>
+<attrib name="org.eclipse.debug.core.enabled" value="true"/>
+<attrib name="org.eclipse.cdt.debug.core.ignoreCount" value="0"/>
+</marker>
+</breakpoint>
+<breakpoint enabled="true" persistant="true" registered="true">
+<resource path="/PTM" type="4"/>
+<marker lineNumber="430" type="org.eclipse.cdt.debug.core.cLineBreakpointMarker">
+<attrib name="enabled" value="true"/>
+<attrib name="org.eclipse.cdt.debug.core.condition" value=""/>
+<attrib name="org.eclipse.debug.core.id" value="org.eclipse.cdt.debug.core"/>
+<attrib name="workingset_name" value=""/>
+<attrib name="org.eclipse.cdt.debug.core.installCount" value="0"/>
+<attrib name="type" value="org.eclipse.cdt.debug.core.cLineBreakpointMarker"/>
+<attrib name="persistant" value="true"/>
+<attrib name="org.eclipse.cdt.debug.core.breakpointType" value="0"/>
+<attrib name="workingset_id" value="org.eclipse.debug.ui.breakpointWorkingSet"/>
+<attrib name="message" value="Line breakpoint: startup_stm32f4xx.c [line: 430]"/>
+<attrib name="registered" value="true"/>
+<attrib name="path" value="/PTM"/>
+<attrib name="org.eclipse.cdt.debug.core.sourceHandle" value="E:/Projekty/PTM/PTM/cmsis_boot/startup/startup_stm32f4xx.c"/>
+<attrib name="org.eclipse.debug.core.enabled" value="true"/>
+<attrib name="org.eclipse.cdt.debug.core.ignoreCount" value="0"/>
+</marker>
+</breakpoint>
+<breakpoint enabled="true" persistant="true" registered="true">
+<resource path="/PTM" type="4"/>
+<marker lineNumber="430" type="org.eclipse.cdt.debug.core.cLineBreakpointMarker">
+<attrib name="enabled" value="true"/>
+<attrib name="org.eclipse.cdt.debug.core.condition" value=""/>
+<attrib name="org.eclipse.debug.core.id" value="org.eclipse.cdt.debug.core"/>
+<attrib name="workingset_name" value=""/>
+<attrib name="org.eclipse.cdt.debug.core.installCount" value="0"/>
+<attrib name="type" value="org.eclipse.cdt.debug.core.cLineBreakpointMarker"/>
+<attrib name="persistant" value="true"/>
+<attrib name="org.eclipse.cdt.debug.core.breakpointType" value="0"/>
+<attrib name="workingset_id" value="org.eclipse.debug.ui.breakpointWorkingSet"/>
+<attrib name="message" value="Line breakpoint: startup_stm32f4xx.c [line: 430]"/>
+<attrib name="registered" value="true"/>
+<attrib name="path" value="/PTM"/>
+<attrib name="org.eclipse.cdt.debug.core.sourceHandle" value="E:/Projekty/PTM/PTM/cmsis_boot/startup/startup_stm32f4xx.c"/>
+<attrib name="org.eclipse.debug.core.enabled" value="true"/>
+<attrib name="org.eclipse.cdt.debug.core.ignoreCount" value="0"/>
+</marker>
+</breakpoint>
+<breakpoint enabled="true" persistant="true" registered="true">
+<resource path="/PTM" type="4"/>
+<marker lineNumber="430" type="org.eclipse.cdt.debug.core.cLineBreakpointMarker">
+<attrib name="enabled" value="true"/>
+<attrib name="org.eclipse.cdt.debug.core.condition" value=""/>
+<attrib name="org.eclipse.debug.core.id" value="org.eclipse.cdt.debug.core"/>
+<attrib name="workingset_name" value=""/>
+<attrib name="org.eclipse.cdt.debug.core.installCount" value="0"/>
+<attrib name="type" value="org.eclipse.cdt.debug.core.cLineBreakpointMarker"/>
+<attrib name="persistant" value="true"/>
+<attrib name="org.eclipse.cdt.debug.core.breakpointType" value="0"/>
+<attrib name="workingset_id" value="org.eclipse.debug.ui.breakpointWorkingSet"/>
+<attrib name="message" value="Line breakpoint: startup_stm32f4xx.c [line: 430]"/>
+<attrib name="registered" value="true"/>
+<attrib name="path" value="/PTM"/>
+<attrib name="org.eclipse.cdt.debug.core.sourceHandle" value="E:/Projekty/PTM/PTM/cmsis_boot/startup/startup_stm32f4xx.c"/>
+<attrib name="org.eclipse.debug.core.enabled" value="true"/>
+<attrib name="org.eclipse.cdt.debug.core.ignoreCount" value="0"/>
+</marker>
+</breakpoint>
+<breakpoint enabled="true" persistant="true" registered="true">
+<resource path="/PTM" type="4"/>
+<marker lineNumber="430" type="org.eclipse.cdt.debug.core.cLineBreakpointMarker">
+<attrib name="enabled" value="true"/>
+<attrib name="org.eclipse.cdt.debug.core.condition" value=""/>
+<attrib name="org.eclipse.debug.core.id" value="org.eclipse.cdt.debug.core"/>
+<attrib name="workingset_name" value=""/>
+<attrib name="org.eclipse.cdt.debug.core.installCount" value="0"/>
+<attrib name="type" value="org.eclipse.cdt.debug.core.cLineBreakpointMarker"/>
+<attrib name="persistant" value="true"/>
+<attrib name="org.eclipse.cdt.debug.core.breakpointType" value="0"/>
+<attrib name="workingset_id" value="org.eclipse.debug.ui.breakpointWorkingSet"/>
+<attrib name="message" value="Line breakpoint: startup_stm32f4xx.c [line: 430]"/>
+<attrib name="registered" value="true"/>
+<attrib name="path" value="/PTM"/>
+<attrib name="org.eclipse.cdt.debug.core.sourceHandle" value="E:/Projekty/PTM/PTM/cmsis_boot/startup/startup_stm32f4xx.c"/>
+<attrib name="org.eclipse.debug.core.enabled" value="true"/>
+<attrib name="org.eclipse.cdt.debug.core.ignoreCount" value="0"/>
+</marker>
+</breakpoint>
+<breakpoint enabled="true" persistant="true" registered="true">
+<resource path="/PTM" type="4"/>
+<marker lineNumber="430" type="org.eclipse.cdt.debug.core.cLineBreakpointMarker">
+<attrib name="enabled" value="true"/>
+<attrib name="org.eclipse.cdt.debug.core.condition" value=""/>
+<attrib name="org.eclipse.debug.core.id" value="org.eclipse.cdt.debug.core"/>
+<attrib name="workingset_name" value=""/>
+<attrib name="org.eclipse.cdt.debug.core.installCount" value="0"/>
+<attrib name="type" value="org.eclipse.cdt.debug.core.cLineBreakpointMarker"/>
+<attrib name="persistant" value="true"/>
+<attrib name="org.eclipse.cdt.debug.core.breakpointType" value="0"/>
+<attrib name="workingset_id" value="org.eclipse.debug.ui.breakpointWorkingSet"/>
+<attrib name="message" value="Line breakpoint: startup_stm32f4xx.c [line: 430]"/>
+<attrib name="registered" value="true"/>
+<attrib name="path" value="/PTM"/>
+<attrib name="org.eclipse.cdt.debug.core.sourceHandle" value="E:/Projekty/PTM/PTM/cmsis_boot/startup/startup_stm32f4xx.c"/>
+<attrib name="org.eclipse.debug.core.enabled" value="true"/>
+<attrib name="org.eclipse.cdt.debug.core.ignoreCount" value="0"/>
+</marker>
+</breakpoint>
+<breakpoint enabled="true" persistant="true" registered="true">
+<resource path="/PTM" type="4"/>
+<marker lineNumber="430" type="org.eclipse.cdt.debug.core.cLineBreakpointMarker">
+<attrib name="enabled" value="true"/>
+<attrib name="org.eclipse.cdt.debug.core.condition" value=""/>
+<attrib name="org.eclipse.debug.core.id" value="org.eclipse.cdt.debug.core"/>
+<attrib name="workingset_name" value=""/>
+<attrib name="org.eclipse.cdt.debug.core.installCount" value="0"/>
+<attrib name="type" value="org.eclipse.cdt.debug.core.cLineBreakpointMarker"/>
+<attrib name="persistant" value="true"/>
+<attrib name="org.eclipse.cdt.debug.core.breakpointType" value="0"/>
+<attrib name="workingset_id" value="org.eclipse.debug.ui.breakpointWorkingSet"/>
+<attrib name="message" value="Line breakpoint: startup_stm32f4xx.c [line: 430]"/>
+<attrib name="registered" value="true"/>
+<attrib name="path" value="/PTM"/>
+<attrib name="org.eclipse.cdt.debug.core.sourceHandle" value="E:/Projekty/PTM/PTM/cmsis_boot/startup/startup_stm32f4xx.c"/>
+<attrib name="org.eclipse.debug.core.enabled" value="true"/>
+<attrib name="org.eclipse.cdt.debug.core.ignoreCount" value="0"/>
+</marker>
+</breakpoint>
+<breakpoint enabled="true" persistant="true" registered="true">
+<resource path="/PTM" type="4"/>
+<marker lineNumber="430" type="org.eclipse.cdt.debug.core.cLineBreakpointMarker">
+<attrib name="enabled" value="true"/>
+<attrib name="org.eclipse.cdt.debug.core.condition" value=""/>
+<attrib name="org.eclipse.debug.core.id" value="org.eclipse.cdt.debug.core"/>
+<attrib name="workingset_name" value=""/>
+<attrib name="org.eclipse.cdt.debug.core.installCount" value="0"/>
+<attrib name="type" value="org.eclipse.cdt.debug.core.cLineBreakpointMarker"/>
+<attrib name="persistant" value="true"/>
+<attrib name="org.eclipse.cdt.debug.core.breakpointType" value="0"/>
+<attrib name="workingset_id" value="org.eclipse.debug.ui.breakpointWorkingSet"/>
+<attrib name="message" value="Line breakpoint: startup_stm32f4xx.c [line: 430]"/>
+<attrib name="registered" value="true"/>
+<attrib name="path" value="/PTM"/>
+<attrib name="org.eclipse.cdt.debug.core.sourceHandle" value="E:/Projekty/PTM/PTM/cmsis_boot/startup/startup_stm32f4xx.c"/>
+<attrib name="org.eclipse.cdt.debug.core.ignoreCount" value="0"/>
+<attrib name="org.eclipse.debug.core.enabled" value="true"/>
+</marker>
+</breakpoint>
+<breakpoint enabled="true" persistant="true" registered="true">
+<resource path="/PTM" type="4"/>
+<marker lineNumber="430" type="org.eclipse.cdt.debug.core.cLineBreakpointMarker">
+<attrib name="enabled" value="true"/>
+<attrib name="org.eclipse.cdt.debug.core.condition" value=""/>
+<attrib name="org.eclipse.debug.core.id" value="org.eclipse.cdt.debug.core"/>
+<attrib name="workingset_name" value=""/>
+<attrib name="org.eclipse.cdt.debug.core.installCount" value="0"/>
+<attrib name="type" value="org.eclipse.cdt.debug.core.cLineBreakpointMarker"/>
+<attrib name="persistant" value="true"/>
+<attrib name="org.eclipse.cdt.debug.core.breakpointType" value="0"/>
+<attrib name="workingset_id" value="org.eclipse.debug.ui.breakpointWorkingSet"/>
+<attrib name="message" value="Line breakpoint: startup_stm32f4xx.c [line: 430]"/>
+<attrib name="registered" value="true"/>
+<attrib name="path" value="/PTM"/>
+<attrib name="org.eclipse.cdt.debug.core.sourceHandle" value="E:/Projekty/PTM/PTM/cmsis_boot/startup/startup_stm32f4xx.c"/>
+<attrib name="org.eclipse.cdt.debug.core.ignoreCount" value="0"/>
+<attrib name="org.eclipse.debug.core.enabled" value="true"/>
+</marker>
+</breakpoint>
+<breakpoint enabled="true" persistant="true" registered="true">
+<resource path="/PTM" type="4"/>
+<marker lineNumber="430" type="org.eclipse.cdt.debug.core.cLineBreakpointMarker">
+<attrib name="enabled" value="true"/>
+<attrib name="org.eclipse.cdt.debug.core.condition" value=""/>
+<attrib name="org.eclipse.debug.core.id" value="org.eclipse.cdt.debug.core"/>
+<attrib name="workingset_name" value=""/>
+<attrib name="org.eclipse.cdt.debug.core.installCount" value="0"/>
+<attrib name="type" value="org.eclipse.cdt.debug.core.cLineBreakpointMarker"/>
+<attrib name="persistant" value="true"/>
+<attrib name="org.eclipse.cdt.debug.core.breakpointType" value="0"/>
+<attrib name="workingset_id" value="org.eclipse.debug.ui.breakpointWorkingSet"/>
+<attrib name="message" value="Line breakpoint: startup_stm32f4xx.c [line: 430]"/>
+<attrib name="registered" value="true"/>
+<attrib name="path" value="/PTM"/>
+<attrib name="org.eclipse.cdt.debug.core.sourceHandle" value="E:/Projekty/PTM/PTM/cmsis_boot/startup/startup_stm32f4xx.c"/>
+<attrib name="org.eclipse.cdt.debug.core.ignoreCount" value="0"/>
+<attrib name="org.eclipse.debug.core.enabled" value="true"/>
+</marker>
+</breakpoint>
+<breakpoint enabled="true" persistant="true" registered="true">
+<resource path="/PTM" type="4"/>
+<marker lineNumber="430" type="org.eclipse.cdt.debug.core.cLineBreakpointMarker">
+<attrib name="enabled" value="true"/>
+<attrib name="org.eclipse.cdt.debug.core.condition" value=""/>
+<attrib name="org.eclipse.debug.core.id" value="org.eclipse.cdt.debug.core"/>
+<attrib name="workingset_name" value=""/>
+<attrib name="org.eclipse.cdt.debug.core.installCount" value="0"/>
+<attrib name="type" value="org.eclipse.cdt.debug.core.cLineBreakpointMarker"/>
+<attrib name="persistant" value="true"/>
+<attrib name="org.eclipse.cdt.debug.core.breakpointType" value="0"/>
+<attrib name="workingset_id" value="org.eclipse.debug.ui.breakpointWorkingSet"/>
+<attrib name="message" value="Line breakpoint: startup_stm32f4xx.c [line: 430]"/>
+<attrib name="registered" value="true"/>
+<attrib name="path" value="/PTM"/>
+<attrib name="org.eclipse.cdt.debug.core.sourceHandle" value="E:/Projekty/PTM/PTM/cmsis_boot/startup/startup_stm32f4xx.c"/>
+<attrib name="org.eclipse.cdt.debug.core.ignoreCount" value="0"/>
+<attrib name="org.eclipse.debug.core.enabled" value="true"/>
+</marker>
+</breakpoint>
+<breakpoint enabled="true" persistant="true" registered="true">
+<resource path="/PTM" type="4"/>
+<marker lineNumber="430" type="org.eclipse.cdt.debug.core.cLineBreakpointMarker">
+<attrib name="enabled" value="true"/>
+<attrib name="org.eclipse.cdt.debug.core.condition" value=""/>
+<attrib name="org.eclipse.debug.core.id" value="org.eclipse.cdt.debug.core"/>
+<attrib name="workingset_name" value=""/>
+<attrib name="org.eclipse.cdt.debug.core.installCount" value="0"/>
+<attrib name="type" value="org.eclipse.cdt.debug.core.cLineBreakpointMarker"/>
+<attrib name="persistant" value="true"/>
+<attrib name="org.eclipse.cdt.debug.core.breakpointType" value="0"/>
+<attrib name="workingset_id" value="org.eclipse.debug.ui.breakpointWorkingSet"/>
+<attrib name="message" value="Line breakpoint: startup_stm32f4xx.c [line: 430]"/>
+<attrib name="registered" value="true"/>
+<attrib name="path" value="/PTM"/>
+<attrib name="org.eclipse.cdt.debug.core.sourceHandle" value="E:/Projekty/PTM/PTM/cmsis_boot/startup/startup_stm32f4xx.c"/>
+<attrib name="org.eclipse.cdt.debug.core.ignoreCount" value="0"/>
+<attrib name="org.eclipse.debug.core.enabled" value="true"/>
+</marker>
+</breakpoint>
+<breakpoint enabled="true" persistant="true" registered="true">
+<resource path="/PTM" type="4"/>
+<marker lineNumber="430" type="org.eclipse.cdt.debug.core.cLineBreakpointMarker">
+<attrib name="enabled" value="true"/>
+<attrib name="org.eclipse.cdt.debug.core.condition" value=""/>
+<attrib name="org.eclipse.debug.core.id" value="org.eclipse.cdt.debug.core"/>
+<attrib name="workingset_name" value=""/>
+<attrib name="org.eclipse.cdt.debug.core.installCount" value="0"/>
+<attrib name="type" value="org.eclipse.cdt.debug.core.cLineBreakpointMarker"/>
+<attrib name="persistant" value="true"/>
+<attrib name="org.eclipse.cdt.debug.core.breakpointType" value="0"/>
+<attrib name="workingset_id" value="org.eclipse.debug.ui.breakpointWorkingSet"/>
+<attrib name="message" value="Line breakpoint: startup_stm32f4xx.c [line: 430]"/>
+<attrib name="registered" value="true"/>
+<attrib name="path" value="/PTM"/>
+<attrib name="org.eclipse.cdt.debug.core.sourceHandle" value="E:/Projekty/PTM/PTM/cmsis_boot/startup/startup_stm32f4xx.c"/>
+<attrib name="org.eclipse.cdt.debug.core.ignoreCount" value="0"/>
+<attrib name="org.eclipse.debug.core.enabled" value="true"/>
+</marker>
+</breakpoint>
+<breakpoint enabled="true" persistant="true" registered="true">
+<resource path="/PTM" type="4"/>
+<marker lineNumber="430" type="org.eclipse.cdt.debug.core.cLineBreakpointMarker">
+<attrib name="enabled" value="true"/>
+<attrib name="org.eclipse.cdt.debug.core.condition" value=""/>
+<attrib name="org.eclipse.debug.core.id" value="org.eclipse.cdt.debug.core"/>
+<attrib name="workingset_name" value=""/>
+<attrib name="org.eclipse.cdt.debug.core.installCount" value="0"/>
+<attrib name="type" value="org.eclipse.cdt.debug.core.cLineBreakpointMarker"/>
+<attrib name="persistant" value="true"/>
+<attrib name="org.eclipse.cdt.debug.core.breakpointType" value="0"/>
+<attrib name="workingset_id" value="org.eclipse.debug.ui.breakpointWorkingSet"/>
+<attrib name="message" value="Line breakpoint: startup_stm32f4xx.c [line: 430]"/>
+<attrib name="registered" value="true"/>
+<attrib name="path" value="/PTM"/>
+<attrib name="org.eclipse.cdt.debug.core.sourceHandle" value="E:/Projekty/PTM/PTM/cmsis_boot/startup/startup_stm32f4xx.c"/>
+<attrib name="org.eclipse.cdt.debug.core.ignoreCount" value="0"/>
+<attrib name="org.eclipse.debug.core.enabled" value="true"/>
+</marker>
+</breakpoint>
+<breakpoint enabled="true" persistant="true" registered="true">
+<resource path="/PTM" type="4"/>
+<marker lineNumber="430" type="org.eclipse.cdt.debug.core.cLineBreakpointMarker">
+<attrib name="enabled" value="true"/>
+<attrib name="org.eclipse.cdt.debug.core.condition" value=""/>
+<attrib name="org.eclipse.debug.core.id" value="org.eclipse.cdt.debug.core"/>
+<attrib name="workingset_name" value=""/>
+<attrib name="org.eclipse.cdt.debug.core.installCount" value="0"/>
+<attrib name="type" value="org.eclipse.cdt.debug.core.cLineBreakpointMarker"/>
+<attrib name="persistant" value="true"/>
+<attrib name="org.eclipse.cdt.debug.core.breakpointType" value="0"/>
+<attrib name="workingset_id" value="org.eclipse.debug.ui.breakpointWorkingSet"/>
+<attrib name="message" value="Line breakpoint: startup_stm32f4xx.c [line: 430]"/>
+<attrib name="registered" value="true"/>
+<attrib name="path" value="/PTM"/>
+<attrib name="org.eclipse.cdt.debug.core.sourceHandle" value="E:/Projekty/PTM/PTM/cmsis_boot/startup/startup_stm32f4xx.c"/>
+<attrib name="org.eclipse.cdt.debug.core.ignoreCount" value="0"/>
+<attrib name="org.eclipse.debug.core.enabled" value="true"/>
+</marker>
+</breakpoint>
+<breakpoint enabled="true" persistant="true" registered="true">
+<resource path="/PTM" type="4"/>
+<marker lineNumber="430" type="org.eclipse.cdt.debug.core.cLineBreakpointMarker">
+<attrib name="enabled" value="true"/>
+<attrib name="org.eclipse.cdt.debug.core.condition" value=""/>
+<attrib name="org.eclipse.debug.core.id" value="org.eclipse.cdt.debug.core"/>
+<attrib name="workingset_name" value=""/>
+<attrib name="org.eclipse.cdt.debug.core.installCount" value="0"/>
+<attrib name="type" value="org.eclipse.cdt.debug.core.cLineBreakpointMarker"/>
+<attrib name="persistant" value="true"/>
+<attrib name="org.eclipse.cdt.debug.core.breakpointType" value="0"/>
+<attrib name="workingset_id" value="org.eclipse.debug.ui.breakpointWorkingSet"/>
+<attrib name="message" value="Line breakpoint: startup_stm32f4xx.c [line: 430]"/>
+<attrib name="registered" value="true"/>
+<attrib name="path" value="/PTM"/>
+<attrib name="org.eclipse.cdt.debug.core.sourceHandle" value="E:/Projekty/PTM/PTM/cmsis_boot/startup/startup_stm32f4xx.c"/>
+<attrib name="org.eclipse.debug.core.enabled" value="true"/>
+<attrib name="org.eclipse.cdt.debug.core.ignoreCount" value="0"/>
+</marker>
+</breakpoint>
+<breakpoint enabled="true" persistant="true" registered="true">
+<resource path="/PTM" type="4"/>
+<marker lineNumber="430" type="org.eclipse.cdt.debug.core.cLineBreakpointMarker">
+<attrib name="enabled" value="true"/>
+<attrib name="org.eclipse.cdt.debug.core.condition" value=""/>
+<attrib name="org.eclipse.debug.core.id" value="org.eclipse.cdt.debug.core"/>
+<attrib name="workingset_name" value=""/>
+<attrib name="org.eclipse.cdt.debug.core.installCount" value="0"/>
+<attrib name="type" value="org.eclipse.cdt.debug.core.cLineBreakpointMarker"/>
+<attrib name="persistant" value="true"/>
+<attrib name="org.eclipse.cdt.debug.core.breakpointType" value="0"/>
+<attrib name="workingset_id" value="org.eclipse.debug.ui.breakpointWorkingSet"/>
+<attrib name="message" value="Line breakpoint: startup_stm32f4xx.c [line: 430]"/>
+<attrib name="registered" value="true"/>
+<attrib name="path" value="/PTM"/>
+<attrib name="org.eclipse.cdt.debug.core.sourceHandle" value="E:/Projekty/PTM/PTM/cmsis_boot/startup/startup_stm32f4xx.c"/>
+<attrib name="org.eclipse.debug.core.enabled" value="true"/>
+<attrib name="org.eclipse.cdt.debug.core.ignoreCount" value="0"/>
+</marker>
+</breakpoint>
+<breakpoint enabled="true" persistant="true" registered="true">
+<resource path="/PTM" type="4"/>
+<marker lineNumber="430" type="org.eclipse.cdt.debug.core.cLineBreakpointMarker">
+<attrib name="enabled" value="true"/>
+<attrib name="org.eclipse.cdt.debug.core.condition" value=""/>
+<attrib name="org.eclipse.debug.core.id" value="org.eclipse.cdt.debug.core"/>
+<attrib name="workingset_name" value=""/>
+<attrib name="org.eclipse.cdt.debug.core.installCount" value="0"/>
+<attrib name="type" value="org.eclipse.cdt.debug.core.cLineBreakpointMarker"/>
+<attrib name="persistant" value="true"/>
+<attrib name="org.eclipse.cdt.debug.core.breakpointType" value="0"/>
+<attrib name="workingset_id" value="org.eclipse.debug.ui.breakpointWorkingSet"/>
+<attrib name="message" value="Line breakpoint: startup_stm32f4xx.c [line: 430]"/>
+<attrib name="registered" value="true"/>
+<attrib name="path" value="/PTM"/>
+<attrib name="org.eclipse.cdt.debug.core.sourceHandle" value="E:/Projekty/PTM/PTM/cmsis_boot/startup/startup_stm32f4xx.c"/>
+<attrib name="org.eclipse.debug.core.enabled" value="true"/>
+<attrib name="org.eclipse.cdt.debug.core.ignoreCount" value="0"/>
+</marker>
+</breakpoint>
+<breakpoint enabled="true" persistant="true" registered="true">
+<resource path="/PTM" type="4"/>
+<marker lineNumber="430" type="org.eclipse.cdt.debug.core.cLineBreakpointMarker">
+<attrib name="enabled" value="true"/>
+<attrib name="org.eclipse.cdt.debug.core.condition" value=""/>
+<attrib name="org.eclipse.debug.core.id" value="org.eclipse.cdt.debug.core"/>
+<attrib name="workingset_name" value=""/>
+<attrib name="org.eclipse.cdt.debug.core.installCount" value="0"/>
+<attrib name="type" value="org.eclipse.cdt.debug.core.cLineBreakpointMarker"/>
+<attrib name="persistant" value="true"/>
+<attrib name="org.eclipse.cdt.debug.core.breakpointType" value="0"/>
+<attrib name="workingset_id" value="org.eclipse.debug.ui.breakpointWorkingSet"/>
+<attrib name="message" value="Line breakpoint: startup_stm32f4xx.c [line: 430]"/>
+<attrib name="registered" value="true"/>
+<attrib name="path" value="/PTM"/>
+<attrib name="org.eclipse.cdt.debug.core.sourceHandle" value="E:/Projekty/PTM/PTM/cmsis_boot/startup/startup_stm32f4xx.c"/>
+<attrib name="org.eclipse.debug.core.enabled" value="true"/>
+<attrib name="org.eclipse.cdt.debug.core.ignoreCount" value="0"/>
+</marker>
+</breakpoint>
+<breakpoint enabled="true" persistant="true" registered="true">
+<resource path="/PTM" type="4"/>
+<marker lineNumber="430" type="org.eclipse.cdt.debug.core.cLineBreakpointMarker">
+<attrib name="enabled" value="true"/>
+<attrib name="org.eclipse.cdt.debug.core.condition" value=""/>
+<attrib name="org.eclipse.debug.core.id" value="org.eclipse.cdt.debug.core"/>
+<attrib name="workingset_name" value=""/>
+<attrib name="org.eclipse.cdt.debug.core.installCount" value="0"/>
+<attrib name="type" value="org.eclipse.cdt.debug.core.cLineBreakpointMarker"/>
+<attrib name="persistant" value="true"/>
+<attrib name="org.eclipse.cdt.debug.core.breakpointType" value="0"/>
+<attrib name="workingset_id" value="org.eclipse.debug.ui.breakpointWorkingSet"/>
+<attrib name="message" value="Line breakpoint: startup_stm32f4xx.c [line: 430]"/>
+<attrib name="registered" value="true"/>
+<attrib name="path" value="/PTM"/>
+<attrib name="org.eclipse.cdt.debug.core.sourceHandle" value="E:/Projekty/PTM/PTM/cmsis_boot/startup/startup_stm32f4xx.c"/>
+<attrib name="org.eclipse.debug.core.enabled" value="true"/>
+<attrib name="org.eclipse.cdt.debug.core.ignoreCount" value="0"/>
+</marker>
+</breakpoint>
+<breakpoint enabled="true" persistant="true" registered="true">
+<resource path="/PTM" type="4"/>
+<marker lineNumber="430" type="org.eclipse.cdt.debug.core.cLineBreakpointMarker">
+<attrib name="enabled" value="true"/>
+<attrib name="org.eclipse.cdt.debug.core.condition" value=""/>
+<attrib name="org.eclipse.debug.core.id" value="org.eclipse.cdt.debug.core"/>
+<attrib name="workingset_name" value=""/>
+<attrib name="org.eclipse.cdt.debug.core.installCount" value="0"/>
+<attrib name="type" value="org.eclipse.cdt.debug.core.cLineBreakpointMarker"/>
+<attrib name="persistant" value="true"/>
+<attrib name="org.eclipse.cdt.debug.core.breakpointType" value="0"/>
+<attrib name="workingset_id" value="org.eclipse.debug.ui.breakpointWorkingSet"/>
+<attrib name="message" value="Line breakpoint: startup_stm32f4xx.c [line: 430]"/>
+<attrib name="registered" value="true"/>
+<attrib name="path" value="/PTM"/>
+<attrib name="org.eclipse.cdt.debug.core.sourceHandle" value="E:/Projekty/PTM/PTM/cmsis_boot/startup/startup_stm32f4xx.c"/>
+<attrib name="org.eclipse.debug.core.enabled" value="true"/>
+<attrib name="org.eclipse.cdt.debug.core.ignoreCount" value="0"/>
+</marker>
+</breakpoint>
+<breakpoint enabled="true" persistant="true" registered="true">
+<resource path="/PTM" type="4"/>
+<marker lineNumber="430" type="org.eclipse.cdt.debug.core.cLineBreakpointMarker">
+<attrib name="enabled" value="true"/>
+<attrib name="org.eclipse.cdt.debug.core.condition" value=""/>
+<attrib name="org.eclipse.debug.core.id" value="org.eclipse.cdt.debug.core"/>
+<attrib name="workingset_name" value=""/>
+<attrib name="org.eclipse.cdt.debug.core.installCount" value="0"/>
+<attrib name="type" value="org.eclipse.cdt.debug.core.cLineBreakpointMarker"/>
+<attrib name="persistant" value="true"/>
+<attrib name="org.eclipse.cdt.debug.core.breakpointType" value="0"/>
+<attrib name="workingset_id" value="org.eclipse.debug.ui.breakpointWorkingSet"/>
+<attrib name="message" value="Line breakpoint: startup_stm32f4xx.c [line: 430]"/>
+<attrib name="registered" value="true"/>
+<attrib name="path" value="/PTM"/>
+<attrib name="org.eclipse.cdt.debug.core.sourceHandle" value="E:/Projekty/PTM/PTM/cmsis_boot/startup/startup_stm32f4xx.c"/>
+<attrib name="org.eclipse.debug.core.enabled" value="true"/>
+<attrib name="org.eclipse.cdt.debug.core.ignoreCount" value="0"/>
+</marker>
+</breakpoint>
+<breakpoint enabled="true" persistant="true" registered="true">
+<resource path="/PTM" type="4"/>
+<marker lineNumber="430" type="org.eclipse.cdt.debug.core.cLineBreakpointMarker">
+<attrib name="enabled" value="true"/>
+<attrib name="org.eclipse.cdt.debug.core.condition" value=""/>
+<attrib name="org.eclipse.debug.core.id" value="org.eclipse.cdt.debug.core"/>
+<attrib name="workingset_name" value=""/>
+<attrib name="org.eclipse.cdt.debug.core.installCount" value="0"/>
+<attrib name="type" value="org.eclipse.cdt.debug.core.cLineBreakpointMarker"/>
+<attrib name="persistant" value="true"/>
+<attrib name="org.eclipse.cdt.debug.core.breakpointType" value="0"/>
+<attrib name="workingset_id" value="org.eclipse.debug.ui.breakpointWorkingSet"/>
+<attrib name="message" value="Line breakpoint: startup_stm32f4xx.c [line: 430]"/>
+<attrib name="registered" value="true"/>
+<attrib name="path" value="/PTM"/>
+<attrib name="org.eclipse.cdt.debug.core.sourceHandle" value="E:/Projekty/PTM/PTM/cmsis_boot/startup/startup_stm32f4xx.c"/>
+<attrib name="org.eclipse.debug.core.enabled" value="true"/>
+<attrib name="org.eclipse.cdt.debug.core.ignoreCount" value="0"/>
 </marker>
 </breakpoint>
 <breakpoint enabled="true" persistant="true" registered="true">
@@ -1038,8 +1038,8 @@
 <attrib name="registered" value="true"/>
 <attrib name="path" value="/PTM/Devices/Accelometer.cpp"/>
 <attrib name="org.eclipse.cdt.debug.core.sourceHandle" value="C:\Users\BRZ\Desktop\STM32_project\PTM\Devices\Accelometer.cpp"/>
-<attrib name="org.eclipse.cdt.debug.core.ignoreCount" value="0"/>
 <attrib name="org.eclipse.debug.core.enabled" value="true"/>
+<attrib name="org.eclipse.cdt.debug.core.ignoreCount" value="0"/>
 </marker>
 </breakpoint>
 <breakpoint enabled="true" persistant="true" registered="true">
@@ -1049,7 +1049,7 @@
 <attrib name="org.eclipse.cdt.debug.core.condition" value=""/>
 <attrib name="org.eclipse.debug.core.id" value="org.eclipse.cdt.debug.core"/>
 <attrib name="workingset_name" value=""/>
-<attrib name="org.eclipse.cdt.debug.core.installCount" value="1"/>
+<attrib name="org.eclipse.cdt.debug.core.installCount" value="0"/>
 <attrib name="type" value="org.eclipse.cdt.debug.core.cLineBreakpointMarker"/>
 <attrib name="persistant" value="true"/>
 <attrib name="org.eclipse.cdt.debug.core.breakpointType" value="0"/>
@@ -1058,8 +1058,8 @@
 <attrib name="registered" value="true"/>
 <attrib name="path" value="/PTM"/>
 <attrib name="org.eclipse.cdt.debug.core.sourceHandle" value="E:/Projekty/PTM/PTM/cmsis_boot/startup/startup_stm32f4xx.c"/>
-<attrib name="org.eclipse.cdt.debug.core.ignoreCount" value="0"/>
 <attrib name="org.eclipse.debug.core.enabled" value="true"/>
+<attrib name="org.eclipse.cdt.debug.core.ignoreCount" value="0"/>
 </marker>
 </breakpoint>
 <breakpoint enabled="true" persistant="true" registered="true">
@@ -1069,7 +1069,7 @@
 <attrib name="org.eclipse.cdt.debug.core.condition" value=""/>
 <attrib name="org.eclipse.debug.core.id" value="org.eclipse.cdt.debug.core"/>
 <attrib name="workingset_name" value=""/>
-<attrib name="org.eclipse.cdt.debug.core.installCount" value="1"/>
+<attrib name="org.eclipse.cdt.debug.core.installCount" value="0"/>
 <attrib name="type" value="org.eclipse.cdt.debug.core.cLineBreakpointMarker"/>
 <attrib name="persistant" value="true"/>
 <attrib name="org.eclipse.cdt.debug.core.breakpointType" value="0"/>
@@ -1078,8 +1078,8 @@
 <attrib name="registered" value="true"/>
 <attrib name="path" value="/PTM"/>
 <attrib name="org.eclipse.cdt.debug.core.sourceHandle" value="E:/Projekty/PTM/PTM/cmsis_boot/startup/startup_stm32f4xx.c"/>
-<attrib name="org.eclipse.cdt.debug.core.ignoreCount" value="0"/>
 <attrib name="org.eclipse.debug.core.enabled" value="true"/>
+<attrib name="org.eclipse.cdt.debug.core.ignoreCount" value="0"/>
 </marker>
 </breakpoint>
 <breakpoint enabled="true" persistant="true" registered="true">
@@ -1098,8 +1098,8 @@
 <attrib name="registered" value="true"/>
 <attrib name="path" value="/PTM/Devices/Accelometer.cpp"/>
 <attrib name="org.eclipse.cdt.debug.core.sourceHandle" value="C:\Users\BRZ\Desktop\STM32_project\PTM\Devices\Accelometer.cpp"/>
-<attrib name="org.eclipse.cdt.debug.core.ignoreCount" value="0"/>
 <attrib name="org.eclipse.debug.core.enabled" value="true"/>
+<attrib name="org.eclipse.cdt.debug.core.ignoreCount" value="0"/>
 </marker>
 </breakpoint>
 <breakpoint enabled="true" persistant="true" registered="true">
@@ -1109,7 +1109,7 @@
 <attrib name="org.eclipse.cdt.debug.core.condition" value=""/>
 <attrib name="org.eclipse.debug.core.id" value="org.eclipse.cdt.debug.core"/>
 <attrib name="workingset_name" value=""/>
-<attrib name="org.eclipse.cdt.debug.core.installCount" value="1"/>
+<attrib name="org.eclipse.cdt.debug.core.installCount" value="0"/>
 <attrib name="type" value="org.eclipse.cdt.debug.core.cLineBreakpointMarker"/>
 <attrib name="persistant" value="true"/>
 <attrib name="org.eclipse.cdt.debug.core.breakpointType" value="0"/>
@@ -1118,8 +1118,8 @@
 <attrib name="registered" value="true"/>
 <attrib name="path" value="/PTM"/>
 <attrib name="org.eclipse.cdt.debug.core.sourceHandle" value="E:/Projekty/PTM/PTM/cmsis_boot/startup/startup_stm32f4xx.c"/>
-<attrib name="org.eclipse.cdt.debug.core.ignoreCount" value="0"/>
 <attrib name="org.eclipse.debug.core.enabled" value="true"/>
+<attrib name="org.eclipse.cdt.debug.core.ignoreCount" value="0"/>
 </marker>
 </breakpoint>
 <breakpoint enabled="true" persistant="true" registered="true">
@@ -1129,7 +1129,7 @@
 <attrib name="org.eclipse.cdt.debug.core.condition" value=""/>
 <attrib name="org.eclipse.debug.core.id" value="org.eclipse.cdt.debug.core"/>
 <attrib name="workingset_name" value=""/>
-<attrib name="org.eclipse.cdt.debug.core.installCount" value="1"/>
+<attrib name="org.eclipse.cdt.debug.core.installCount" value="0"/>
 <attrib name="type" value="org.eclipse.cdt.debug.core.cLineBreakpointMarker"/>
 <attrib name="persistant" value="true"/>
 <attrib name="org.eclipse.cdt.debug.core.breakpointType" value="0"/>
@@ -1138,8 +1138,8 @@
 <attrib name="registered" value="true"/>
 <attrib name="path" value="/PTM"/>
 <attrib name="org.eclipse.cdt.debug.core.sourceHandle" value="E:/Projekty/PTM/PTM/cmsis_boot/startup/startup_stm32f4xx.c"/>
-<attrib name="org.eclipse.cdt.debug.core.ignoreCount" value="0"/>
 <attrib name="org.eclipse.debug.core.enabled" value="true"/>
+<attrib name="org.eclipse.cdt.debug.core.ignoreCount" value="0"/>
 </marker>
 </breakpoint>
 <breakpoint enabled="true" persistant="true" registered="true">
@@ -1149,7 +1149,7 @@
 <attrib name="org.eclipse.cdt.debug.core.condition" value=""/>
 <attrib name="org.eclipse.debug.core.id" value="org.eclipse.cdt.debug.core"/>
 <attrib name="workingset_name" value=""/>
-<attrib name="org.eclipse.cdt.debug.core.installCount" value="1"/>
+<attrib name="org.eclipse.cdt.debug.core.installCount" value="0"/>
 <attrib name="type" value="org.eclipse.cdt.debug.core.cLineBreakpointMarker"/>
 <attrib name="persistant" value="true"/>
 <attrib name="org.eclipse.cdt.debug.core.breakpointType" value="0"/>
@@ -1158,8 +1158,8 @@
 <attrib name="registered" value="true"/>
 <attrib name="path" value="/PTM"/>
 <attrib name="org.eclipse.cdt.debug.core.sourceHandle" value="E:/Projekty/PTM/PTM/cmsis_boot/startup/startup_stm32f4xx.c"/>
-<attrib name="org.eclipse.cdt.debug.core.ignoreCount" value="0"/>
 <attrib name="org.eclipse.debug.core.enabled" value="true"/>
+<attrib name="org.eclipse.cdt.debug.core.ignoreCount" value="0"/>
 </marker>
 </breakpoint>
 <breakpoint enabled="true" persistant="true" registered="true">
@@ -1169,7 +1169,7 @@
 <attrib name="org.eclipse.cdt.debug.core.condition" value=""/>
 <attrib name="org.eclipse.debug.core.id" value="org.eclipse.cdt.debug.core"/>
 <attrib name="workingset_name" value=""/>
-<attrib name="org.eclipse.cdt.debug.core.installCount" value="1"/>
+<attrib name="org.eclipse.cdt.debug.core.installCount" value="0"/>
 <attrib name="type" value="org.eclipse.cdt.debug.core.cLineBreakpointMarker"/>
 <attrib name="persistant" value="true"/>
 <attrib name="org.eclipse.cdt.debug.core.breakpointType" value="0"/>
@@ -1178,8 +1178,8 @@
 <attrib name="registered" value="true"/>
 <attrib name="path" value="/PTM"/>
 <attrib name="org.eclipse.cdt.debug.core.sourceHandle" value="E:/Projekty/PTM/PTM/cmsis_boot/startup/startup_stm32f4xx.c"/>
-<attrib name="org.eclipse.cdt.debug.core.ignoreCount" value="0"/>
 <attrib name="org.eclipse.debug.core.enabled" value="true"/>
+<attrib name="org.eclipse.cdt.debug.core.ignoreCount" value="0"/>
 </marker>
 </breakpoint>
 <breakpoint enabled="true" persistant="true" registered="true">
@@ -1189,7 +1189,7 @@
 <attrib name="org.eclipse.cdt.debug.core.condition" value=""/>
 <attrib name="org.eclipse.debug.core.id" value="org.eclipse.cdt.debug.core"/>
 <attrib name="workingset_name" value=""/>
-<attrib name="org.eclipse.cdt.debug.core.installCount" value="1"/>
+<attrib name="org.eclipse.cdt.debug.core.installCount" value="0"/>
 <attrib name="type" value="org.eclipse.cdt.debug.core.cLineBreakpointMarker"/>
 <attrib name="persistant" value="true"/>
 <attrib name="org.eclipse.cdt.debug.core.breakpointType" value="0"/>
@@ -1198,8 +1198,53 @@
 <attrib name="registered" value="true"/>
 <attrib name="path" value="/PTM"/>
 <attrib name="org.eclipse.cdt.debug.core.sourceHandle" value="E:/Projekty/PTM/PTM/cmsis_boot/startup/startup_stm32f4xx.c"/>
+<attrib name="org.eclipse.debug.core.enabled" value="true"/>
+<attrib name="org.eclipse.cdt.debug.core.ignoreCount" value="0"/>
+</marker>
+</breakpoint>
+<breakpoint enabled="true" persistant="true" registered="true">
+<resource path="/PTM" type="4"/>
+<marker lineNumber="104" type="org.eclipse.cdt.debug.core.cLineBreakpointMarker">
+<attrib name="message" value="Line breakpoint: Accelometer.cpp [line: 104]"/>
+<attrib name="org.eclipse.cdt.debug.core.condition" value=""/>
+<attrib name="org.eclipse.debug.core.id" value="org.eclipse.cdt.debug.core"/>
+<attrib name="org.eclipse.cdt.debug.core.installCount" value="0"/>
+<attrib name="org.eclipse.cdt.debug.core.sourceHandle" value="C:/Users/BRZ/Desktop/STM32_project/PTM/Devices/Accelometer.cpp"/>
+<attrib name="org.eclipse.cdt.debug.core.breakpointType" value="0"/>
 <attrib name="org.eclipse.cdt.debug.core.ignoreCount" value="0"/>
 <attrib name="org.eclipse.debug.core.enabled" value="true"/>
+<attrib name="workingset_name" value=""/>
+<attrib name="workingset_id" value="org.eclipse.debug.ui.breakpointWorkingSet"/>
+</marker>
+</breakpoint>
+<breakpoint enabled="true" persistant="true" registered="true">
+<resource path="/PTM" type="4"/>
+<marker lineNumber="138" type="org.eclipse.cdt.debug.core.cLineBreakpointMarker">
+<attrib name="message" value="Line breakpoint: Accelometer.cpp [line: 138]"/>
+<attrib name="org.eclipse.cdt.debug.core.condition" value=""/>
+<attrib name="org.eclipse.debug.core.id" value="org.eclipse.cdt.debug.core"/>
+<attrib name="org.eclipse.cdt.debug.core.installCount" value="0"/>
+<attrib name="org.eclipse.cdt.debug.core.sourceHandle" value="C:/Users/BRZ/Desktop/STM32_project/PTM/Devices/Accelometer.cpp"/>
+<attrib name="org.eclipse.cdt.debug.core.breakpointType" value="0"/>
+<attrib name="org.eclipse.cdt.debug.core.ignoreCount" value="0"/>
+<attrib name="org.eclipse.debug.core.enabled" value="true"/>
+<attrib name="workingset_name" value=""/>
+<attrib name="workingset_id" value="org.eclipse.debug.ui.breakpointWorkingSet"/>
+</marker>
+</breakpoint>
+<breakpoint enabled="true" persistant="true" registered="true">
+<resource path="/PTM" type="4"/>
+<marker lineNumber="430" type="org.eclipse.cdt.debug.core.cLineBreakpointMarker">
+<attrib name="message" value="Line breakpoint: startup_stm32f4xx.c [line: 430]"/>
+<attrib name="org.eclipse.cdt.debug.core.condition" value=""/>
+<attrib name="org.eclipse.debug.core.id" value="org.eclipse.cdt.debug.core"/>
+<attrib name="org.eclipse.cdt.debug.core.installCount" value="0"/>
+<attrib name="org.eclipse.cdt.debug.core.sourceHandle" value="E:/Projekty/PTM/PTM/cmsis_boot/startup/startup_stm32f4xx.c"/>
+<attrib name="org.eclipse.cdt.debug.core.breakpointType" value="0"/>
+<attrib name="org.eclipse.cdt.debug.core.ignoreCount" value="0"/>
+<attrib name="org.eclipse.debug.core.enabled" value="true"/>
+<attrib name="workingset_name" value=""/>
+<attrib name="workingset_id" value="org.eclipse.debug.ui.breakpointWorkingSet"/>
 </marker>
 </breakpoint>
 </breakpoints>
