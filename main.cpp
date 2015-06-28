@@ -24,6 +24,10 @@
 #include "GUI/SliderMenu.hpp"
 #include "Applications/Sun_space_mission/SunSpaceGame.hpp"
 #include "Applications/Czujka/czujnik.hpp"
+#include "Devices/Dht11.hpp"
+#include "Devices/TimClk.hpp"
+#include "Applications/Weather/weather.hpp"
+
 
 using namespace ptm::system;
 using namespace ptm::events;
@@ -40,7 +44,7 @@ public:
 					84, 48), _display(
 					System::getInstance()->_device_manager.getDevice<
 							displays::IDisplay>()), _panel(0, 0, 84, 48), _menu(
-					0, 0, 84, 48), _ptero(0, 0), _spaceship(0,0) {
+					0, 0, 84, 48), _ptero(0, 0), _spaceship(0,0), _weather(0,0) {
 		_event_listener.registerEventHandler(
 				EventMapping(EVENT_ACC_IN_MENU,
 						std::bind(&MainApp::handleAccelometer, this,
@@ -79,6 +83,7 @@ public:
 				break;
 			}
 			case 3: {
+				System::getInstance()->runApplication<ptm::applications::weather::Weather>();
 				break;
 			}
 			default: {
@@ -95,6 +100,7 @@ public:
 		//add childrens that represents apps to menu
 		_menu.addChild(&_ptero);
 		_menu.addChild(&_spaceship);
+		_menu.addChild(&_weather);
 		_screen_timer.start();
 	}
 
@@ -123,6 +129,7 @@ public:
 	SliderMenu _menu;
 	ptm::applications::flappy_ptero::Ptero _ptero;
 	ptm::applications::spacegame::Spaceship _spaceship;
+	ptm::applications::weather::MenuSigns _weather;
 };
 
 int main(void) {
@@ -139,6 +146,12 @@ int main(void) {
 			RCC_AHB1Periph_GPIOC);
 	System::getInstance()->_device_manager.mountDevice<APB1PeriphClock>(
 			RCC_APB1Periph_SPI2);
+	System::getInstance()->_device_manager.mountDevice<APB1PeriphClock>(
+			  RCC_APB1Periph_TIM5);//fisza
+	System::getInstance()->_device_manager.mountDevice<ptm::devices::Timer>(
+			  84000000,84,TIM5); //fisza
+	System::getInstance()->_device_manager.mountDevice<DHT>(
+			  Pin(GPIOD, GPIO_Pin_1),TIM5);//fisza
 	System::getInstance()->_device_manager.mountDevice<LED>(
 			Pin(GPIOD, GPIO_Pin_12));
 	System::getInstance()->_device_manager.mountDevice<LED>(
