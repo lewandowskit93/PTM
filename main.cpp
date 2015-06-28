@@ -19,6 +19,7 @@
 #include "GUI/Canvas.hpp"
 #include "GUI/Panel.hpp"
 #include "GUI/Component.hpp"
+#include "Applications/Flappy_Ptero/FlappyPtero.hpp"
 #include "Devices/Accelometer.hpp"
 #include "GUI/SliderMenu.hpp"
 
@@ -38,7 +39,7 @@ class MainApp : public Application
             48), _display(
             System::getInstance()->_device_manager.getDevice<
                 displays::IDisplay>()), _panel(0, 0, 84, 48), _menu(0,
-            0, 84, 48)
+            0, 84, 48), _ptero(10,10)
     {
       _event_listener.registerEventHandler(
           EventMapping(EVENT_ACC_IN_MENU,
@@ -77,6 +78,7 @@ class MainApp : public Application
           // run proper apps
           case 1:
           {
+            System::getInstance()->runApplication<ptm::applications::flappy_ptero::FlappyPteroGame>();
             break;
           }
           case 2:
@@ -102,6 +104,7 @@ class MainApp : public Application
     {
       _panel.addChild(&_menu);
       //add childrens that represents apps to menu
+      _menu.addChild(&_ptero);
       _screen_timer.start();
     }
 
@@ -132,6 +135,7 @@ class MainApp : public Application
     std::weak_ptr<displays::IDisplay> _display;
     Panel _panel;
     SliderMenu _menu;
+    ptm::applications::flappy_ptero::Ptero _ptero;
 };
 
 int main(void)
