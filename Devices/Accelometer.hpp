@@ -197,6 +197,7 @@ class Accelometer : public IDevice {
 						);
 
 		  protected:
+			uint8_t _menu_counter;
 		  private:
 
 
