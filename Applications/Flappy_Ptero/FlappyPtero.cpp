@@ -1,5 +1,6 @@
 #include "FlappyPtero.hpp"
 #include <stdlib.h>
+#include "../../Devices/Accelometer.hpp"
 
 namespace ptm
 {
@@ -214,8 +215,12 @@ MenuContext::MenuContext(FlappyPteroGame *game) :
         true), _ptero_anim_timer(&_timer_manager, 80,
         std::bind(&MenuContext::onPteroAnim, this), true), _menu_panel(0, 0, 84,
         48), _bg(0, 0, 84, 48), _bg_timer(&_timer_manager, 20,
-        std::bind(&MenuContext::onBgTimer, this), true)
+        std::bind(&MenuContext::onBgTimer, this), true), _menu(0,0,84,48)
 {
+  _event_listener.registerEventHandler(
+      events::EventMapping(events::EVENT_ACC_IN_MENU,
+          std::bind(&MenuContext::handleAccelometer, this,
+              std::placeholders::_1)));
   _event_listener.registerEventHandler(
       events::EventMapping(events::EVENT_BUTTON,
           std::bind(&MenuContext::onButton, this, std::placeholders::_1)));
@@ -234,8 +239,9 @@ void MenuContext::onUpdate()
 void MenuContext::onStart()
 {
   _menu_panel.addChild(&_bg);
-  _menu_panel.addChild(&_ptero1);
-  _menu_panel.addChild(&_ptero2);
+  _menu_panel.addChild(&_menu);
+  _menu.addChild(&_ptero1);
+  _menu.addChild(&_ptero2);
   _ptero2.setAnimFrame(5);
   if (_game)
     _game->_main_panel.addChild(&_menu_panel);
@@ -294,10 +300,41 @@ void MenuContext::onButton(std::shared_ptr<events::Event> event)
       < events::ButtonEvent > (event);
   if (!b_event->isPressed())
   {
-    if (_game)
-      _game->switchContext(&_game->_game_context);
+    uint32_t selected = _menu.getSelected();
+    switch(selected)
+    {
+      case 1:
+      {
+        if (_game)
+          _game->switchContext(&_game->_game_context);
+        break;
+      }
+      case 2:
+      {
+        if(_game)_game->stop();
+        break;
+      }
+      default:
+      {
+
+      }
+    }
+
   }
 }
+
+void MenuContext::handleAccelometer(std::shared_ptr<events::Event> event)
+ {
+   auto accel_event = std::static_pointer_cast < events::AccelometerMenuEvent >(event);
+   if (accel_event->movedTop())
+   {
+     _menu.selectPrevious();
+   }
+   if (accel_event->movedDown())
+   {
+     _menu.selectNext();
+   }
+ }
 
 GameContext::GameContext(FlappyPteroGame *game) :
     ApplicationContext(), _game(game), _game_panel(0, 0, 84, 48), _game_bg(0, 0,

@@ -9,6 +9,7 @@
 #include "../../System/System.hpp"
 #include "../../System/DeviceManager.hpp"
 #include "../../Devices/Display.hpp"
+#include "../../GUI/SliderMenu.hpp"
 #include <c++/4.9.3/list>
 
 namespace ptm
@@ -444,6 +445,7 @@ class MenuContext : public system::ApplicationContext
     void onPteroAnim();
     void onBgTimer();
     void onButton(std::shared_ptr<events::Event> event);
+    void handleAccelometer(std::shared_ptr<events::Event> event);
   protected:
   private:
     FlappyPteroGame *_game;
@@ -453,6 +455,7 @@ class MenuContext : public system::ApplicationContext
     gui::Panel _menu_panel;
     GameBackground _bg;
     system::ManagedTimer _bg_timer;
+    gui::SliderMenu _menu;
 };
 
 class GameContext : public system::ApplicationContext
