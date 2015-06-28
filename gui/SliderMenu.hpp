@@ -18,6 +18,7 @@ public:
     uint32_t getSelected();
     void selectNext();
     void selectPrevious();
+    void clampSelected();
 protected:
     uint32_t _selected;
 private:
