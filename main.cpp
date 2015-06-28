@@ -44,7 +44,7 @@ public:
 					84, 48), _display(
 					System::getInstance()->_device_manager.getDevice<
 							displays::IDisplay>()), _panel(0, 0, 84, 48), _menu(
-					0, 0, 84, 48), _ptero(0, 0), _spaceship(0,0), _weather(0,0) {
+					0, 0, 84, 48), _spaceship(0,0), _ptero(0, 0), _weather(0,0) {
 		_event_listener.registerEventHandler(
 				EventMapping(EVENT_ACC_IN_MENU,
 						std::bind(&MainApp::handleAccelometer, this,
@@ -74,13 +74,13 @@ public:
 			switch (selected) {
 			// run proper apps
 			case 1: {
-				System::getInstance()->runApplication<
-						ptm::applications::flappy_ptero::FlappyPteroGame>();
-				break;
+				System::getInstance()->runApplication<ptm::applications::spacegame::SpaceshipGame>();
+								break;
 			}
 			case 2: {
-				System::getInstance()->runApplication<ptm::applications::spacegame::SpaceshipGame>();
-				break;
+				System::getInstance()->runApplication<
+										ptm::applications::flappy_ptero::FlappyPteroGame>();
+								break;
 			}
 			case 3: {
 				System::getInstance()->runApplication<ptm::applications::weather::Weather>();
@@ -98,8 +98,8 @@ public:
 	void onStart() {
 		_panel.addChild(&_menu);
 		//add childrens that represents apps to menu
-		_menu.addChild(&_ptero);
 		_menu.addChild(&_spaceship);
+		_menu.addChild(&_ptero);
 		_menu.addChild(&_weather);
 		_screen_timer.start();
 	}
@@ -127,8 +127,8 @@ public:
 	std::weak_ptr<displays::IDisplay> _display;
 	Panel _panel;
 	SliderMenu _menu;
-	ptm::applications::flappy_ptero::Ptero _ptero;
 	ptm::applications::spacegame::Spaceship _spaceship;
+	ptm::applications::flappy_ptero::Ptero _ptero;
 	ptm::applications::weather::MenuSigns _weather;
 };
 
