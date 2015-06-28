@@ -18,7 +18,7 @@ inline void Accelometer::LIS302DL_CS_HIGH()
 
 Accelometer::Accelometer(SPI_TypeDef* spi, PinAFMapping sck, PinAFMapping miso, PinAFMapping mosi,
 		Pin cs, Pin int1, Pin int2) :
-		 IDevice(), _timer(500,std::bind(&Accelometer::updateAccelometerAxis,this), true),
+		 IDevice(), _timer(100,std::bind(&Accelometer::updateAccelometerAxis,this), true),
 	    _spi(spi),  _sck(sck), _miso(miso),
 	    _mosi(mosi), _cs(cs), _int1(int1), _int2(int2)
 
@@ -200,13 +200,13 @@ void Accelometer::updateAccelometerAxis()
 	axis.ACCY = (int8_t) y;
 	axis.ACCZ = (int8_t) z;
 
-	if (axis.ACCY > 45)
+	if (axis.ACCY > 15)
 		setAccDirection(movedBack);
-	else if (axis.ACCY < -45)
+	else if (axis.ACCY < -15)
 		setAccDirection(movedFront);
-	else if (axis.ACCX > 45)
+	else if (axis.ACCX > 15)
 		setAccDirection(movedLeft);
-	else if (axis.ACCX < - 45)
+	else if (axis.ACCX < - 15)
 		setAccDirection(movedRight);
 
 	checkForMenuEvents();
